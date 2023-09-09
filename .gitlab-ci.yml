@@ -1,0 +1,44 @@
+---
+default:
+  image: "archlinux:latest"
+
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+stages:
+  - build
+  - deploy
+
+check:
+  stage: build
+  needs: []
+  before_script:
+    - pacman -Syu --needed --noconfirm make ruby-mdl
+  script:
+    - ls #make check
+
+build:
+  stage: build
+  needs: []
+  before_script:
+    - pacman -Syu --needed --noconfirm make hugo git
+  script:
+    - ls #make build
+  artifacts:
+    paths:
+      - public
+
+pages:
+  stage: deploy
+  needs:
+    - check
+    - build
+  # tags:
+  #   - secure
+  script:
+    - "true"
+  artifacts:
+    paths:
+      - public
+  # rules:
+  #   - if: $CI_PROJECT_PATH == "archlinux/monthly-reports" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
