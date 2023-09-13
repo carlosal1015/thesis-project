@@ -1,0 +1,29 @@
+% arara: lualatex: {
+% arara: --> shell: no,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: lualatex: {
+% arara: --> shell: no,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux','log','out']      
+% arara: --> }
+% https://alexanderfabisch.github.io/latex-for-dissertations.html
+%\documentclass{beamer}
+
+\documentclass[egregdoesnotlikesansseriftitles]{scrbook}
+\usepackage{beamerarticle}
+
+\mode<article>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonly{#1}}}
+\mode<beamer>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonlylecture{#1}}}
+
+\carloslikestoplaywithmodes{v2}
+
+\begin{document}
+\include{v1}
+\include{v2}
+\end{document}

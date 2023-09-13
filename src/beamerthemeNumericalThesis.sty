@@ -1,0 +1,171 @@
+% Adapted from https://github.com/samcarter/beamerthemeSam/blob/main/beamerthemeSam.sty
+% Copyright 2023 by samcarter
+%
+% This file may be distributed and/or modified
+% under the LaTeX Project Public License 1.3c or later
+
+\mode<presentation>
+
+\colorlet{themecolor}{beamer@blendedblue}
+\definecolor{samred}{RGB}{205,38,38}
+\definecolor{samteal}{RGB}{0,146,142}
+\colorlet{samblue}{beamer@blendedblue!75!black}
+
+\newcommand\sectiongraphic[1]{\def\insertsectiongraphic{#1}}
+\sectiongraphic{}
+
+\newif\ifallnotes
+\allnotesfalse
+
+\DeclareOptionBeamer{themecolor}{\colorlet{themecolor}{#1}}
+\DeclareOptionBeamer{titlegraphic}{\titlegraphic{#1}}
+\DeclareOptionBeamer{sectiongraphic}{\sectiongraphic{#1}}
+\DeclareOptionBeamer{allnotes}{\allnotestrue}
+\ProcessOptionsBeamer
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% packages
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}% for the | in the footline
+\usepackage{lmodern}
+\usepackage[most]{tcolorbox}% for tcblistings
+\usepackage{tikz}% for title and section pages
+\graphicspath{{include}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% base themes 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\useinnertheme{rectangles}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% colour
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\colorlet{beamer@blendedblue}{themecolor}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{frametitle}{bg=themecolor,fg=white}
+\setbeamercolor{title in head/foot}{bg=,fg=gray}
+\setbeamercolor{block title}{bg=themecolor,fg=white}
+\setbeamercolor{block body}{bg=themecolor!20}
+\setbeamercolor{alerted text}{fg=samred}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% fonts
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamerfont{title}{size=\huge,series=\bfseries}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{institute}{size=\normalsize}
+\setbeamerfont{date}{size=\normalsize}
+\setbeamerfont{frametitle}{series=\bfseries}
+\setbeamerfont{section}{size=\LARGE,series=\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% theme settings
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}
+\beamer@onlytextwidthtrue
+\geometry{papersize={16.00cm,10.00cm}}
+\def\insertaspectratio{1610}
+
+% footline
+\setbeamertemplate{page number in head/foot}[pagenumber]
+\setbeamertemplate{footline}{%
+  \begin{beamercolorbox}{title in head/foot}
+    \usebeamerfont{title in head/foot}
+    \quad
+    \ifx\insertdate\empty\else        
+      \insertshortdate\hfill|\hfill
+    \fi
+    \ifx\insertauthor\empty\else
+      \insertshortauthor\hfill|\hfill
+    \fi
+    \ifx\insertshorttitle\empty\else
+      \insertshorttitle\hfill|\hfill
+    \fi    
+    \ifx\insertinstitute\empty\else
+      \insertshortinstitute\hfill|\hfill
+    \fi
+    \makebox[0.4cm][r]{\usebeamertemplate{page number in head/foot}}
+    \quad\hspace*{0pt}
+    \vskip2pt
+  \end{beamercolorbox}
+}
+
+% headline
+\setbeamertemplate{headline}{}
+
+% frametitle
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[sep=0cm,wd=\paperwidth,leftskip=\beamer@leftmargin,rightskip=\beamer@rightmargin]{frametitle}%
+    \begin{minipage}[t][1.7cm][c]{\textwidth}%
+      \usebeamerfont{frametitle}%
+      \strut\insertframetitle%
+    \end{minipage}%
+  \end{beamercolorbox}%
+}
+
+% title page
+\def\ps@navigation@titlepage{%
+  \setbeamertemplate{footline}{}%
+  \@nameuse{ps@navigation}%
+}
+\setbeamertemplate{title page}{%
+  \thispagestyle{navigation@titlepage}%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[themecolor] ([yshift=2.5cm]current page.south west) rectangle (current page.north east);    
+    \ifx\inserttitlegraphic\empty\else
+      \node[anchor=south] at ([yshift=2.65cm]current page.south) {\includegraphics[width=\paperwidth]{\inserttitlegraphic}};
+    \fi
+    \ifx\inserttitle\empty\else
+      \ifx\inserttitlegraphic\empty\else
+        \node[opacity=0.5,anchor=north west,text width=\textwidth] at ([yshift=-\beamer@leftmargin-0.15em,xshift=\beamer@leftmargin+0.1em]current page.north west) {%
+          \usebeamerfont*{title}%
+          \color{black}%
+          \inserttitle\par%
+        };    
+      \fi
+      \node[anchor=north west,text width=\textwidth] at ([yshift=-\beamer@leftmargin,xshift=\beamer@leftmargin]current page.north west) {%
+        \usebeamercolor[fg]{title}%
+        \usebeamerfont*{title}%
+        \inserttitle\par%
+      };
+    \fi    
+    \node[anchor=south west,text width=\textwidth,minimum height=2cm] at ([xshift=\beamer@leftmargin,yshift=0.25cm]current page.south west) {
+      \expandafter\ifblank\expandafter{\beamer@andstripped}{}{%
+        \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par\smallskip
+      }
+      \ifx\insertinstitute\@empty \else
+        \usebeamercolor[fg]{institute}\usebeamerfont{institute}\insertinstitute\par\smallskip
+      \fi
+      \ifx\insertdate\@empty \else
+        \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\par
+      \fi      
+    };
+  \end{tikzpicture}
+}
+
+% section page
+\setbeamertemplate{section page}{
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[themecolor] ([yshift=-2.5cm]current page.north west) rectangle (current page.north east);
+    \ifx\insertsectiongraphic\empty\else
+      \node[anchor=south] at ([yshift=-2.35cm]current page.north) {\includegraphics[width=\paperwidth]{\insertsectiongraphic}};
+    \fi 
+  \node[anchor=north west,text width=\textwidth] at ([xshift=\beamer@leftmargin,yshift=-3.75cm]current page.north west) {
+      \usebeamercolor[fg]{section}\usebeamerfont{section}\insertsection\par
+  };      
+  \end{tikzpicture}
+}
+
+\mode
+<all>
