@@ -2,3 +2,9 @@ baseURL = 'https://gitlab.io.carlosal1015/thesis-project'
 languageCode = 'en-us'
 title = 'Thesis Project I'
 theme = 'hugo-book'
+
+enableGitInfo = true
+
+[params]
+
+BookTheme = 'dark'
