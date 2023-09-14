@@ -14,16 +14,19 @@
 % arara: --> }
 % https://alexanderfabisch.github.io/latex-for-dissertations.html
 %\documentclass{beamer}
-
-\documentclass[egregdoesnotlikesansseriftitles]{scrbook}
-\usepackage{beamerarticle}
+\input{preamble.report}
+\usepackage[envcountsect]{beamerarticle} % notheorems
 
 \mode<article>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonly{#1}}}
 \mode<beamer>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonlylecture{#1}}}
 
 \carloslikestoplaywithmodes{v2}
 
+\setjobnamebeamerversion{main.beamer}
+
 \begin{document}
+
 \include{v1}
 \include{v2}
+
 \end{document}
