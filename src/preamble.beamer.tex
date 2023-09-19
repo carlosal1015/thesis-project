@@ -1,7 +1,7 @@
 \documentclass[
-    8pt,
-    professionalfonts,
-    leqno,
+  8pt,
+  professionalfonts,
+  leqno,
 ]{beamer}
 
 \usetheme[
@@ -15,7 +15,6 @@
 
 \usepackage[ISO]{diffcoeff}
 
-
 \usepackage[
   audience=english,
   % audience=spanish,
@@ -28,63 +27,63 @@
 \DefCurrentAudience{advisor} % students
 
 \tcbset{
-enhanced, remember,
-frame hidden, interior hidden,
-underlay={
-\begin{tcbclipframe}
-\begin{scope}[inner sep=0pt,
-remember picture,overlay]
-\fill[white] (current page.south west)
-rectangle (current page.north east);
-% blurred version of background image
-\node[opacity=0.9] at (current page.center)
-{\includegraphics[width=\paperwidth]
-{goldshade}};
-\end{scope}
-\end{tcbclipframe}
-}}
+  enhanced, remember,
+  frame hidden, interior hidden,
+  underlay={
+      \begin{tcbclipframe}
+        \begin{scope}[inner sep=0pt,
+            remember picture,overlay]
+          \fill[white] (current page.south west)
+          rectangle (current page.north east);
+          % blurred version of background image
+          \node[opacity=0.9] at (current page.center)
+          {\includegraphics[width=\paperwidth]
+            {goldshade}};
+        \end{scope}
+      \end{tcbclipframe}
+    }}
 
 % \tcbset{
-% enhanced,
-% frame style image={blueshade},
-% opacityback=0,
-% opacitybacktitle=0
+%   enhanced,
+%   frame style image={blueshade},
+%   opacityback=0,
+%   opacitybacktitle=0
 % }
 
 % \tcbset{
-% title style={
-% left color=beamer@tcb@titlebg,
-% right color=beamer@tcb@bodybg
-% }
+%   title style={
+%       left color=beamer@tcb@titlebg,
+%       right color=beamer@tcb@bodybg
+%     }
 % }
 
 % TODO: not working
 % \tcbset{
-% enhanced, boxrule=1pt,
-% borderline={1.5pt}{0pt}{beamer@tcb@titlebg},
-% attach boxed title to top left={xshift=0cm,
-% yshift*=0mm-\tcboxedtitleheight},
-% varwidth boxed title*=-3cm,
-% boxed title style={frame code={
-% \path[fill=beamer@tcb@titlebg]
-% (frame.north west) [sharp corners] --
-% (frame.north east) [rounded corners=2mm] --
-% (frame.south east) [sharp corners] --
-% (frame.south west) [rounded corners=2mm] --
-% cycle;},interior engine=empty,no shadow},
-% arc is curved, arc = 1.5mm,
+%   enhanced, boxrule=1pt,
+%   borderline={1.5pt}{0pt}{beamer@tcb@titlebg},
+%   attach boxed title to top left={xshift=0cm,
+%       yshift*=0mm-\tcboxedtitleheight},
+%   varwidth boxed title*=-3cm,
+%   boxed title style={frame code={
+%           \path[fill=beamer@tcb@titlebg]
+%           (frame.north west) [sharp corners] --
+%           (frame.north east) [rounded corners=2mm] --
+%           (frame.south east) [sharp corners] --
+%           (frame.south west) [rounded corners=2mm] --
+%           cycle;},interior engine=empty,no shadow},
+%   arc is curved, arc = 1.5mm,
 % }
 
 % \tcbsetforeverylayer{
-% enhanced,
-% attach boxed title to top center=
-% {yshift=-1mm},
-% boxed title style={no shadow},
+%   enhanced,
+%   attach boxed title to top center=
+%     {yshift=-1mm},
+%   boxed title style={no shadow},
 % }
 
 % \tcbsetforeverylayer{
-% borderline={1pt}{0pt}{
-% black,dashed}
+%   borderline={1pt}{0pt}{
+%       black,dashed}
 % }
 
 \AtBeginSection[]{

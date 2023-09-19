@@ -5,3 +5,4 @@
 *.snm
 *.toc
 *.pdf
+!src/deduction.pdf

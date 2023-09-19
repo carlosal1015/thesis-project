@@ -82,7 +82,7 @@
   \begin{beamercolorbox}{title in head/foot}
     \usebeamerfont{title in head/foot}
     \quad
-    \ifx\insertdate\empty\else        
+    \ifx\insertdate\empty\else
       \insertshortdate\hfill|\hfill
     \fi
     \ifx\insertauthor\empty\else
@@ -90,7 +90,7 @@
     \fi
     \ifx\insertshorttitle\empty\else
       \insertshorttitle\hfill|\hfill
-    \fi    
+    \fi
     \ifx\insertinstitute\empty\else
       \insertshortinstitute\hfill|\hfill
     \fi
@@ -122,7 +122,7 @@
 \setbeamertemplate{title page}{%
   \thispagestyle{navigation@titlepage}%
   \begin{tikzpicture}[remember picture,overlay]
-    \fill[themecolor] ([yshift=2.5cm]current page.south west) rectangle (current page.north east);    
+    \fill[themecolor] ([yshift=2.5cm]current page.south west) rectangle (current page.north east);
     \ifx\inserttitlegraphic\empty\else
       \node[anchor=south] at ([yshift=2.65cm]current page.south) {\includegraphics[width=\paperwidth]{\inserttitlegraphic}};
     \fi
@@ -132,14 +132,14 @@
           \usebeamerfont*{title}%
           \color{black}%
           \inserttitle\par%
-        };    
+        };
       \fi
       \node[anchor=north west,text width=\textwidth] at ([yshift=-\beamer@leftmargin,xshift=\beamer@leftmargin]current page.north west) {%
         \usebeamercolor[fg]{title}%
         \usebeamerfont*{title}%
         \inserttitle\par%
       };
-    \fi    
+    \fi
     \node[anchor=south west,text width=\textwidth,minimum height=2cm] at ([xshift=\beamer@leftmargin,yshift=0.25cm]current page.south west) {
       \expandafter\ifblank\expandafter{\beamer@andstripped}{}{%
         \usebeamercolor[fg]{author}\usebeamerfont{author}\insertauthor\par\smallskip
@@ -149,7 +149,7 @@
       \fi
       \ifx\insertdate\@empty \else
         \usebeamercolor[fg]{date}\usebeamerfont{date}\insertdate\par
-      \fi      
+      \fi
     };
   \end{tikzpicture}
 }
@@ -160,10 +160,10 @@
     \fill[themecolor] ([yshift=-2.5cm]current page.north west) rectangle (current page.north east);
     \ifx\insertsectiongraphic\empty\else
       \node[anchor=south] at ([yshift=-2.35cm]current page.north) {\includegraphics[width=\paperwidth]{\insertsectiongraphic}};
-    \fi 
-  \node[anchor=north west,text width=\textwidth] at ([xshift=\beamer@leftmargin,yshift=-3.75cm]current page.north west) {
+    \fi
+    \node[anchor=north west,text width=\textwidth] at ([xshift=\beamer@leftmargin,yshift=-3.75cm]current page.north west) {
       \usebeamercolor[fg]{section}\usebeamerfont{section}\insertsection\par
-  };      
+    };
   \end{tikzpicture}
 }
 
