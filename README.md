@@ -6,7 +6,7 @@ identical characteristics that we are using based on
 [Arch Linux](https://archlinux.org).
 
 ```console
-$ gitpod ./start.sh
+gitpod /workspace/thesis-project $ ./start
 ```
 
 [mail](mailto:caznaranl@uni.pe)
