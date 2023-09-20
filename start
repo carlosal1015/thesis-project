@@ -7,14 +7,17 @@ function show() {
 }
 
 function run() {
-  pushd src
+  pushd src >/dev/null 2>&1
+  echo "Generating PDFs ..."
   arara main.beamer main.report >/dev/null 2>&1
-  popd
+  popd >/dev/null 2>&1
 }
 
 function export() {
   [ -d pdf ] || mkdir -p pdf
   mv src/main.*.pdf pdf
+  echo "PDFs are in"
+  ls pdf
 }
 
 # show
