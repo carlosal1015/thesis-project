@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 
 function show() {
+  echo "Checking version ... done!"
   lualatex -v
   arara -V
 }
 
 function run() {
   pushd src
-  arara main.beamer main.report
+  arara main.beamer main.report >/dev/null 2>&1
   popd
 }
 
 function export() {
-  # [ -d .venv-deepxde ] || conda env create -f src/python/deepxde-environment.yml --prefix .venv-deepxde
-  mkdir -p pdf
+  [ -d pdf ] || mkdir -p pdf
   mv src/main.*.pdf pdf
 }
 

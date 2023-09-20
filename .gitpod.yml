@@ -1,5 +1,10 @@
 image: ghcr.io/cpp-review-dune/introductory-review/texlive
 
+tasks:
+  - name: PDF generator
+    command: |
+      ./start
+
 vscode:
   extensions:
     - anwar.papyrus-pdf # PDF PreviewPreview
