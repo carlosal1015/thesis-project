@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function show(){
-    lualatex --version
-    arara --version
+    lualatex -v
+    arara -V
 }
 
 show
