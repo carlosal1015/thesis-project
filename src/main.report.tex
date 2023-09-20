@@ -2,12 +2,12 @@
 % arara: --> shell: no,
 % arara: --> draft: no,
 % arara: --> interaction: batchmode
-% arara: --> }
+% arara: --> } if missing('pdf') || changed('tex')
 % arara: lualatex: {
 % arara: --> shell: no,
 % arara: --> draft: no,
 % arara: --> interaction: batchmode
-% arara: --> }
+% arara: --> } if missing('pdf') || changed('tex')
 % arara: clean: {
 % arara: --> extensions:
 % arara: --> ['aux','log','out']      

@@ -6,3 +6,5 @@
 *.toc
 *.pdf
 !src/deduction.pdf
+pdf
+src/arara.yaml

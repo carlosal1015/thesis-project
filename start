@@ -1,8 +1,22 @@
 #!/usr/bin/env bash
 
-function show(){
-    lualatex -v
-    arara -V
+function show() {
+  lualatex -v
+  arara -V
 }
 
-show
+function run() {
+  pushd src
+  arara main.beamer main.report
+  popd
+}
+
+function export() {
+  # [ -d .venv-deepxde ] || conda env create -f src/python/deepxde-environment.yml --prefix .venv-deepxde
+  mkdir -p pdf
+  mv src/main.*.pdf pdf
+}
+
+# show
+run
+export
