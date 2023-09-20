@@ -16,7 +16,7 @@ function run() {
 function export() {
   [ -d pdf ] || mkdir -p pdf
   mv src/main.*.pdf pdf
-  echo "PDFs are in"
+  echo "PDFs are in pdf directory"
   ls pdf
 }
 
