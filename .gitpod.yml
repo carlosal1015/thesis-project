@@ -2,4 +2,6 @@ image: ghcr.io/cpp-review-dune/introductory-review/texlive
 
 vscode:
   extensions:
-    - anwar.papyrus-pdf
+    - anwar.papyrus-pdf # PDF PreviewPreview
+    - wesbos.theme-cobalt2 # Blue editor theme
+    - james-yu.latex-workshop # LaTeX support
