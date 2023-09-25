@@ -3,6 +3,7 @@
 % arara: --> draft: yes,
 % arara: --> interaction: batchmode
 % arara: --> }
+% arara: biber
 % arara: lualatex: {
 % arara: --> shell: no,
 % arara: --> draft: no,
@@ -17,16 +18,25 @@
 \input{preamble.report}
 \usepackage[envcountsect]{beamerarticle} % notheorems
 
-\mode<article>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonly{#1}}}
-\mode<beamer>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonlylecture{#1}}}
+% \mode<article>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonly{#1}}}
+% \mode<beamer>{\newcommand{\carloslikestoplaywithmodes}[1]{\includeonlylecture{#1}}}
 
-\carloslikestoplaywithmodes{v2}
+% \carloslikestoplaywithmodes{v2}
 
 \setjobnamebeamerversion{main.beamer}
 
 \begin{document}
 
-\include{v1}
-\include{v2}
+% \include{v1}
+% \include{v2}
+
+\mode<article>{
+    \maketitle
+    \chapter{Introduction}
+    \input{quadrature}
+}
+
+\nocite{*}
+\printbibliography
 
 \end{document}

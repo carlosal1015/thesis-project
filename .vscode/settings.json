@@ -1,3 +1,23 @@
 {
-    "latex-workshop.latex.autoClean.run": "never"
+    "latex-workshop.latex.autoClean.run": "never",
+    "workbench.colorCustomizations": {
+        "activityBar.activeBackground": "#422fc7",
+        "activityBar.background": "#422fc7",
+        "activityBar.foreground": "#e7e7e7",
+        "activityBar.inactiveForeground": "#e7e7e799",
+        "activityBarBadge.background": "#d45c4b",
+        "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "sash.hoverBorder": "#422fc7",
+        "statusBar.background": "#34259e",
+        "statusBar.foreground": "#e7e7e7",
+        "statusBarItem.hoverBackground": "#422fc7",
+        "statusBarItem.remoteBackground": "#34259e",
+        "statusBarItem.remoteForeground": "#e7e7e7",
+        "titleBar.activeBackground": "#34259e",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#34259e99",
+        "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#34259e"
 }

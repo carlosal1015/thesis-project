@@ -3,6 +3,12 @@
 % arara: --> draft: yes,
 % arara: --> interaction: batchmode
 % arara: --> }
+% arara: biber
+% arara: lualatex: {
+% arara: --> shell: no,
+% arara: --> draft: no,
+% arara: --> interaction: batchmode
+% arara: --> }
 % arara: lualatex: {
 % arara: --> shell: no,
 % arara: --> draft: no,
@@ -16,6 +22,11 @@
 
 \begin{document}
 
-\input{content}
+\mode<all>{
+    \input{title}
+    % \input{content}
+    \input{quadrature}
+    \input{bibliography}
+}
 
 \end{document}

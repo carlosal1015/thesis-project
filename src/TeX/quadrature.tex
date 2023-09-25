@@ -1,89 +1,147 @@
 \begin{frame}
-    \frametitle{Numerical Quadrature}
+    \frametitle{
+        Numerical Quadrature~\cite[p.~397]{salgado_classical_2022}
+    }
 
-    Let $f\in C\left(\left[a,b\right]\right)$.
+    Let
+    \begin{math}
+        f\in
+        C\left(
+        \left[a,b\right]
+        \right)
+    \end{math}.
     We seek calculate an approximation of
     \begin{equation*}
-        I^{\left(a,b\right)}\left[f\right]\coloneqq
+        I^{\left(a,b\right)}
+        \left[f\right]\coloneqq
         \int_{a}^{b}
         f\left(x\right)
         \dl x.
     \end{equation*}
 
-    Suppose that $g\in C\left(\left[a,b\right]\right)$,
+    Suppose that
+    \begin{math}
+        g\in
+        C\left(
+        \left[a,b\right]
+        \right)
+    \end{math},
     whose antiderivative is simply obtained, and
     \begin{math}
-        {\left\|f-g\right\|}_{\infty}<\varepsilon
+        {\left\|f-g\right\|}_{\infty}<
+        \varepsilon
     \end{math}.
     Then,
     \begin{equation}
         \left|
-        \int\limits_{a}^{b}
+        \int_{a}^{b}
         f\left(x\right)
         \dl x-
         \int\limits_{a}^{b}
         g\left(x\right)
         \dl x
         \right|\leq
-        \varepsilon\left(b-a\right).
+        \varepsilon
+        \left(b-a\right).
     \end{equation}
 
     \begin{definition}[Quadrature rule]
         Suppose that $n,r\in\mathbb{N}_{0}$,
-        $w$ is a weight function on $\left[a,b\right]\subset\mathbb{R}$,
-        $h=b-a>0$, and $f\in C^{r}\left(\left[a,b\right]\right)$.
+        $w$ is a weight function on
+        \begin{math}
+            \left[a,b\right]\subset
+            \mathbb{R}
+        \end{math},
+        $h=b-a>0$, and
+        \begin{math}
+            f\in
+            C^{r}\left(
+            \left[a,b\right]
+            \right)
+        \end{math}.
         The expression
         \begin{equation*}
-            Q^{\left(a,b\right)}_{w,r}\left[f\right]=
-            \sum\limits_{i=0}^{r}
-            \sum\limits_{j=0}^{n}
+            Q^{\left(a,b\right)}_{w,r}
+            \left[f\right]=
+            \sum_{i=0}^{r}
+            \sum_{j=0}^{n}
             \beta_{i,j}
-            f^{\left(i\right)}\left(x_{j}\right)=
-            \sum\limits_{j=0}^{n}
+            f^{\left(i\right)}
+            \left(x_{j}\right)=
+            \sum_{j=0}^{n}
             \left(
             \beta_{0,j}
             f\left(x_{j}\right)+
             \beta_{1,j}
-            f^{\prime}\left(x_{j}\right)+
+            f^{\prime}
+            \left(x_{j}\right)+
             \cdots+
             \beta_{r,j}
-            f^{\left(r\right)}\left(x_{j}\right)
+            f^{\left(r\right)}
+            \left(x_{j}\right)
             \right),
         \end{equation*}
         where
         \begin{math}
-            \forall i\in\left\{0,\dotsc,r\right\}:
-            \forall j\in\left\{0,\dotsc,n\right\}:
+            \forall i\in
+            \left\{0,\dotsc,r\right\}:
+            \forall j\in
+            \left\{0,\dotsc,n\right\}:
             \beta_{i,j}=
             h^{i+1}
             \widehat{\beta_{i,j}}
         \end{math}
         and
         \begin{math}
-            \forall j\in\left\{0,\dotsc,n\right\}:
+            \forall j\in
+            \left\{0,\dotsc,n\right\}:
             x_{j}=
             a+
-            h\cdot\widehat{x}_{j}
+            h\cdot
+            \widehat{x}_{j}
         \end{math}.
     \end{definition}
+\end{frame}
 
+\begin{frame}
     \begin{theorem}[Error estimate]
         Suppose that $n\in\mathbb{N}_{0}$, $w$ is a weight function
-        on $\left[a,b\right]\subset\mathbb{R}$,
-        $f\in C^{n+1}\left(\left[a,b\right]\right)$, and
-        $X=\left\{x_{i}\right\}_{i=0}^{n}\subset\left[a,b\right]$.
+        on
+        \begin{math}
+            \left[a,b\right]\subset
+            \mathbb{R}
+        \end{math}.
+        \begin{math}
+            f\in C^{n+1}
+            \left(
+            \left[a,b\right]
+            \right)
+        \end{math},
+        and
+        \begin{math}
+            X=
+            \left\{x_{i}\right\}_{i=0}^{n}\subset
+            \left[a,b\right]
+        \end{math}.
     \end{theorem}
 
     \begin{equation*}
-        Q^{\left(a,b\right)}_{w}\left[a,b\right]=
-        \sum\limits_{j=0}^{n}
-        \beta_{j}f\left(x_{j}\right).
+        Q^{\left(a,b\right)}_{w}
+        \left[a,b\right]=
+        \sum_{j=0}^{n}
+        \beta_{j}
+        f\left(x_{j}\right).
     \end{equation*}
-    simple quadrature rule.
+
+    Simple quadrature rule.
 
     \begin{definition}[Closed Newton-Cotes quadrature rule]
         Suppose that $w$ is a weight function on
-        $\left[a,b\right]\subset\mathbb{R}$ and $n\in\mathbb{N}$.
+        \begin{math}
+            \left[a,b\right]\subset
+            \mathbb{R}
+        \end{math}
+        and $n\in\mathbb{N}$.
         Set $h=b-a>0$ and $\hslash=\frac{h}{n}$
     \end{definition}
 
@@ -101,62 +159,85 @@
 
     \begin{theorem}[Error estimate]
         Let $\left[a,b\right]\subset\mathbb{R}$.
-        Suppose that is a closed Newton-Cotes quadrature rule of order $n\in\mathbb{N}$.
-        Then, the order of quadrature rule is consistent of order at least $n$.
+        Suppose that is a closed Newton-Cotes quadrature rule of
+        order $n\in\mathbb{N}$.
+        Then, the order of quadrature rule is consistent of order at
+        least $n$.
         Moreover, if $f\in C^{n+1}\left(\left[a,b\right]\right)$, then
         \begin{equation*}
-            \left|E_{Q_{n}}\left[f\right]\right|\leq
-            C h^{n+2}{\left\|f^{\left(n+1\right)}\right\|}_{\infty}
+            \left|
+            E_{Q_{n}}
+            \left[f\right]
+            \right|\leq
+            C
+            h^{n+2}
+            {\left\|f^{\left(n+1\right)}\right\|}_{\infty}
         \end{equation*}
     \end{theorem}
+\end{frame}
 
+\begin{frame}
     \begin{theorem}[Integral Mean Value Theorem]
-        Let $a<b$, $f\in C\left(\left[a,b\right]\right)$, and $g\in\mathcal{R}\left(a,b\right)$.
-        Furthermore, suppose that $g\left(x\right)\geq0$ for all $x\in\left[a,b\right]$.
+        Let $a<b$,
+        \begin{math}
+            f\in C\left(\left[a,b\right]\right)
+        \end{math},
+        and
+        \begin{math}
+            g\in
+            \mathcal{R}\left(a,b\right)
+        \end{math}.
+        Furthermore, suppose that $g\left(x\right)\geq0$ for all
+        $x\in\left[a,b\right]$.
         Then, there exists $\xi\in\left[a,b\right]$ such that
         \begin{equation*}
-            \int\limits_{a}^{b}
+            \int_{a}^{b}
             f\left(x\right)
             g\left(x\right)
             \dl x=
             f\left(\xi\right)
-            \int\limits_{a}^{b}
+            \int_{a}^{b}
             g\left(x\right)
             \dl x.
         \end{equation*}
 
-        Thus, if $\forall x\in\left[a,b\right]:g\left(x\right)=1$, there exists
-        a point $\xi\in\left[a,b\right]$ such that
+        Thus, if $\forall x\in\left[a,b\right]:g\left(x\right)=1$,
+        there exists a point $\xi\in\left[a,b\right]$ such that
         \begin{equation*}
             f\left(\xi\right)=
             \dfrac{1}{b-a}
-            \int\limits_{a}^{b}
+            \int_{a}^{b}
             f
         \end{equation*}
     \end{theorem}
 
     \begin{definition}
-        average concentration on
+        Average concentration on
         \begin{math}
             \left[
                 x-\frac{1}{2}h,
                 +x\frac{1}{2}h
                 \right]
-        \end{math}
+        \end{math}.
+
         \begin{equation*}
-            \overline{u}\left(x,t\right)=
+            \overline{u}
+            \left(x,t\right)=
             \dfrac{1}{h}
-            \int\limits_{x-\frac{1}{2}h}^{x+\frac{1}{2}h}
+            \int_{x-\frac{1}{2}h}^{x+\frac{1}{2}h}
             u\left(s,t\right)
             \dl s.
         \end{equation*}
     \end{definition}
+\end{frame}
+
+\begin{frame}
 
     \begin{theorem}[Mass conservation law]
         If $u\left(x,t\right)$ is a concentration and
         \begin{equation*}
             M\left(t\right)\coloneqq
-            \int\limits_{0}^{1}
+            \int_{0}^{1}
             u\left(x,t\right)
             \dl x
         \end{equation*}
@@ -167,10 +248,10 @@
     \begin{proof}
         \begin{align*}
             \diff{M\left(t\right)}{t} & =
-            \int\limits_{0}^{1}
+            \int_{0}^{1}
             u_{t}\left(x,t\right)
             \dl x=
-            \int\limits_{0}^{1}
+            \int_{0}^{1}
             \left(
             -au_{x}\left(x,t\right)+
             du_{xx}\left(x,t\right)
@@ -186,7 +267,9 @@
             \right)=0.
         \end{align*}
     \end{proof}
+\end{frame}
 
+\begin{frame}
     \begin{figure}[ht!]
         \centering
         \includegraphics[width=.4\paperwidth]{deduction}

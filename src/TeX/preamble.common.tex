@@ -1,0 +1,27 @@
+\usepackage{mathtools}
+\usepackage[ISO]{diffcoeff}
+\usepackage[useregional]{datetime2}
+\usepackage[
+    % citestyle=numeric,
+    % style=amsplain,
+    % backend=biber,
+    % defernumbers=true,
+    % sorting=ynt,
+    % maxcitenames=4
+]{biblatex}
+\addbibresource{references.bib}
+
+\author{Carlos Aznarán Laos}
+\title{Thesis Proyect I}
+
+\def\Book{1}
+\if 1\Book
+\else
+    \institute{National University of Engineering}
+\fi
+
+\date{
+    Last changed: \today{} at \DTMcurrenttime.
+    % Última modificación:
+    % \today{} a las $\DTMcurrenttime$.
+}

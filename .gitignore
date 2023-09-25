@@ -1,10 +1,15 @@
 *.aux
+*.bbl
+*.bcf
+*.blg
 *.log
 *.nav
 *.out
+*.pdf
 *.snm
 *.toc
-*.pdf
+*.txt
+*.run.xml
 !src/deduction.pdf
 pdf
 src/arara.yaml

@@ -2,6 +2,8 @@
   8pt,
   professionalfonts,
   leqno,
+  intlimits,
+  c
 ]{beamer}
 
 \usetheme[
@@ -13,7 +15,28 @@
 \useinnertheme[rounded,shadow]{tcolorbox}
 \usefonttheme[onlymath]{serif}
 
-\usepackage[ISO]{diffcoeff}
+\input{preamble.common}
+
+\setbeamertemplate{bibliography item}{%
+  \ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+    or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+    or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+  {\setbeamertemplate{bibliography item}[book]}
+  {\ifentrytype{online}
+    {\setbeamertemplate{bibliography item}[online]}
+    {\setbeamertemplate{bibliography item}[article]}}%
+  \usebeamertemplate{bibliography item}}
+
+\defbibenvironment{bibliography}
+{\list{}
+  {\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+    \setlength{\leftmargin}{\labelwidth}%
+    \setlength{\labelsep}{\biblabelsep}%
+    \addtolength{\leftmargin}{\labelsep}%
+    \setlength{\itemsep}{\bibitemsep}%
+    \setlength{\parsep}{\bibparsep}}}
+{\endlist}
+{\item}
 
 \usepackage[
   audience=english,
@@ -26,22 +49,22 @@
 
 \DefCurrentAudience{advisor} % students
 
-\tcbset{
-  enhanced, remember,
-  frame hidden, interior hidden,
-  underlay={
-      \begin{tcbclipframe}
-        \begin{scope}[inner sep=0pt,
-            remember picture,overlay]
-          \fill[white] (current page.south west)
-          rectangle (current page.north east);
-          % blurred version of background image
-          \node[opacity=0.9] at (current page.center)
-          {\includegraphics[width=\paperwidth]
-            {goldshade}};
-        \end{scope}
-      \end{tcbclipframe}
-    }}
+% \tcbset{
+%   enhanced, remember,
+%   frame hidden, interior hidden,
+%   underlay={
+%       \begin{tcbclipframe}
+%         \begin{scope}[inner sep=0pt,
+%             remember picture,overlay]
+%           \fill[white] (current page.south west)
+%           rectangle (current page.north east);
+%           % blurred version of background image
+%           \node[opacity=0.9] at (current page.center)
+%           {\includegraphics[width=\paperwidth]
+%             {goldshade}};
+%         \end{scope}
+%       \end{tcbclipframe}
+%     }}
 
 % \tcbset{
 %   enhanced,
@@ -86,12 +109,9 @@
 %       black,dashed}
 % }
 
-\AtBeginSection[]{
-  \begin{frame}
-    \usebeamertemplate{section page}
-  \end{frame}
-}
+% \AtBeginSection[]{
+%   \begin{frame}
+%     \usebeamertemplate{section page}
+%   \end{frame}
+% }
 
-\author{Carlos Aznarán Laos}
-\title{Thesis Proyect I}
-\institute{National University of Engineering}
