@@ -6,9 +6,7 @@
     Let
     \begin{math}
         f\in
-        C\left(
-        \left[a,b\right]
-        \right)
+        \continuous
     \end{math}.
     We seek calculate an approximation of
     \begin{equation*}
@@ -22,9 +20,7 @@
     Suppose that
     \begin{math}
         g\in
-        C\left(
-        \left[a,b\right]
-        \right)
+        \continuous
     \end{math},
     whose antiderivative is simply obtained, and
     \begin{math}
@@ -32,7 +28,7 @@
         \varepsilon
     \end{math}.
     Then,
-    \begin{equation}
+    \begin{equation*}
         \left|
         \int_{a}^{b}
         f\left(x\right)
@@ -43,20 +39,307 @@
         \right|\leq
         \varepsilon
         \left(b-a\right).
-    \end{equation}
+    \end{equation*}
+
+    \begin{definition}[Nodal set]
+        Let
+        \begin{math}
+            \interval\subset
+            \mathbb{R}
+        \end{math}.
+        $X$ is called a \emph{nodal set} of size $n+1\in\mathbb{N}$
+        iff
+        \begin{math}
+            \nodalset\subset
+            \interval
+        \end{math}
+        is a set of distinct elements.
+        The elements of $X$, $x_{i}$ are called \emph{nodes}.
+    \end{definition}
+
+    \begin{definition}[Interpolating polynomial]
+        Suppose that
+        \begin{math}
+            \nodalset\subset
+            \interval
+        \end{math}
+        is a nodal set and
+        \begin{math}
+            f\colon
+            \interval\to
+            \mathbb{R}
+        \end{math}
+        is a function.
+        The function
+        \begin{math}
+            I\colon
+            \interval\to
+            \mathbb{R}
+        \end{math}
+        is called an \emph{interpolant of} $f$ subordinate to $X$ iff
+        \begin{math}
+            \forall i=0,\dotsc,n:
+            I\left(x_{i}\right)=
+            f\left(x_{i}\right)
+        \end{math},
+        we write
+        \begin{math}
+            I\left(X\right)=
+            f\left(X\right)
+        \end{math}.
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    % TODO: Interpolant
+    % \begin{definition}[Interpolant]
+    %     Suppose
+    %     \begin{math}
+    %         Y=
+    %         {\left\{y_{i}\right\}}_{i=0}^{n}\subset
+    %         \mathbb{R}
+    %     \end{math}
+    %     is a set of not necessarily distinct points.
+    %     Define the set of ordered pairs
+    %     \begin{equation*}
+    %         O=
+    %         \left\{
+    %         \left(x_{i},y_{i}\right)\mid
+    %         x_{i}\in X,
+    %         y_{i}\in Y,
+    %         \forall i=0,\dotsc,n
+    %         \right\}.
+    %     \end{equation*}
+    %     We say that $I$ is an \emph{interpolant} of $O$ iff
+    %     \begin{math}
+    %         \forall i=0,\dotsc,n:
+    %         I\left(x_{i}\right)=
+    %         y_{i}
+    %     \end{math},
+    %     we write
+    %     \begin{math}
+    %         I\left(X\right)=
+    %         Y
+    %     \end{math}.
+    %     If the interpolant $I$ is a polynomial, it is called an
+    %     \emph{interpolating polynomial}.
+    % \end{definition}
+
+    \begin{theorem}[existence and uniqueness]
+        Suppose that
+        \begin{math}
+            \nodalset\subset
+            \interval
+        \end{math}
+        is a nodal set
+        and
+        \begin{math}
+            Y=
+            {\left\{
+            y_{i}
+            \right\}}_{i=0}^{n}\subset
+            \mathbb{R}
+        \end{math}.
+        There is a unique polynomial $p\in\mathbb{P}_{n}$ with the
+        property that $p\left(X\right)=Y$.
+    \end{theorem}
+
+    % TODO: Interpolation operator
+    % \begin{definition}[Interpolation operator]
+    %     Suppose that
+    %     \begin{math}
+    %         \nodalset\subset
+    %         \interval
+    %     \end{math}.
+    %     The \emph{interpolation operation} subordinate to $X$,
+    %     denoted
+    %     \begin{equation*}
+    %         \mathcal{I}_{X}\colon
+    %         \continuous\to
+    %         \mathbb{P}_{n},
+    %     \end{equation*}
+    %     is defined as follows: for
+    %     \begin{math}
+    %         f\in
+    %         \continuous
+    %     \end{math},
+    %     \begin{math}
+    %         \mathcal{I}_{X}
+    %         \left[f\right]\in
+    %         \mathbb{P}_{n}
+    %     \end{math}
+    %     is the unique interpolating polynomial satisfying
+    %     \begin{math}
+    %         \mathcal{I}_{X}
+    %         \left[f\right]
+    %         \left(X\right)=
+    %         f\left(X\right)
+    %     \end{math}.
+    % \end{definition}
+
+    \begin{definition}[Lagrange nodal basis]
+        Suppose that
+        \begin{math}
+            \nodalset\subset
+            \interval
+        \end{math}
+        is a nodal set.
+        The \emph{Lagrange nodal basis} subordinate to $X$ is the set
+        of polynomials
+        \begin{math}
+            \mathcal{L}_{X}=
+            {\left\{
+            L_{\ell}
+            \right\}}_{\ell=0}^{n}\subset
+            \mathbb{P}_{n}
+        \end{math}
+        defined via
+        \begin{equation*}
+            L_{\ell}
+            \left(x\right)=
+            \prod\limits_{\substack{i=0\\i\neq\ell}}^{n}
+            \dfrac{x-x_{i}}{x_{\ell}-x_{i}}.
+        \end{equation*}
+    \end{definition}
+
+    % TODO: Properties of \mathcal{L}_{X}
+
+    % TODO: interpolating polynomial
+
+    \begin{definition}[Lagrange interpolating polynomial]
+        Suppose that
+        \begin{math}
+            \nodalset\subset
+            \interval
+        \end{math}
+        is a nodal set,
+        \begin{math}
+            \mathcal{L}_{X}=
+            {\left\{L_{i}\right\}}_{i=0}^{n}
+            \subset
+            \mathbb{P}_{n}
+        \end{math}
+        is the Lagrange nodal basis subordinate to $X$, and
+        \begin{math}
+            f\colon
+            \interval\to
+            \mathbb{R}
+        \end{math}.
+        The \emph{Lagrange interpolating polynomial} of the function
+        $f$, subordinate to the nodal set $X$, is the polynomial
+        \begin{equation*}
+            p\left(x\right)=
+            \sum_{i=0}^{n}
+            f\left(x_{i}\right)
+            L_{i}\left(x\right)\in
+            \mathbb{P}_{n}.
+        \end{equation*}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    Suppose that
+    \begin{math}
+        \nodalset\subset
+        \interval
+    \end{math}
+    is a nodal set and $p\in\mathbb{P}_{n}$ is the unique Lagrange
+    interpolating polynomial of $f$ subordinate to $X$.
+    Then
+    \begin{equation*}
+        \forall i=0,\dotsc,n:
+        f\left(x_{i}\right)=
+        p\left(x_{i}\right)
+    \end{equation*}
+    and
+    \begin{equation*}
+        \forall x\in
+        \interval:
+        f\left(x\right)=
+        p\left(x\right)+
+        E\left(x\right),
+    \end{equation*}
+    where $E$ is an expression of the interpolation error.
+    Then
+    \begin{equation*}
+        \int_{a}^{b}
+        f\left(x\right)
+        \dl x=
+        \int_{a}^{b}
+        p\left(x\right)
+        \dl x+
+        \int_{a}^{b}
+        E\left(x\right)
+        \dl x.
+    \end{equation*}
+    But
+    \begin{equation*}
+        \int_{a}^{b}
+        p\left(x\right)
+        \dl x=
+        \int_{a}^{b}
+        \sum_{i=0}^{n}
+        f\left(x_{i}\right)
+        L_{i}\left(x\right)=
+        \sum_{i=0}^{n}
+        f\left(x_{i}\right)
+        \int_{a}^{b}
+        L_{i}\left(x\right)=
+        \sum_{i=0}^{n}
+        f\left(x_{i}\right)
+        \beta_{i},
+    \end{equation*}
+    where $L_{i}\in\mathbb{P}_{n}$ is the $i$th Lagrange nodal basis
+    element and $\beta_{i}$ is its definite integral:
+    \begin{equation*}
+        \beta_{i}=
+        \int_{a}^{b}
+        L_{i}\left(x\right)
+        \dl x.
+    \end{equation*}
+    The expression
+    \begin{math}
+        \sum_{i=0}^{n}
+        f\left(x_{i}\right)
+        \beta_{i}
+    \end{math}
+    is a typical numerical integration formula
+    \begin{equation*}
+        \left|
+        \int_{a}^{b}
+        f\left(x\right)
+        \dl x-
+        \sum_{i=0}^{n}
+        f\left(x_{i}\right)
+        \beta_{i}
+        \right|=
+        \left|
+        \int_{a}^{b}
+        E\left(x\right)
+        \dl x
+        \right|\leq
+        \int_{a}^{b}
+        \left|
+        E\left(x\right)
+        \right|
+        \dl x.
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
 
     \begin{definition}[Quadrature rule]
         Suppose that $n,r\in\mathbb{N}_{0}$,
         $w$ is a weight function on
         \begin{math}
-            \left[a,b\right]\subset
+            \interval\subset
             \mathbb{R}
         \end{math},
         $h=b-a>0$, and
         \begin{math}
             f\in
             C^{r}\left(
-            \left[a,b\right]
+            \interval
             \right)
         \end{math}.
         The expression
@@ -108,26 +391,26 @@
         Suppose that $n\in\mathbb{N}_{0}$, $w$ is a weight function
         on
         \begin{math}
-            \left[a,b\right]\subset
+            \interval\subset
             \mathbb{R}
         \end{math}.
         \begin{math}
             f\in C^{n+1}
             \left(
-            \left[a,b\right]
+            \interval
             \right)
         \end{math},
         and
         \begin{math}
             X=
             \left\{x_{i}\right\}_{i=0}^{n}\subset
-            \left[a,b\right]
+            \interval
         \end{math}.
     \end{theorem}
 
     \begin{equation*}
         Q^{\left(a,b\right)}_{w}
-        \left[a,b\right]=
+        \interval=
         \sum_{j=0}^{n}
         \beta_{j}
         f\left(x_{j}\right).
@@ -138,7 +421,7 @@
     \begin{definition}[Closed Newton-Cotes quadrature rule]
         Suppose that $w$ is a weight function on
         \begin{math}
-            \left[a,b\right]\subset
+            \interval\subset
             \mathbb{R}
         \end{math}
         and $n\in\mathbb{N}$.
@@ -158,12 +441,16 @@
     \end{table}
 
     \begin{theorem}[Error estimate]
-        Let $\left[a,b\right]\subset\mathbb{R}$.
+        Let
+        \begin{math}
+            \interval\subset
+            \mathbb{R}
+        \end{math}.
         Suppose that is a closed Newton-Cotes quadrature rule of
         order $n\in\mathbb{N}$.
         Then, the order of quadrature rule is consistent of order at
         least $n$.
-        Moreover, if $f\in C^{n+1}\left(\left[a,b\right]\right)$, then
+        Moreover, if $f\in C^{n+1}\left(\interval\right)$, then
         \begin{equation*}
             \left|
             E_{Q_{n}}
@@ -180,7 +467,8 @@
     \begin{theorem}[Integral Mean Value Theorem]
         Let $a<b$,
         \begin{math}
-            f\in C\left(\left[a,b\right]\right)
+            f\in
+            \continuous
         \end{math},
         and
         \begin{math}
@@ -188,8 +476,8 @@
             \mathcal{R}\left(a,b\right)
         \end{math}.
         Furthermore, suppose that $g\left(x\right)\geq0$ for all
-        $x\in\left[a,b\right]$.
-        Then, there exists $\xi\in\left[a,b\right]$ such that
+        $x\in\interval$.
+        Then, there exists $\xi\in\interval$ such that
         \begin{equation*}
             \int_{a}^{b}
             f\left(x\right)
@@ -201,8 +489,14 @@
             \dl x.
         \end{equation*}
 
-        Thus, if $\forall x\in\left[a,b\right]:g\left(x\right)=1$,
-        there exists a point $\xi\in\left[a,b\right]$ such that
+        Thus, if
+        \begin{math}
+            \forall x\in
+            \interval:
+            g\left(x\right)=
+            1
+        \end{math},
+        there exists a point $\xi\in\interval$ such that
         \begin{equation*}
             f\left(\xi\right)=
             \dfrac{1}{b-a}
