@@ -327,6 +327,43 @@
 \end{frame}
 
 \begin{frame}
+    The \emph{quadrature weights}, $\beta_{i}$, depends only on the
+    positions of the nodes within $\interval$, as well as the
+    interval $\interval$ itself.
+    % Suppose that $n=1$, $x_{0}=a$ and $x_{1}=b$.
+    % Then
+    % \begin{equation*}
+    %     p\left(x\right)=
+    %     f\left(a\right)
+    %     \dfrac{x-b}{a-b}+
+    %     f\left(b\right)
+    %     \dfrac{x-a}{b-a}
+    % \end{equation*}
+    % and
+    % \begin{equation*}
+    %     \int_{a}^{b}
+    %     p\left(x\right)
+    %     \dl x=
+    %     \dfrac{f\left(a\right)}{a-b}
+    %     \int_{a}^{b}
+    %     \left(x-b\right)
+    %     \dl x+
+    %     \dfrac{f\left(b\right)}{b-a}
+    %     \int_{a}^{b}
+    %     \left(x-a\right)
+    %     \dl x=
+    %     \dfrac{b-a}{2}
+    %     \left(f\left(a\right)+f\left(b\right)\right).
+    % \end{equation*}
+    We will consider the approximation of a weight integral
+    \begin{equation*}
+        I^{\left(a,b\right)}_{w}
+        \left[f\right]\coloneqq
+        \int_{a}^{b}
+        f\left(x\right)
+        w\left(x\right)
+        \dl x.
+    \end{equation*}
 
     \begin{definition}[Quadrature rule]
         Suppose that $n,r\in\mathbb{N}_{0}$,
@@ -365,25 +402,165 @@
             \right),
         \end{equation*}
         where
-        \begin{math}
+        \begin{equation*}
             \forall i\in
             \left\{0,\dotsc,r\right\}:
             \forall j\in
             \left\{0,\dotsc,n\right\}:
             \beta_{i,j}=
             h^{i+1}
-            \widehat{\beta_{i,j}}
-        \end{math}
+            \widehat{\beta}_{i,j}
+        \end{equation*}
         and
-        \begin{math}
+        \begin{equation*}
             \forall j\in
             \left\{0,\dotsc,n\right\}:
             x_{j}=
             a+
             h\cdot
+            \widehat{x}_{j},
+        \end{equation*}
+        is called a \emph{quadrature rule of degree $r$} with
+        \emph{intrinsic nodes}
+        \begin{math}
+            \widehat{X}=
+            \left\{
             \widehat{x}_{j}
-        \end{math}.
+            \right\}\subset
+            \left[0,1\right]
+        \end{math}
+        and \emph{intrinsic weights}
+        \begin{math}
+            \left\{
+            \beta_{i,j}
+            \right\}
+            \subset
+            \mathbb{R}
+        \end{math}
+        are called the \emph{effective nodes} and
+        \emph{effective weights}, respectively.
     \end{definition}
+    A quadrature rule of degree $r=0$ is called a
+    \emph{simple quadrature rule}, and we simplify the notation
+    by writing $\beta_{j}=\beta_{0,j}$ and
+    \begin{equation*}
+        Q^{\left(a,b\right)}_{w,r}
+        \left[f\right]=
+        \sum_{j=0}^{n}
+        \beta_{j}
+        f^{\left(i\right)}
+        \left(x_{j}\right).
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+
+    The \emph{quadrature rule error} is defined as
+    \begin{equation*}
+        E_{Q}
+        \left[f\right]=
+        I^{\left(a,b\right)}_{w}
+        \left[f\right]-
+        Q^{\left(a,b\right)}_{w,r}
+        \left[f\right].
+    \end{equation*}
+
+    \begin{definition}[consistency]
+        The quadrature rule is \emph{consistent of order at least}
+        $m\in\mathbb{N}_{0}$ iff $E_{Q}\left[q\right]=0$ for all
+        $q\in\mathbb{P}_{m}$.
+        The quadrature rule is \emph{consistent of order exactly} $m$
+        iff $E_{Q}\left[q\right]=0$ for all $q\in\mathbb{P}_{m}$;
+        however, for some $r\in\mathbb{P}_{m+1}$,
+        $E_{Q}\left[r\right]\neq 0$.
+    \end{definition}
+
+    \begin{definition}[interpolatory quadrature rule]
+        Assume that $n\in\mathbb{N}_{0}$, $w$ is a weight function on
+        $\interval\subset\mathbb{R}$, and $f\in\continuous$.
+        Suppose that $\nodalset\subset\interval$ is a nodal set and
+        $p\in\mathbb{P}_{n}$ is the unique Lagrange Interpolating
+        polynomial of $f$ subordinate to $X$, with
+        \begin{equation*}
+            p\left(x\right)=
+            \sum_{j=0}^{n}
+            f\left(x_{j}\right)
+            L_{j}\left(x\right),
+        \end{equation*}
+        where $L_{j}\in\mathbb{P}_{n}$ is the $j$th Lagrange nodal
+        basis element.
+    \end{definition}
+    The expression
+    \begin{equation*}
+        Q^{\left(a,b\right)}_{w}
+        \left[f\right]=
+        \sum_{j=0}^{n}
+        f\left(x_{j}\right)
+        \beta_{j},
+    \end{equation*}
+    where
+    \begin{equation*}
+        \beta_{j}=
+        \int_{a}^{b}
+        L_{j}\left(x\right)
+        w\left(x\right)
+        \dl x,
+    \end{equation*}
+    is called an \emph{interpolatory quadrature rule subordinate to $X$ of Lagrange type}
+    for approximating
+    \begin{math}
+        I^{\left(a,b\right)}_{w}
+        \left[f\right]
+    \end{math}.
+    % TODO: Hermite
+    % Suppose that $f\in $
+\end{frame}
+
+\begin{frame}
+    \begin{theorem}[existence and uniqueness]
+        Suppose that $\nodalset\subset\mathbb{R}$ is a nodal set.
+        There exists uniqueness weights $\left\{\beta_{j}\right\}_{j=0}^{n}$
+        such that
+        \begin{equation*}
+            \forall q\in\mathbb{P}_{n}:
+            \int_{a}^{b}
+            q\left(x\right)
+            w\left(x\right)
+            \dl x=
+            \sum_{j=0}^{n}
+            \beta_{j}
+            q\left(x_{j}\right),
+        \end{equation*}
+        or, equivalently,
+        \begin{equation*}
+            \forall q\in\mathbb{P}_{n}:
+            E_{Q}\left[q\right]=0.
+        \end{equation*}
+        Moreover, these weights are given by
+        \begin{equation*}
+            \forall j\in\left\{0,\dotsc,n\right\}:
+            \beta_{j}=
+            \int_{a}^{b}
+            L_{j}\left(x\right)
+            w\left(x\right)
+            \dl x,
+        \end{equation*}
+        where $L_{j}$ is the $j$th Lagrange nodal basis polynomial subject to $X$.
+    \end{theorem}
+
+    % TODO: Remark
+    \begin{theorem}[consistency]
+        The last result shows that the simple quadrature rule,
+        \begin{equation*}
+            Q^{\left(a,b\right)}_{w}
+            \left[f\right]=
+            \sum_{j=0}^{n}
+            \beta_{i}
+            f\left(x_{i}\right),
+        \end{equation*}
+        is consistent of order at least $n$ iff it is a quadrature
+        rule of Lagrange type.
+    \end{theorem}
 \end{frame}
 
 \begin{frame}
@@ -405,8 +582,186 @@
             X=
             \left\{x_{i}\right\}_{i=0}^{n}\subset
             \interval
-        \end{math}.
+        \end{math}
+        is a nodal set.
+        Suppose that
+        \begin{math}
+            Q^{\left(a,b\right)}_{w}
+            \left[f\right]
+        \end{math}
+        is the interpolatory quadrature rule subordinate to $X$ of Lagrange type.
+        Then,
+        \begin{equation*}
+            \left|
+            E_{Q}
+            \left[f\right]
+            \right|\leq
+            \dfrac{M_{n+1}}{\left(n+1\right)!}
+            \int_{a}^{b}
+            \left|
+            \omega_{n+1}
+            \left(x\right)
+            \right|
+            w\left(x\right)
+            \dl x,
+        \end{equation*}
+        where
+        \begin{equation*}
+            \omega_{n+1}
+            \left(x\right)=
+            \prod\limits_{j=0}^{n}
+            \left(x-x_{j}\right)
+        \end{equation*}
+        and
+        \begin{equation*}
+            M_{n+1}=
+            {\left\|
+            f^{\left(n+1\right)}
+            \right\|}_{\infty}.
+        \end{equation*}
+        Consequently, an interpolatory quadrature rule subordinate to
+        $X$ of Lagrange type is consistent of order at least $n$.
     \end{theorem}
+    % Error hermite
+    % \begin{theorem}[error estimate]
+    %     Suppose that $n\in\mathbb{N}_{0}$, $w$ is a weight function on
+    %     $\interval\subset\mathbb{R}$, $f\in C^{\left(2n+2\right)}\left(\interval\right)$,
+    %     and $\nodalset\subset\interval$ is a nodal set.
+    %     Suppose that
+    %     \begin{math}
+    %         Q^{\left(a,b\right)}_{w,1}
+    %         \left[f\right]    
+    %     \end{math}
+    %     is the interpolatory quadrature rule subordinate to $X$
+    % \end{theorem}
+    \begin{definition}[characteristic function]
+        Suppose that $B\subset\mathbb{R}$.
+        The \emph{characteristic function} of $B$ is the function
+        \begin{equation*}
+            \chi_{B}\left(t\right)=
+            \begin{cases}
+                1, & t\in B,                    \\
+                0, & t\in\mathbb{R}\setminus B.
+            \end{cases}
+        \end{equation*}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    % TODO: lemma
+    \begin{theorem}[kernel]
+        Suppose that $r\in\mathbb{N}_{0}$ and $m\in\mathbb{N}$, with
+        $m>r$.
+        Define the function
+        \begin{math}
+            k_{m}\colon
+            \interval\times\interval\to
+            \mathbb{R}
+        \end{math}
+        via
+        \begin{equation*}
+            k_{m}\left(x,y\right)=
+                {\left(x-y\right)}^{m}
+            \xi_{\left[a,x\right]}\left(y\right)=
+            \begin{cases}
+                \left(x-y\right)^{m}, & a\leq y\leq x\leq b, \\
+                0,                    & a\leq x< y\leq b.
+            \end{cases}
+        \end{equation*}
+        Then, for each $i\in\left\{0,\dotsc,r\right\}$,
+        \begin{equation*}
+            \diffp[i]{k_{m}}{x}\in
+            C\left(\interval\times\interval\right)
+        \end{equation*}
+        and
+        \begin{equation*}
+            \diffp[i]{k_{m}\left(x,y\right)}{x}=
+            \begin{cases}
+                \prod_{k=0}^{i-1}
+                \left(m-k\right)
+                {\left(x-y\right)}^{m-i}, & a\leq y\leq x\leq b, \\
+                0,                        & a\leq x< y\leq b.
+            \end{cases}
+        \end{equation*}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+
+
+    \begin{theorem}[Peano Kernel Theorem]
+        Suppose that $r\in\mathbb{N}_{0}$, $m\in\mathbb{N}$, with $m>n$,
+        $w$ is a weight function on $\left[a,b\right]\subset\mathbb{R}$, and
+        $f\in C^{m+1}\left(\interval\right)$.
+        Assume that
+        \begin{math}
+            Q^{\left(a,b\right)}_{w,r}
+            \left[f\right]
+        \end{math}
+        is a quadrature rule of degree $r$,
+        that is consistent of order at least $m$.
+        Let the function
+        \begin{math}
+            k_{m}\colon\interval\times\interval\to\mathbb{R}
+        \end{math}.
+        Set
+        \begin{equation*}
+            K_{m}\left(y\right)=
+            E_{Q}\left[k_{m}\left(\cdot, y\right)\right]=
+            \int_{a}^{b}
+            k_{m}\left(x,y\right)w\left(x\right)\dl x-
+            \sum_{j=0}^{n}
+            \sum_{i=0}^{r}
+            \beta_{i,j}
+            \diffp[i]{k_{m}\left(x_{j},y\right)}{x}.
+        \end{equation*}
+        Then the quadrature error satisfies
+        \begin{equation*}
+            E_{Q}\left[f\right]=
+            \dfrac{1}{m!}
+            \int_{a}^{b}
+            f^{\left(m+1\right)}\left(y\right)
+            K_{m}\left(y\right)
+            \dl y.
+        \end{equation*}
+        The function $K_{m}\left(y\right)$ is called the \emph{Peano Kernel}.
+    \end{theorem}
+
+    % TODO: remark
+    % \begin{theorem}[Peano Kernel]
+    %     Re.
+    % \end{theorem}
+    \begin{theorem}[quadrature error stability]
+        We have
+        \begin{equation*}
+            \left|
+            E_{Q}
+            \left[f\right]
+            \right|\leq
+            \dfrac{1}{m!}
+            {\left\|
+                f^{m+1}
+                \right\|}_{\infty}
+            {\left\|
+                K_{m}
+                \right\|}_{1}.
+        \end{equation*}
+        Since ${\left\|K_{m}\right\|}_{1}<\infty$, there is a
+        constant $C>0$ that may depend on the size of the interval
+        but is independent of $f$ such that
+        \begin{equation*}
+            \left|
+            E_{Q}
+            \left[f\right]
+            \right|\leq
+            C{\left\|
+                    f^{\left(m+1\right)}
+                    \right\|}_{\infty}
+        \end{equation*}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
 
     \begin{equation*}
         Q^{\left(a,b\right)}_{w}
