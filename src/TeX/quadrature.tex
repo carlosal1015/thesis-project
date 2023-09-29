@@ -677,7 +677,7 @@
         \begin{equation*}
             \diffp[i]{k_{m}\left(x,y\right)}{x}=
             \begin{cases}
-                \prod_{k=0}^{i-1}
+                \prod\limits_{k=0}^{i-1}
                 \left(m-k\right)
                 {\left(x-y\right)}^{m-i}, & a\leq y\leq x\leq b, \\
                 0,                        & a\leq x< y\leq b.
@@ -687,8 +687,6 @@
 \end{frame}
 
 \begin{frame}
-
-
     \begin{theorem}[Peano Kernel Theorem]
         Suppose that $r\in\mathbb{N}_{0}$, $m\in\mathbb{N}$, with $m>n$,
         $w$ is a weight function on $\left[a,b\right]\subset\mathbb{R}$, and
@@ -740,7 +738,7 @@
             \right|\leq
             \dfrac{1}{m!}
             {\left\|
-                f^{m+1}
+                f^{\left(m+1\right)}
                 \right\|}_{\infty}
             {\left\|
                 K_{m}
@@ -756,23 +754,56 @@
             \right|\leq
             C{\left\|
                     f^{\left(m+1\right)}
-                    \right\|}_{\infty}
+                    \right\|}_{\infty}.
         \end{equation*}
     \end{theorem}
 \end{frame}
 
 \begin{frame}
+    % TODO: Theorem
+    \begin{theorem}[constant sign]
+        If $K_{m}$ does not change sign in $\interval$, then
+        \begin{equation*}
+            E_{Q}\left[f\right]=
+            \dfrac{f^{\left(m+1\right)\left(\xi\right)}}{m!}
+            \int_{a}^{b}K_{m}
+            \dl y
+        \end{equation*}
+        for some $\xi\in\interval$.
+        Furthermore, we have the simple representation for the error
+        \begin{equation*}
+            E_{Q}\left[f\right]=
+            \dfrac{E_{Q}\left[x^{m+1}\right]}{\left(m+1\right)!}
+            f^{\left(m+1\right)}\left(\xi\right)
+        \end{equation*}
+        for some $\xi\in\interval$, where $E_{Q}\left[x^{m+1}\right]$
+        is the quadrature error for the function $x\mapsto x^{m+1}$.
+    \end{theorem}
 
-    \begin{equation*}
-        Q^{\left(a,b\right)}_{w}
-        \interval=
-        \sum_{j=0}^{n}
-        \beta_{j}
-        f\left(x_{j}\right).
-    \end{equation*}
+    \begin{definition}[Peano Kernel]
+        Let $M_{1}=\chi_{\interval}$.
+        For $k\in\mathbb{N}$ with $k\geq 2$, set
+        \begin{equation*}
+            M_{k}\left(x\right)=
+            \int_{\mathbb{R}}
+            M_{k-1}\left(x-y\right)M_{1}\left(y\right)
+            \dl y.
+        \end{equation*}
+        For $k\in\mathbb{N}$ and $h>0$, we define
+        \begin{equation*}
+            M_{k}\left(x,h\right)=
+            \dfrac{1}{h}
+            M_{k}
+            \left(\dfrac{x}{h}\right).
+        \end{equation*}
+    \end{definition}
+    % TODO: lemma
+    % TODO: integral representation
+    % TODO: modulus of smoothness
+    % TODO: scaling argument
+\end{frame}
 
-    Simple quadrature rule.
-
+\begin{frame}
     \begin{definition}[Closed Newton-Cotes quadrature rule]
         Suppose that $w$ is a weight function on
         \begin{math}
@@ -780,29 +811,90 @@
             \mathbb{R}
         \end{math}
         and $n\in\mathbb{N}$.
-        Set $h=b-a>0$ and $\hslash=\frac{h}{n}$
+        Set $h=b-a>0$ and $\hslash=\frac{h}{n}$.
+        Suppose that, for the simple quadrature rule, the nodal set
+        $\nodalset\subset\interval$ is defined by
+        \begin{equation*}
+            x_{j}=
+            a+j\hslash,\quad
+            j\in\left\{0,\dotsc,n\right\}.
+        \end{equation*}
+        The resulting method, denoting $Q_{n}\left[f\right]$, is
+        called a \emph{closed Newton-Cotes quadrature rule of order $n$}.
     \end{definition}
 
-    \begin{table}[ht!]
-        \centering
-        \begin{tabular}{ccccc}
-            n & rule                                                          & $\widehat{x}_{j}$  & $\widehat{\beta}_{j}$
-              & Error Formula                                                                                                                   \\
-            1 & Trapezoidal                                                   & $0,1$              & $\dfrac{1}{2}, \dfrac{1}{2}$
-              & $-\dfrac{1}{12}\hslash^{3}f^{\left(2\right)}\left(\xi\right)$                                                                   \\
-            2 & Simpson's                                                     & $0,\dfrac{1}{2},1$ & $\dfrac{1}{6}, \dfrac{4}{6}, \dfrac{1}{6}$
-              & $-\dfrac{1}{90}\hslash^{5}f^{\left(4\right)}\left(\xi\right)$
-        \end{tabular}
-    \end{table}
+    \begin{example}[Newton-Cotes quadrature rules of order $n=1,2$ and weight function $w\equiv 1$ on $\interval$]
+        \begin{equation*}
+            x_{j}=
+            a+h\widehat{x}_{j},\quad
+            \beta_{j}=h\widehat{\beta}_{j},\quad
+            h=b-a.
+        \end{equation*}
 
+        \begin{table}[ht!]
+            \centering
+            \begin{tabular}{ccccc}
+                \hline
+                $n$ & rule                                                         & $\widehat{x}_{j}$ & $\widehat{\beta}_{j}$
+                    & Error Formula                                                                                                              \\
+                $1$ & Trapezoidal                                                  & $0,1$             & $\frac{1}{2}, \frac{1}{2}$
+                    & $-\frac{1}{12}\hslash^{3}f^{\left(2\right)}\left(\xi\right)$                                                               \\
+                $2$ & Simpson's                                                    & $0,\frac{1}{2},1$ & $\frac{1}{6}, \frac{4}{6}, \frac{1}{6}$
+                    & $-\frac{1}{90}\hslash^{5}f^{\left(4\right)}\left(\xi\right)$                                                               \\
+                \hline
+            \end{tabular}
+        \end{table}
+        For $n=2$, we observe the phenomenon of
+        \alert{super-convergence}, i.e., a higher than expected convergence.
+
+        For example, consider the case $n=3$, Simpson's $\frac{3}{8}$
+        rule, on the reference interval $\left[0,1\right]$.
+        The second Lagrange nodal basis element is
+        \begin{equation*}
+            \widehat{L}_{1}\left(x\right)=
+            \dfrac{
+                x
+                \left(x-\frac{2}{3}\right)
+                \left(x-1\right)
+            }{
+                \frac{1}{3}
+                \left(\frac{1}{3}-\frac{2}{3}\right)
+                \left(\frac{1}{3}-1\right)
+            }=
+            \dfrac{27}{2}
+            \left(
+            x^{3}-\dfrac{5}{3}x^{2}+\dfrac{2}{3}x
+            \right).
+        \end{equation*}
+        Then,
+        \begin{equation*}
+            \widehat{\beta}_{1}=
+            \int_{0}^{1}
+            \widehat{L}_{1}\left(x\right)
+            \dl x=
+            \dfrac{27}{2}
+            {\left.
+                \left(
+                \dfrac{1}{4}x^{4}-
+                \dfrac{5}{9}x^{3}+
+                \dfrac{1}{3}x^{2}
+                \right)
+                \right|}_{x=0}^{x=1}=
+            \dfrac{3}{8}.
+        \end{equation*}
+    \end{example}
+\end{frame}
+
+\begin{frame}
     \begin{theorem}[Error estimate]
         Let
         \begin{math}
             \interval\subset
             \mathbb{R}
         \end{math}.
-        Suppose that is a closed Newton-Cotes quadrature rule of
-        order $n\in\mathbb{N}$.
+        Suppose that $Q^{\left(a,b\right)}_{n}\left[f\right]$ is a
+        closed Newton-Cotes quadrature rule of order
+        $n\in\mathbb{N}$.
         Then, the order of quadrature rule is consistent of order at
         least $n$.
         Moreover, if $f\in C^{n+1}\left(\interval\right)$, then
@@ -813,14 +905,16 @@
             \right|\leq
             C
             h^{n+2}
-            {\left\|f^{\left(n+1\right)}\right\|}_{\infty}
+            {\left\|f^{\left(n+1\right)}\right\|}_{\infty},
         \end{equation*}
+        where $h=b-a$ and $C>0$ is independent of $h$ and $f$.
     \end{theorem}
-\end{frame}
 
-\begin{frame}
     \begin{theorem}[Integral Mean Value Theorem]
-        Let $a<b$,
+        Suppose that
+        \begin{math}
+            -\infty<a<b<\infty
+        \end{math},
         \begin{math}
             f\in
             \continuous
@@ -828,11 +922,15 @@
         and
         \begin{math}
             g\in
-            \mathcal{R}\left(a,b\right)
+            \mathcal{R}
+            \left(a,b\right)
         \end{math}.
-        Furthermore, suppose that $g\left(x\right)\geq0$ for all
-        $x\in\interval$.
-        Then, there exists $\xi\in\interval$ such that
+        Furthermore, suppose that
+        \begin{math}
+            \forall x\in\interval:
+            g\left(x\right)\geq0
+        \end{math}.
+        Then there exists a point $\xi\in\interval$ such that
         \begin{equation*}
             \int_{a}^{b}
             f\left(x\right)
@@ -856,17 +954,25 @@
             f\left(\xi\right)=
             \dfrac{1}{b-a}
             \int_{a}^{b}
-            f
+            f\left(x\right)
+            \dl x.
         \end{equation*}
     \end{theorem}
+\end{frame}
 
-    \begin{definition}
-        Average concentration on
+\section{Heuristic derivation of Advection Differential Equation}
+
+\begin{frame}
+    \begin{definition}[Average concentration]
+        Let $h>0$, $h\ll 1$.
+        We define the \emph{average concentration}
+        $\overline{u}\left(x,t\right)$ in a space-time cell
         \begin{math}
             \left[
                 x-\frac{1}{2}h,
                 +x\frac{1}{2}h
-                \right]
+                \right]\times
+            \left[0,T\right]
         \end{math}.
 
         \begin{equation*}
@@ -878,6 +984,25 @@
             \dl s.
         \end{equation*}
     \end{definition}
+
+    \begin{definition}[Mass flux]
+        The mass flux is the product of
+        \begin{equation*}
+            J_{x}=
+            c
+            v_{x}.
+        \end{equation*}
+        \begin{itemize}
+            \item $J_{x}$ is the mass flux in $x$-direction.
+            \item $c$ is the concentration of the substance.
+            \item $v_{x}$ is the velocity of the substance in the $x$-direction.
+        \end{itemize}
+    \end{definition}
+
+    \begin{figure}[ht!]
+        \centering
+        \includegraphics[width=.6\paperwidth]{deduction}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -919,11 +1044,6 @@
 \end{frame}
 
 \begin{frame}
-    \begin{figure}[ht!]
-        \centering
-        \includegraphics[width=.4\paperwidth]{deduction}
-    \end{figure}
-
     \begin{definition}[Advection equation]
         \begin{equation*}
             u_{t}+du_{x}=0.
@@ -936,6 +1056,123 @@
             du_{xx}.
         \end{equation*}
     \end{definition}
+\end{frame}
 
-    Let $h>0$, $h<<1$
+\section{The Advection Problem in One Dimension}
+
+\begin{frame}
+    \begin{definition}[space-time grid]
+        Let $d\in\mathbb{N}$, $\Omega=\left(0,1\right)^{d}$, and $T>0$.
+        For $K, N\in\mathbb{N}$, we set $\tau=\frac{T}{K}$ and
+        $h=\frac{1}{N+1}$.
+        We define the \emph{space-time grid domain}
+        \begin{equation*}
+            \overline{\mathcal{C}}^{\tau}_{h}=
+            \overline{\Omega}_{h}\times
+            {\left[0,T\right]}_{\tau}=
+            \left\{
+            \left(\mathbf{x},t_{k}\right)\mid
+            \mathbf{x}\in\overline{\Omega}_{h},
+            t_{k}=k\tau,
+            k\in\left\{0,\dotsc,K\right\}
+            \right\},
+        \end{equation*}
+        where we recall that
+        \begin{math}
+            \overline{\Omega}_{h}=
+            \overline{\Omega}\cap
+            \mathbb{Z}^{d}_{h}
+        \end{math}.
+        We define the \emph{discrete interior} of $\overline{C}^{\tau}_{h}$ to be
+        \begin{equation*}
+            \mathcal{C}^{\tau}_{h}=\Omega_{h}\times
+            \left(0,T\right)_{\tau}.
+        \end{equation*}
+    \end{definition}
+
+    \begin{definition}[space-time grid functions]
+        Let $\mathcal{C}^{\tau}_{h}$ be a space-time grid domain.
+        We denote by
+        \begin{equation*}
+            \mathcal{V}
+            \left(
+            \overline{\mathcal{C}}^{\tau}_{h}
+            \right)=
+            \left\{
+            v\mid
+            \overline{C}^{\tau}_{h}\to\mathbb{R}
+            \right\}
+        \end{equation*}
+        be the space of \emph{space-time grid functions}.
+        The spaces
+        \begin{equation*}
+            \mathcal{V}
+            \left(
+            \mathcal{C}^{\tau}_{h}
+            \right),
+            \mathcal{V}
+            \left(
+            \partial_{L}\mathcal{C}^{\tau}_{h}
+            \right)
+        \end{equation*}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{definition}[space-time discrete norms]
+        Let $d\in\left\{1,2\right\}$, $p\in\left[1,\infty\right]$, and
+        $q\in\left[1,\infty\right)$.
+        We define the \emph{space-time} norm
+        \begin{equation*}
+            \left\|
+            v
+            \right\|_{L^{q}_{\tau}\left(L^{p}_{h}\right)}=
+                {\left(\tau
+                    \sum_{k=1}^{K}
+                    \left\|v^{k}\right\|^{q}_{L^{p}_{h}}
+                    \right)}^{\frac{1}{q}}
+        \end{equation*}
+        and
+        \begin{equation*}
+            \left\|
+            v
+            \right\|_{L^{\infty}_{\tau}\left(L^{p}_{h}\right)}=
+            \max^{K}_{k=0}
+            {\left\|
+            v^{k}
+            \right\|}_{L^{p}_{h}}
+        \end{equation*}
+    \end{definition}
+\end{frame}
+
+\begin{frame}
+    \begin{definition}[Péclet number]
+        Consider the simple constant-coefficient advection-diffusion
+        equation
+        \begin{equation*}
+            u_{t}+
+            au_{x}=
+            du_{xx},\quad
+            t>0,\quad
+            0<x<L,
+        \end{equation*}
+        with the given initial profile $u\left(x,0\right)$.
+        If $d>0$ we need boundary conditions at $x=0$ and $x=L$,
+        such as Dirichlet conditions.
+        On the other hand, for the pure advection problem we need
+        only to prescribe the solution at the \emph{inflow} boundary,
+        that is, at $x=0$ if $a>0$ and $x=L$ if $a<0$.
+        If $d>0$ but $d\approx0$, or more precisely if the
+        \emph{Péclet number}
+        \begin{equation*}
+            \left|a\right|\frac{L}{d}
+        \end{equation*}
+        is large, the Dirichlet condition at the outflow boundary
+        will give rise to a \emph{boundary layer}.
+
+        If the Péclet number $\left|a\frac{L}{d}\right|$ is large,
+        the problem is called \emph{singularity perturbed}.
+        % It is assumed that $d>0$, excluding the pure advection case.
+        % where $L$ is the length of the spatial interval.
+    \end{definition}
 \end{frame}
