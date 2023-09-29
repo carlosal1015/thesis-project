@@ -1,7 +1,7 @@
 \begin{frame}
     \frametitle{
-        Numerical Quadrature~\cite[p.~397]{salgado_classical_2022}
-    }
+        Numerical Quadrature~(\citeauthor[p.~397]{salgado_classical_2022})
+    } % \citetitle[p.~397]{salgado_classical_2022}
 
     Let
     \begin{math}
@@ -993,10 +993,61 @@
             v_{x}.
         \end{equation*}
         \begin{itemize}
-            \item $J_{x}$ is the mass flux in $x$-direction.
-            \item $c$ is the concentration of the substance.
-            \item $v_{x}$ is the velocity of the substance in the $x$-direction.
+            \item
+
+                  $J_{x}$ is the mass flux in $x$-direction.
+
+            \item
+
+                  $c$ is the concentration of the substance.
+
+            \item
+
+                  $v_{x}$ is the velocity of the substance in the
+                  $x$-direction.
         \end{itemize}
+    \end{definition}
+
+    \begin{theorem}[Conservation law]
+        If the species is carried along by a flowing medium with
+        velocity $a\left(x,t\right)$, then the mass conservation law
+        implies that the change of $\overline{u}\left(x,t\right)$ per
+        unit of time is the net balance of inflow and outflow over
+        the cell boundaries,
+        \begin{equation*}
+            \diffp{\overline{u}\left(x,t\right)}{t}=
+            \dfrac{1}{h}
+            \left[
+                a\left(x-\frac{1}{2}h,t\right)
+                u\left(x-\frac{1}{2}h,t\right)-
+                a\left(x+\frac{1}{2}h,t\right)
+                u\left(x+\frac{1}{2}h,t\right)
+                \right].
+        \end{equation*}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Quadrature~(\citeauthor[p.~9]{Hundsdorfer2003})}
+
+    \begin{definition}[Advection equation]
+        \begin{equation*}
+            \diffp{u\left(x,t\right)}{t}+
+            \diffp{a\left(x,t\right)u\left(x,t\right)}{x}=
+            0.
+            % u_{t}+du_{x}=0.
+        \end{equation*}
+    \end{definition}
+
+    \begin{definition}[Diffusion equation]
+        \begin{equation*}
+            \diffp{u\left(x,t\right)}{t}=
+            \diffp{}{x}
+            \left(
+            d\left(x,t\right)\diffp{u\left(x,t\right)}{x}
+            \right).
+            % u_{t}=du_{xx}.
+        \end{equation*}
     \end{definition}
 
     \begin{figure}[ht!]
@@ -1041,21 +1092,6 @@
             \right)=0.
         \end{align*}
     \end{proof}
-\end{frame}
-
-\begin{frame}
-    \begin{definition}[Advection equation]
-        \begin{equation*}
-            u_{t}+du_{x}=0.
-        \end{equation*}
-    \end{definition}
-
-    \begin{definition}[Diffusion equation]
-        \begin{equation*}
-            u_{t}=
-            du_{xx}.
-        \end{equation*}
-    \end{definition}
 \end{frame}
 
 \section{The Advection Problem in One Dimension}
