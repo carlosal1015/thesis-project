@@ -15,7 +15,7 @@ check:
   before_script:
     - pacman -Syu --needed --noconfirm make ruby-mdl
   script:
-    - ls #make check
+    - cd site && make check
 
 build:
   stage: build
@@ -23,10 +23,10 @@ build:
   before_script:
     - pacman -Syu --needed --noconfirm make hugo git
   script:
-    - ls #make build
+    - cd site && make build
   artifacts:
     paths:
-      - public
+      - site/public
 
 pages:
   stage: deploy
@@ -39,6 +39,6 @@ pages:
     - "true"
   artifacts:
     paths:
-      - public
+      - site/public
   # rules:
   #   - if: $CI_PROJECT_PATH == "archlinux/monthly-reports" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

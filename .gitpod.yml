@@ -11,3 +11,4 @@ vscode:
     - wesbos.theme-cobalt2 # Blue editor theme
     - james-yu.latex-workshop # LaTeX support
     - gruntfuggly.todo-tree # TODO support
+    - thebearingedge.livereload-server # LiveServer support
