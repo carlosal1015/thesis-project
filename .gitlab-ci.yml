@@ -36,7 +36,7 @@ pages:
   # tags:
   #   - secure
   script:
-    - "true"
+    - cd site
   artifacts:
     paths:
       - site/public
