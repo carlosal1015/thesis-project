@@ -13,7 +13,7 @@ check:
   stage: build
   needs: []
   before_script:
-    - pacman -Syu --needed --noconfirm make ruby-mdl
+    - pacman -Syu --needed --noconfirm make ruby-mdl >/dev/null 2>&1
   script:
     - cd site && make check
 
@@ -21,7 +21,7 @@ build:
   stage: build
   needs: []
   before_script:
-    - pacman -Syu --needed --noconfirm make hugo git
+    - pacman -Syu --needed --noconfirm make hugo git >/dev/null 2>&1
   script:
     - cd site && make build
   artifacts:
@@ -33,12 +33,12 @@ pages:
   needs:
     - check
     - build
-  # tags:
-  #   - secure
+  tags:
+    - secure
   script:
     - "true"
   artifacts:
     paths:
       - site/public
-  # rules:
-  #   - if: $CI_PROJECT_PATH == "archlinux/monthly-reports" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  rules:
+    - if: $CI_PROJECT_PATH == "carlosal1015/thesis-project" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

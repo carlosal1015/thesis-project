@@ -2,9 +2,13 @@ baseURL = 'https://gitlab.io.carlosal1015/thesis-project'
 languageCode = 'en-us'
 title = 'Thesis Project I'
 theme = 'hugo-book'
-
 enableGitInfo = true
+pluralizeListTitles = false
 
 [params]
-
-BookTheme = 'dark'
+  BookSearch = false
+  BookComments = false
+  BookSection = '*'
+  BookRepo = 'https://gitlab.com/carlosal1015/thesis-project'
+  BookCommitPath = 'commit'
+  BookTheme = 'dark'

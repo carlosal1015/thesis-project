@@ -1,0 +1,7 @@
+{{- if not .IsHome }}
+{{- with .Site.GetPage "/_index.md" }}
+{{- with .OutputFormats.Get "rss" -}}
+  {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+{{ end -}}
+{{ end -}}
+{{ end -}}
