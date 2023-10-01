@@ -26,7 +26,7 @@ build:
     - cd site && make build
   artifacts:
     paths:
-      - site/public
+      - public
 
 pages:
   stage: deploy
@@ -36,9 +36,9 @@ pages:
   # tags:
   #   - secure
   script:
-    - cd site
+    - "true"
   artifacts:
     paths:
-      - site/public
+      - public
   rules:
     - if: $CI_PROJECT_PATH == "carlosal1015/thesis-project" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

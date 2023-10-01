@@ -1,10 +1,10 @@
 all: check build
 
 build:
-	hugo
+	hugo --destination ../public
 
 check:
 	mdl content
 
 clean:
-	rm -rf public resources
+	rm -rf ../public resources
