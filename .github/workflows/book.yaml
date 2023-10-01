@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          image: ghcr.io/cpp-review-dune/introductory-review/yay:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/aur:latest
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
