@@ -33,8 +33,10 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            yay --version
-            ls /work
+            yay -Syu python-poetry --noconfirm
+            cd /work/src/Python
+            poetry install && poetry shell
+            jupyter-book build thesis-book
 
     #   - name: "Tar files"
     #     run: |
