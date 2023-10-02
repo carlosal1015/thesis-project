@@ -46,9 +46,9 @@ jobs:
           mv src/Python/thesis-book/_build .
           tar --zstd -cf Book.tar.zst _build
 
-    #   - uses: actions/upload-artifact@v3
-    #     with:
-    #       name: Book-artifact
-    #       path: Book.tar.zst
-    #       if-no-files-found: error
-    #       retention-days: 90
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Book-artifact
+          path: Book.tar.zst
+          if-no-files-found: error
+          retention-days: 90

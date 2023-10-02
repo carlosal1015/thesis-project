@@ -38,9 +38,18 @@ jobs:
           workflow: latex.yml
           name: PDF-artifact
 
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: book.yml
+          name: Book-artifact
+          
       - name: "Untar files"
         run: |
           tar -I zstd -xvf PDF.tar.zst
+          tar -I zstd -xvf Book.tar.zst
+          mv _build site/public/
           mv pdf/*.pdf site/public/
 
       - name: Deploy
