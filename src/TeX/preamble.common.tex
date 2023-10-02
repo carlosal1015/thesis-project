@@ -13,7 +13,55 @@
 
 \providecommand{\continuous}{C\left(\interval\right)}
 \providecommand{\interval}{\left[a,b\right]}
+\providecommand{\openinterval}{\left(a,b\right)}
 \providecommand{\nodalset}{X={\left\{x_{i}\right\}}_{i=0}^{n}}
+\providecommand{\concentration}{u\left(x,t\right)}
+\providecommand{\averageconcentration}{\overline{u}\left(x,t\right)}
+
+
+% \usepackage{xstring}
+% \usepackage{xparse}
+
+% \ProvideDocumentCommand{\concentration}{
+% 	O{u\left(x,t\right)} m}
+% 	{#1~#2}
+
+    %\overline{u}\left(x,t\right)
+%\providecommand{\concentration}[1][u]{
+%	\IfEqCase{#1}{
+%		{a}{}
+%		{u}{}
+%		{#1}{u\left(#1,#2\right)}
+%	}
+%}
+
+% \providecommand{\rn}[1][n]{%
+% 	\IfEqCase{#1}{%
+% 		{1}{\mathbb{R}}%
+% 		{2}{\mathbb{R}^{2}}%
+% 		{3}{\mathbb{R}^{3}}%
+% 		{n}{\mathbb{R}^{n}}
+% 		{#1}{\mathbb{R}^{#1}}
+% 	}
+% }
+
+% \providecommand{\df}[1][f]{
+% 	\IfEqCase{#1}{
+% 		{f}{\mathcal{D}_{f}}
+% 		{#1}{\mathcal{D}_{#1}}
+% 	}
+% }
+% \providecommand{\fun}[3][f]{%
+% 	\IfEqCase{#1}{
+% 		{f}{f\colon\mathcal{A}\rightarrow\mathcal{B}}
+% 		{g}{g\colon\mathcal{C}\rightarrow\mathcal{D}}
+% 		{#1}{#1\colon\mathcal{#2}\rightarrow\mathcal{#3}}
+% 	}
+% }
+
+% Sea $f\colon \df\subseteq\rn\rightarrow\rn$ diferenciable en $x_0$ con derivadas parciales continuas y tal que.
+% $\fun[g]{}{}$
+% $\concentration$
 
 \author{Carlos Aznarán Laos}
 \title{Thesis Proyect I}

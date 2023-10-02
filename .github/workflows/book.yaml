@@ -34,15 +34,19 @@ jobs:
           shell: bash
           run: |
             yay -Syu python-poetry --noconfirm
+            pwd
+            ls
+            sudo chown -R builder:builder /work
             cd /work/src/Python
             poetry config virtualenvs.in-project true
             poetry install
             poetry run jb build thesis-book
 
-    #   - name: "Tar files"
-    #     run: |
-    #       sudo chown runner:docker -R .
-    #       tar --zstd -cf Book.tar.zst pdf/*.pdf
+      - name: "Tar files"
+        run: |
+          sudo chown runner:docker -R .
+          ls
+          tar --zstd -cf Book.tar.zst _build
 
     #   - uses: actions/upload-artifact@v3
     #     with:
