@@ -3,8 +3,8 @@ name: Deploy pages
 on:
   push:
     branches: [main]
-    # paths:
-    #   - site/**
+    paths:
+      - site/**
   pull_request:
     branches: [main]
 
@@ -51,7 +51,7 @@ jobs:
           tar -I zstd -xvf PDF.tar.zst
           tar -I zstd -xvf Book.tar.zst
           mkdir public
-          mv _build public/
+          mv _build/* public/
           mv pdf/*.pdf public/
 
       - name: Deploy
