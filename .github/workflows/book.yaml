@@ -35,6 +35,7 @@ jobs:
           run: |
             yay -Syu python-poetry --noconfirm
             cd /work/src/Python
+            poetry config virtualenvs.in-project true
             poetry install
             poetry run jb build thesis-book
 
