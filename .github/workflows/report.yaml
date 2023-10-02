@@ -32,19 +32,15 @@ jobs:
         run: cd site && hugo --minify
 
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: latex.yml
           name: PDF-artifact
 
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: book.yml
           name: Book-artifact
-          
+
       - name: "Untar files"
         run: |
           ls
