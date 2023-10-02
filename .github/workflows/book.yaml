@@ -33,9 +33,7 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            yay -Syu python-poetry --noconfirm
-            pwd
-            ls
+            yay -Syu python-poetry --noconfirm  >/dev/null 2>&1
             sudo chown -R builder:builder /work
             cd /work/src/Python
             poetry config virtualenvs.in-project true
@@ -46,6 +44,8 @@ jobs:
         run: |
           sudo chown runner:docker -R .
           ls
+          pwd
+          whoami
           tar --zstd -cf Book.tar.zst _build
 
     #   - uses: actions/upload-artifact@v3
