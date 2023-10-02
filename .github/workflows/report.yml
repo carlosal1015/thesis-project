@@ -26,22 +26,25 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: "0.119.0" # archlinux.org/packages/extra/x86_64/hugo
+          hugo-version: "0.119.0"
+          # archlinux.org/packages/extra/x86_64/hugo
 
       - name: Build
         run: cd site && hugo --minify
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: latex.yml
           name: PDF-artifact
-          path: PDF.tar.zst
 
       - name: Download artifact
-        uses: actions/download-artifact@v3
+        uses: dawidd6/action-download-artifact@v2
         with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: book.yml
           name: Book-artifact
-          path: Book.tar.zst
 
       - name: "Untar files"
         run: |
