@@ -43,8 +43,8 @@ jobs:
       - name: "Tar files"
         run: |
           sudo chown runner:docker -R .
-          ls
           pwd
+          ls
           whoami
           tar --zstd -cf Book.tar.zst _build
 

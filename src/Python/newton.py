@@ -11,6 +11,7 @@ def f(x):
 
 a = 0
 b = np.pi
+
 exact = 2
 
 if __name__ == "__main__":
