@@ -16,6 +16,12 @@ check:
     - pacman -Syu --needed --noconfirm make ruby-mdl >/dev/null 2>&1
   script:
     - cd site && make check
+  only:
+    refs:
+     - main
+    changes:
+      - "site"
+
 
 build:
   stage: build
@@ -27,6 +33,11 @@ build:
   artifacts:
     paths:
       - public
+  only:
+    refs:
+     - main
+    changes:
+      - "site"
 
 pages:
   stage: deploy
@@ -42,3 +53,8 @@ pages:
       - public
   rules:
     - if: $CI_PROJECT_PATH == "carlosal1015/thesis-project" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  only:
+    refs:
+     - main
+    changes:
+      - "site"
