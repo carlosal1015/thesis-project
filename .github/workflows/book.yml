@@ -3,8 +3,8 @@ name: Book CI
 on:
   push:
     branches: [main]
-    # paths:
-    #   - src/Python/**
+    paths:
+      - src/Python/**
   pull_request:
     branches: [main]
 
