@@ -3,8 +3,8 @@ name: Deploy pages
 on:
   push:
     branches: [main]
-    paths:
-      - site/**
+    # paths:
+    #   - site/**
   pull_request:
     branches: [main]
 
@@ -47,10 +47,11 @@ jobs:
           
       - name: "Untar files"
         run: |
+          ls
           tar -I zstd -xvf PDF.tar.zst
           tar -I zstd -xvf Book.tar.zst
-          mv _build site/public/
-          mv pdf/*.pdf site/public/
+          # mv _build site/public/
+          # mv pdf/*.pdf site/public/
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
