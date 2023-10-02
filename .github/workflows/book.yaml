@@ -43,9 +43,9 @@ jobs:
       - name: "Tar files"
         run: |
           sudo chown runner:docker -R .
+          whoami
           pwd
           ls
-          whoami
           tar --zstd -cf Book.tar.zst _build
 
     #   - uses: actions/upload-artifact@v3
