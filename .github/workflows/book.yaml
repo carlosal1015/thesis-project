@@ -35,8 +35,8 @@ jobs:
           run: |
             yay -Syu python-poetry --noconfirm
             cd /work/src/Python
-            poetry install && poetry shell
-            jupyter-book build thesis-book
+            poetry install
+            poetry run jb build thesis-book
 
     #   - name: "Tar files"
     #     run: |
