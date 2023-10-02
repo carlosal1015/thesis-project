@@ -17,8 +17,6 @@ check:
   script:
     - cd site && make check
   only:
-    refs:
-     - main
     changes:
       - "site"
 
@@ -34,8 +32,6 @@ build:
     paths:
       - public
   only:
-    refs:
-     - main
     changes:
       - "site"
 
@@ -54,7 +50,5 @@ pages:
   rules:
     - if: $CI_PROJECT_PATH == "carlosal1015/thesis-project" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   only:
-    refs:
-     - main
     changes:
       - "site"
