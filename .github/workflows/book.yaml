@@ -9,7 +9,7 @@ on:
     branches: [main]
 
 jobs:
-  build_latex:
+  build_book:
     runs-on: ubuntu-22.04
 
     steps:
@@ -43,9 +43,7 @@ jobs:
       - name: "Tar files"
         run: |
           sudo chown runner:docker -R .
-          whoami
-          pwd
-          ls
+          mv src/Python/thesis-book/_build .
           tar --zstd -cf Book.tar.zst _build
 
     #   - uses: actions/upload-artifact@v3
