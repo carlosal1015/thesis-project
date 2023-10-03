@@ -6,10 +6,16 @@ This page contains [Thesis Project weekly reports](https://carlosal1015.gitlab.i
 
 An RSS feed is available [here](https://carlosal1015.gitlab.io/thesis-project/index.xml).
 
-Git repository: <https://gitlab.com/carlosal1015/thesis-project>
+[NewsFlash](https://gitlab.com/news-flash/news_flash_gtk)
 
-Book: <https://carlosal1015.github.io/thesis-project>
+<!-- ![](https://gitlab.com/news-flash/news_flash_gtk/-/raw/master/data/screenshots/Main.png) -->
 
-PDF report: <https://carlosal1015.github.io/thesis-project/main.report.pdf>
+📰 Bi-directional repository mirroring:
+[GitLab](https://gitlab.com/carlosal1015/thesis-project) or
+[GitHub](https://github.com/carlosal1015/thesis-project).
 
-PDF slides: <https://carlosal1015.github.io/thesis-project/main.beamer.pdf>
+📖 Jupyter Book: <https://carlosal1015.github.io/thesis-project>
+
+📝 PDF report: <https://carlosal1015.github.io/thesis-project/main.report.pdf>
+
+🧑🏻‍🏫 PDF slides: <https://carlosal1015.github.io/thesis-project/main.beamer.pdf>
