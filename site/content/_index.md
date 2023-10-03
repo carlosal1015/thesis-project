@@ -6,9 +6,7 @@ This page contains [Thesis Project weekly reports](https://carlosal1015.gitlab.i
 
 An RSS feed is available [here](https://carlosal1015.gitlab.io/thesis-project/index.xml).
 
-[NewsFlash](https://gitlab.com/news-flash/news_flash_gtk)
-
-<!-- ![](https://gitlab.com/news-flash/news_flash_gtk/-/raw/master/data/screenshots/Main.png) -->
+<!-- [NewsFlash](https://gitlab.com/news-flash/news_flash_gtk) -->
 
 📰 Bi-directional repository mirroring:
 [GitLab](https://gitlab.com/carlosal1015/thesis-project) or
