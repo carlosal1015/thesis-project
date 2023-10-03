@@ -48,5 +48,3 @@ pages:
       - public
   rules:
     - if: $CI_PROJECT_PATH == "carlosal1015/thesis-project" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    - changes:
-        - "site"
