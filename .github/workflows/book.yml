@@ -11,8 +11,6 @@ on:
 jobs:
   build_book:
     runs-on: ubuntu-22.04
-    env:
-      PACKAGES: "python-matplotlib python-sphinx python-poetry"
 
     steps:
       - name: Partial Clone
@@ -35,7 +33,7 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            yay -Syu $PACKAGES --noconfirm >/dev/null 2>&1
+            yay -Syu python-matplotlib python-sphinxcontrib-bibtex python-sphinx-copybutton python-linkify-it-py python-jsonschema python-poetry --noconfirm >/dev/null 2>&1
             sudo chown -R builder:builder /work
             cd /work/src/Python
             poetry config virtualenvs.in-project true
