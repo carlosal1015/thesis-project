@@ -11,6 +11,8 @@ on:
 jobs:
   build_book:
     runs-on: ubuntu-22.04
+    env:
+      PACKAGES: "python-matplotlib python-sphinx python-poetry"
 
     steps:
       - name: Partial Clone
@@ -33,11 +35,11 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            yay -Syu python-matplotlib python-poetry --noconfirm >/dev/null 2>&1
+            yay -Syu $PACKAGES --noconfirm >/dev/null 2>&1
             sudo chown -R builder:builder /work
             cd /work/src/Python
             poetry config virtualenvs.in-project true
-            poetry config virtualenvs.options.system-site-packages = true
+            poetry config virtualenvs.options.system-site-packages true
             poetry install
             poetry run jb build thesis-book
 
