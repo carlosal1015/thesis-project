@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - docker/python-handcalcs.Dockerfile
+      - src/Docker/python-handcalcs.Dockerfile
   schedule:
     - cron: "0 2 * * 5"
 
@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./aur/docker/python-handcalcs.Dockerfile
+          file: ./src/Docker/python-handcalcs.Dockerfile
           platforms: linux/amd64
           push: true
           tags: ghcr.io/carlosal1015/thesis-project/python-handcalcs:latest
@@ -58,4 +58,4 @@ jobs:
         with:
           image: ghcr.io/carlosal1015/aur/python-handcalcs:latest
           annotations: true
-          dockerfile: ./docker/python-handcalcs.Dockerfile
+          dockerfile: ./src/Docker/python-handcalcs.Dockerfile
