@@ -46,7 +46,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: .thesis-project/src/Docker/python-handcalcs.Dockerfile
+          file: ./thesis-project/src/Docker/python-handcalcs.Dockerfile
           platforms: linux/amd64
           push: true
           tags: ghcr.io/carlosal1015/thesis-project/python-handcalcs:latest
