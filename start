@@ -10,7 +10,7 @@ function show() {
 
 function run() {
   git pull >/dev/null 2>&1
-  pushd src/TeX >/dev/null 2>&1
+  pushd src/TeX/notes >/dev/null 2>&1
   echo "Generating PDFs ..."
   arara main.beamer main.report #>/dev/null 2>&1
   popd >/dev/null 2>&1
