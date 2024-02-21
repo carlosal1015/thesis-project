@@ -23,7 +23,7 @@ build:
   stage: build
   needs: []
   before_script:
-    - pacman -Syu --needed --noconfirm make hugo >/dev/null 2>&1 # git
+    - pacman -Syu --needed --noconfirm git hugo make >/dev/null 2>&1
   script:
     - cd site && make build
   artifacts:
