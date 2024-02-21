@@ -16,6 +16,8 @@ Bi-directional repository mirroring:
 
 🧑🏻‍🏫 PDF slides: <https://carlosal1015.github.io/thesis-project/main.beamer.pdf>
 
+📘 PDF draft: <https://carlosal1015.github.io/thesis-project/main.pdf>
+
 {{< katex display >}}
 \frac{\partial}{\partial t} u_{j}+
 \nabla\cdot\left(a_{j}u_{j}\right)=
