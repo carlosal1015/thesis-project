@@ -12,6 +12,7 @@
 *.run.xml
 !src/TeX/notes/deduction.pdf
 !src/TeX/thesis/E_IMAGENES/0_Caratula/UNI_LOGO1.pdf
+!src/TeX/thesis/E_IMAGENES/1_Capitulo2/finite_difference.pdf
 pdf
 src/arara.yaml
 public
