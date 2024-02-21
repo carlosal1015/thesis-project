@@ -11,6 +11,7 @@
 *.txt
 *.run.xml
 !src/TeX/notes/deduction.pdf
+!src/TeX/thesis/E_IMAGENES/0_Caratula/UNI_LOGO1.pdf
 pdf
 src/arara.yaml
 public
