@@ -14,3 +14,6 @@
 pdf
 src/arara.yaml
 public
+.ipynb_checkpoints
+__pycache__
+_output

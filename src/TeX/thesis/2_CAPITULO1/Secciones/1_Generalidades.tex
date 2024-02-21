@@ -9,42 +9,46 @@ ordinarias.
 
 \section{GENERALIDADES}
 
-\begin{definition}[Ecuación diferencial parcial]
+\begin{definition}[Ecuación Diferencial Parcial (EDP)]
     Es una ecuación que involucra una \emph{función desconocida} $u$
     y sus derivadas parciales junto con las variables independientes.
     Se escribe como
     \begin{equation}
-        \boxed{
-            F\left(
-            \text{variables independientes},
-            u,
-            \text{derivadas de $u$}
-            \right)
-            =0
-        }.\label{eq:pde}
+        \mathcal{L}
+        \left(
+        \text{variables independientes},
+        u,
+        \text{derivadas de $u$}
+        \right)
+        =0.
+        \label{eq:pde}
     \end{equation}
 \end{definition}
 
-\begin{definition}[Solución de una ecuación diferencial parcial]
-    Sea $\Omega\subset\mathbb{R}^{d}$ un conjunto abierto y conexo.
-    Una \emph{solución} es una función $u\colon\Omega\to\mathbb{R}$
+\begin{definition}[Dominio]
+    Un dominio $\Omega$ es un subconjunto de $\mathbb{R}^{d}$ abierto
+    y conexo que tiene frontera lineal a trozos de clase $C^{1}$.
+\end{definition}
+
+En lo sucesivo $\Omega$ siempre será un dominio.
+
+\begin{definition}[Solución clásica de la EDP]
+    Es una función $u\colon\Omega\to\mathbb{R}$ suficientemente suave
     que satisface~\eqref{eq:pde} para cualquier $x\in\Omega$.
 \end{definition}
 
 \begin{definition}[Condiciones auxiliares]
-    Sea $\Omega\subset\mathbb{R}^{d}$ un conjunto abierto y conexo.
     Una \emph{condición auxiliar} en una solución general es una
     igualdad que especifica el valor de la función desconocida en un
     subconjunto de $\Omega$.
 \end{definition}
 
-\begin{definition}[Problema de valor inicial]
+\begin{definition}[Problema de Valor Inicial (PVI)]
     Sea
     \begin{math}
         u\colon
-        \Omega\times\left[0,T\right]\subset
-        \mathbb{R}^{d}\times\mathbb{R}\to
-        \mathbb{R}
+        \Omega\times\left[0,T\right]
+        \to\mathbb{R}
     \end{math}
     una solución de~\eqref{eq:pde}.
     Un \emph{problema de valor inicial} es una ecuación diferencial
@@ -52,13 +56,35 @@ ordinarias.
     la solución y/o sus derivadas en $t=0$.
 \end{definition}
 
-\begin{definition}[Problema de valor de frontera]
+\begin{example}[PVI de la ecuación de difusión]
+    \begin{equation*}
+        \begin{cases}
+            \difcp{u}{t}=
+            \alpha^{2}
+            \difc.L.{u}{}  &
+            \text{ para }
+            \left(x,t\right)\in
+            \Omega\times\left[0,T\right]. \\
+            u
+            \left(x,0\right)=
+            \phi
+            \left(x\right),\quad
+            \difcp{u}{t}
+            \left(x,0\right)=
+            \psi
+            \left(x\right) &
+            \text{ para }
+            x\in\Omega.
+        \end{cases}
+    \end{equation*}
+\end{example}
+
+\begin{definition}[Problema de Valor de Frontera (PVF)]
     Sea
     \begin{math}
         u\colon
-        \Omega\subset
-        \mathbb{R}^{d}\to
-        \mathbb{R}
+        \Omega
+        \to\mathbb{R}
     \end{math}
     una solución de~\eqref{eq:pde}.
     Un \emph{problema de valor de frontera} es una ecuación
@@ -66,10 +92,254 @@ ordinarias.
     especifican la solución y/o sus derivadas en $\partial\Omega$.
 \end{definition}
 
-\begin{definition}[Dominio]
-    Un dominio $\Omega$ es un subconjunto de $\mathbb{R}^{d}$ abierto
-    y conexo que tiene frontera lineal a trozos de clase $C^{1}$.
+\begin{example}[Problema de valor de frontera de la ecuación de Laplace]
+    \begin{equation*}
+        \begin{cases}
+            \difc.L.{u}{}=0
+             & \text{ para }
+            \left(x,y\right)\in\Omega. \\
+            u=f
+             & \text{ en }
+            \partial\Omega.
+        \end{cases}
+    \end{equation*}
+\end{example}
+
+\begin{definition}[Problema bien planteado]
+    Es una EDP con condiciones auxiliares que cumple
+    \begin{description}
+        \item[Existencia.]
+
+            Para una elección de la condición auxiliar, existe
+            una solución para la EDP que lo satisface.
+
+        \item[Unicidad.]
+
+            Solo existe una solución.
+
+        \item[Estabilidad.]
+
+            Si perturbamos poco una condición auxiliar, la nueva
+            solución no cambia mucho respecto a la solución original.
+    \end{description}
 \end{definition}
+
+\begin{definition}[Clasificación de la EDP lineal de segundo orden]
+    Sea la EDP lineal de segundo orden con coeficientes constantes
+    \begin{math}
+        \mathcal{L}u\left(x\right)=
+        f\left(x\right)
+    \end{math}
+    y $x\in\Omega$, donde el operador diferencial $\mathcal{L}$ viene
+    dado por
+    \begin{align*}
+        \mathcal{L}
+        u\left(x\right) & \coloneqq
+        \sum_{i,j=1}^{d}
+        a_{ij}
+        \difcp[2]{u}{ij}\left(x\right)+
+        \sum_{i=1}^{d}
+        b_{i}
+        \difcp{u}{i}\left(x\right)+
+        cu\left(x\right)            \\
+                        & =
+        {
+        \inner{A}{\mathrm{D}^{2}u\left(x\right)}
+        }_{F}+
+        \inner{b}{\nabla u\left(x\right)}+
+        c
+        u\left(x\right),
+    \end{align*}
+    donde $A=\left[a_{ij}\right]\in\mathbb{R}^{d\times d}$,
+    \begin{math}
+        b={\left[b_{i}\right]}^{T}\in\mathbb{R}^{d}
+    \end{math},
+    \begin{math}
+        \mathrm{D}^{2}u\left(x\right)
+    \end{math}
+    es la matriz hessiana de $u$ en $x$,
+    \begin{math}
+        \nabla u\left(x\right)
+    \end{math}
+    es el gradiente de $u$ en el mismo punto y el producto interno de
+    Frobenius es definido como
+    \begin{equation*}
+        \forall A,B\in\mathbb{R}^{d\times d}:
+        {\inner{A}{B}}_{F}\coloneqq
+        \operatorname{tr}
+        \left(A^{T}B\right).
+    \end{equation*}
+    Decimos que el operador diferencial parcial de segundo orden con
+    coeficientes constantes $\mathcal{D}$ es
+    \begin{description}
+        \item[Elíptico:]
+
+            Si los $d$ autovalores de $A$ tienen el mismo signo, es
+            decir, o bien
+            \begin{math}
+                \sigma\left(A\right)\subset\mathbb{R}_{+}
+            \end{math}
+            o
+            \begin{math}
+                \sigma\left(A\right)\subset\mathbb{R}_{-}
+            \end{math}.
+
+        \item[Parabólico:]
+
+            Si $A$ contiene exactamente $d-1$ valores propios o bien
+            positivos o negativos y cero es un valor propio de
+            multiplicidad uno.
+
+        \item[Hiperbólico:]
+
+            Si $A$ tiene $d-1$ valores propios positivos o negativos,
+            y el restante es distinto de cero y de signo opuesto.
+
+        \item[Ultra parabólico:]
+
+            Si cero es un valor propio múltiple y todos los restantes
+            tienen el mismo signo.
+
+        \item[Ultra hiperbólico:]
+
+            Si cero no es un valor propio y hay más de un valor
+            propio positivo y más de un valor propio negativo.
+    \end{description}
+\end{definition}
+
+\begin{example}[EDPs lineales de segundo orden]
+    Sea $d\in\mathbb{N}$ la dimensión espacial.
+    \begin{description}
+        \item[Elíptica:]
+
+            \begin{equation*}
+                -\difc.L.{u}{}\left(x\right)=
+                {
+                \inner{
+                -I_{d}
+                }{
+                \mathrm{D}^{2}u\left(x\right)
+                }
+                }_{F}=
+                -\sum_{i=1}^{d}
+                \difcp[2]{u}{i}\left(x\right)
+            \end{equation*}
+
+        \item[Parabólica:]
+
+            \begin{equation*}
+                H
+                \left(x,t\right)=
+                \difcp{u}{t}\left(x,t\right)+
+                {\inner{
+                    \begin{bmatrix}
+                        -I_{d}         & \mathbf{0} \\
+                        \mathbf{0}^{T} & 0
+                    \end{bmatrix}
+                }{
+                    \mathrm{D}^{2}u\left(x,t\right)
+                }}_{F}=
+                \difcp{u}{t}\left(x,t\right)-
+                \difc.L.{u}{}\left(x,t\right).
+            \end{equation*}
+
+        \item[Hiperbólica:] % TODO: Chequear que la igualdad sea correcta
+
+            \begin{equation*}
+                \difc.A.{u}{}\left(x,t\right)=
+                    {\inner{
+                            \begin{bmatrix}
+                                -I_{d}         & \mathbf{0} \\
+                                \mathbf{0}^{T} & 1
+                            \end{bmatrix}
+                        }{
+                            \mathrm{D}^{2}u\left(x,t\right)
+                        }}_{F}=
+                \difcp[2]{u}{t}\left(x,t\right)-
+                \difc.L.{u}{}\left(x,t\right).
+            \end{equation*}
+    \end{description}
+\end{example}
+
+\begin{theorem}[Cauchy-Kovalévskaya]
+    .
+\end{theorem}
+
+\subsection{Leyes de Conservación}
+
+La conservación de la masa conlleva a la ecuación de continuidad.
+
+\begin{definition}[Concentración media]
+    Sea $h>0$, $h\ll 1$.
+    Definimos la \emph{concentración media}
+    \begin{math}
+        \averageconcentration
+    \end{math}
+    in a space-time cell
+    \begin{math}
+        \left[
+            x-\frac{1}{2}h,
+            +x\frac{1}{2}h
+            \right]
+        \times
+        \left[
+            0,T
+            \right]
+    \end{math}.
+
+    \begin{equation*}
+        \averageconcentration=
+        \dfrac{1}{h}
+        \int_{x-\frac{1}{2}h}^{x+\frac{1}{2}h}
+        u
+        \left(
+        s,t
+        \right)
+        \dl s.
+    \end{equation*}
+\end{definition}
+
+Sea
+\begin{math}
+    u\left(x,t\right)
+\end{math}
+la función concentración o densidad de alguna sustancia química.
+
+\begin{definition}[Ecuación lineal de Advección-Difusión-Reacción]
+    Para cualquier $x\in\Omega$ y $t\in\left[0,T\right]$,
+    \begin{equation}\label{eq:advecion-difussion-reaction}
+        \diffp{\phi}{t}\left(x,t\right)+
+        u\left(x\right)\cdot
+        \nabla\phi\left(x,t\right)=
+        \nabla\cdot\left(a\left(x\right)\nabla\phi\left(x,t\right)\right)-
+        c\left(x\right)\phi\left(x,t\right)
+        +f\left(x,t\right)
+    \end{equation}
+\end{definition}
+
+\begin{description}
+    \item[Advección-Difusión]
+        Si $u\equiv0$, entonces
+        \begin{equation*}
+            \diffp{\phi}{t}\left(x,t\right)=
+            \nabla\cdot\left(a\left(x\right)\nabla\phi\left(x,t\right)\right)-
+            c\left(x\right)\phi\left(x,t\right)
+            +f\left(x,t\right)
+        \end{equation*}
+
+    \item[De difusión]
+        Si $u\equiv0$, $c\equiv0$ y $f\equiv0$, entonces
+
+        \begin{equation*}
+            .
+        \end{equation*}
+
+    \item[De transporte lineal]
+
+        \begin{equation*}
+            .
+        \end{equation*}
+\end{description}
 
 \begin{theorem}[Identidades integrales]
     Sea
@@ -169,90 +439,6 @@ ordinarias.
     \end{description}
 \end{theorem}
 
-\begin{definition}[Clasificación]
-    Sea la ecuación diferencial parcial de segundo orden de
-    coeficientes constantes
-    \begin{math}
-        \mathcal{D}u\left(x\right)=
-        f\left(x\right)
-    \end{math},
-    \begin{math}
-        m\in\mathbb{N}
-    \end{math}
-    y
-    \begin{math}
-        x\in\mathbb{R}^{m}
-    \end{math}.
-
-    \begin{align*}
-        \mathcal{D}
-        u\left(x\right) & =
-        \sum_{i,j=1}^{m}
-        \diffp[2]{v\left(x\right)}{x_{i}x_{j}}+
-        \sum_{i=1}^{m}
-        b_{i}
-        \diffp{v\left(x\right)}{x_{i}}+
-        cu\left(x\right)    \\
-                        & =
-        A\colon D^{2}u\left(x\right)+
-        b\cdot\nabla u\left(x\right)+
-        cv\left(x\right),
-    \end{align*}
-    donde $A=\left[a_{ij}\right]\in\mathbb{R}^{m\times m}$,
-    \begin{math}
-        b={\left[b_{i}\right]}^{T}\in\mathbb{R}^{m}
-    \end{math},
-    \begin{math}
-        D^{2}u\left(x\right)
-    \end{math}
-    es la matriz hessiana de $u$ en el $x$,
-    \begin{math}
-        \nabla u\left(x\right)
-    \end{math}
-    es su gradiente en el mismo punto
-    y
-    \begin{equation*}
-        \forall A,B\in\mathbb{R}^{m\times m}:\quad
-        A\colon B=\operatorname{tr}\left(AB^{T}\right).
-    \end{equation*}
-
-    \begin{description}
-        \item[Elíptico:]
-
-            Si $\sigma\left(A\right)\subset\mathbb{R}_{+}$ o
-            $\sigma\left(A\right)\subset\mathbb{R}_{-}$.
-
-        \item[Parabólico:]
-
-            Si $A$ contiene exactamente $m-1$ valores propios
-            positivos o negativos y cero es un valor propio de
-            multiplicidad uno.
-
-        \item[Hiperbólico:]
-
-            Si $A$ tiene $m-1$ valores propios positivos o negativos,
-            y el restante es distinto de cero y de signo opuesto.
-
-        \item[Ultra parabólico:]
-
-            Si cero es un valor propio múltiple y todos los restantes
-            tienen el mismo signo.
-
-        \item[Ultra hiperbólico:]
-
-            Si cero no es un valor propio y hay más de un valor
-            propio positivo y más de un valor propio negativo.
-    \end{description}
-\end{definition}
-
-\subsection{Leyes de conservación}
-
-Sea
-\begin{math}
-    u\left(x,t\right)
-\end{math}
-la función concentración o densidad de alguna sustancia química.
-
 \subsection{Aproximaciones de diferencias finitas de las derivadas}
 
 Si $u\colon\mathbb{R}^d\to\mathbb{R}$ es una función suficientemente
@@ -318,12 +504,257 @@ Ahora, presentaremos algunas definiciones generales acerca de las
 discretizaciones que nos permitirá estudiar la consistencia y
 estabilidad de los esquemas venideros.
 
+\subsection{Consistencia y Estabilidad de los Métodos de Diferencias Finitas}
+
+Sean
+\begin{math}
+    \left(
+    \mathbb{V},
+    {\left\|\cdot\right\|}_{\mathbb{V}}
+    \right)
+\end{math},
+\begin{math}
+    \left(
+    \mathbb{F},
+    {\left\|\cdot\right\|}_{\mathbb{F}}
+    \right)
+\end{math}
+y
+\begin{math}
+    \left(
+    \mathbb{G},
+    {\left\|\cdot\right\|}_{\mathbb{G}}
+    \right)
+\end{math}
+tres espacios normados, donde el primero es de funciones definidas
+sobre $\overline{\Omega}={\left[0,1\right]}^{d}$.
+Encuentre un $u\in\mathbb{V}$ tal que
+\begin{equation}\label{eq:boundary_value_problem}
+    \begin{cases}
+        Lu=f,     & \text{ en }\Omega,         \\
+        \ell u=g, & \text{ en }\partial\Omega,
+    \end{cases}
+\end{equation}
+donde $L$ y $\ell$ son operadores diferenciables.
+El primero está asociado con la ecuación diferencial y el segundo con
+las condiciones de frontera.
+Las funciones $f\colon\Omega\to\mathbb{R}$ y
+$g\colon\partial\Omega\to\mathbb{R}$
+son elementos de $\mathbb{F}$ y $\mathbb{G}$, respectivamente.
+
+Encuentre un $w\in\mathcal{V}\left(\overline{\Omega}_{h}\right)$ tal
+que
+\begin{equation}\label{eq:boundary_value_problem_finite}
+    \begin{cases}
+        L_{h}w=f_{h},    & \text{ en }\Omega^{I}_{h}, \\
+        \ell_{h}w=g_{h}, & \text{ en }\Omega^{B}_{h},
+    \end{cases}
+\end{equation}
+donde $L_{h}$ y $\ell_{h}$ son operadores de diferencias finitas,
+\begin{math}
+    \Omega^{I}_{h}
+\end{math}
+y
+\begin{math}
+    \Omega^{B}_{h}
+\end{math}
+son los puntos malla interiores y frontera, respectivamente.
+
+Sea
+\begin{math}
+    \left\{
+    \left(
+    \mathcal{V}\left(\overline{\Omega}_{h}\right),
+    \left\|\cdot\right\|_{h}
+    \right)
+    \right\}_{h>0}
+\end{math}
+la aproximación con respecto a
+\begin{math}
+    \left(
+    \mathbb{V},
+    {\left\|\cdot\right\|}_{\mathbb{V}}
+    \right)
+\end{math}.
+
+\begin{definition}[Estabilidad]
+    Decimos que el MDF~\eqref{eq:boundary_value_problem_finite} es
+    estable sii existen $h_{0}>0$ y $C>0$ tales que
+    \begin{math}
+        \forall h\in\left(0,h_{0}\right]
+    \end{math},
+    el problema~\eqref{eq:boundary_value_problem}
+    tiene una única solución para cualquier
+    \begin{math}
+        \left(
+        f_{h},g_{h}
+        \right)\in
+        \mathcal{V}\left(
+        \Omega^{I}_{h}
+        \right)\times
+        \left(
+        \mathcal{V}\left(
+            \Omega^{B}_{h}
+            \right)
+        \right)
+    \end{math}
+    y
+    \begin{equation*}
+        \left\|w\right\|_{h}\leq
+        C\left(
+        \left\|f_{h}\right\|_{\mathcal{V}\left(
+            \Omega^{I}_{h}
+            \right)}+
+        \left\|g_{h}\right\|_{\mathcal{V}\left(
+            \Omega^{B}_{h}
+            \right)}
+        \right)
+    \end{equation*}
+    donde
+    \begin{math}
+        {\left\|\cdot\right\|}_{\mathcal{V}\left(
+            \Omega^{I}_{h}
+            \right)}
+    \end{math}
+    y
+    \begin{math}
+        {\left\|\cdot\right\|}_{\mathcal{V}\left(
+            \Omega^{B}_{h}
+            \right)}
+    \end{math}
+    son normas que tienen la propiedad de aproximación con respecto a
+    \begin{math}
+        \left(
+        \mathbb{F},
+        {\left\|\cdot\right\|}_{\mathbb{F}}
+        \right)
+    \end{math}
+    y
+    \begin{math}
+        \left(
+        \mathbb{G},
+        {\left\|\cdot\right\|}_{\mathbb{G}}
+        \right)
+    \end{math},
+    respectivamente.
+\end{definition}
+
+Sea
+\begin{math}
+    \left\{
+    \left(
+    \mathcal{V}\left(\overline{\Omega}_{h}\right),
+    \left\|\cdot\right\|_{h}
+    \right)
+    \right\}_{h>0}
+\end{math}
+la aproximación con respecto a
+\begin{math}
+    \left(
+    \mathbb{V},
+    {\left\|\cdot\right\|}_{\mathbb{V}}
+    \right)
+\end{math}.
+
+\begin{definition}[Operador de consistencia]
+    Sea
+    \begin{math}
+        L\colon\mathbb{V}\to\mathbb{V}
+    \end{math}
+    un operador lineal, no necesariamente acotado y
+    \begin{math}
+        L_{h}\colon
+        \mathcal{V}\left(\mathbb{Z}^{d}_{h}\right)\to
+        \mathcal{V}\left(\mathbb{Z}^{d}_{h}\right)
+    \end{math}
+    un operador de diferencia finita.
+    Definimos el error de consistencia en $v\in\mathbb{V}$
+    \begin{equation*}
+        \forall x\in\mathbb{Z}^{d}_{h}:
+        \mathcal{E}_{h}\left[L,v\right]\left(x\right)=
+        \left(L_{h}\pi_{h}v-\pi_{h}\left(Lv\right)\right)
+        \left(x\right).
+    \end{equation*}
+    Decimos que el operador de diferencia finita $L_{h}$ es
+    consistente al menos de orden $p\in\mathbb{N}$ con $L$ sii
+    existen $k\in\mathbb{N}$, $h_{1}>0$ tales que para cualquier
+    \begin{math}
+        h\in\left(0,h_{1}\right]
+    \end{math}
+    y
+    \begin{math}
+        v\in C^{k}\left(\mathbb{R}^{d}\right)
+    \end{math}
+    \begin{equation*}
+        {\left\|\varepsilon_{h}\left[L,v\right]\right\|}_{h}\leq
+        C h^{p}.
+    \end{equation*}
+\end{definition}
+
+\begin{definition}[Consistencia]
+    Definimos el error de consistencia
+    de~\eqref{eq:boundary_value_problem_finite}
+    \begin{equation*}
+        \mathcal{E}_{h}
+        \left[u\right]
+        \left(x\right)=
+        \begin{cases}
+            \left(L_{h}\pi_{h}u-f_{h}\right)\left(x\right) \\
+            \left(\ell_{h}\pi_{h}u-g_{h}\right)\left(x\right)
+        \end{cases}
+    \end{equation*}
+    donde $u\in\mathbb{V}$
+    resuelve~\eqref{eq:boundary_value_problem}.
+    Decimos que el MDF~\eqref{eq:boundary_value_problem_finite} es
+    consistente al menos de orden $p\in\mathbb{N}$
+    con~\eqref{eq:boundary_value_problem} sii existen
+    $k\in\mathbb{N}$ tal que si
+    \begin{math}
+        u\in C^{k}\left(\overline{Omega}_{h}\right)
+    \end{math},
+    entonces existen $h_{1}>0$ y $C>0$ tales que
+    \begin{math}
+        \forall h\in\left(0,h_{1}\right]:
+        {
+        \left\|\mathcal{\varepsilon}_{h}\left[u\right]\right\|
+        }_{\mathcal{V}\left(\Omega^{I}_{h}\right)}+
+        {
+        \left\|\mathcal{\varepsilon}_{h}\left[u\right]\right\|
+        }_{\mathcal{V}\left(\Omega^{B}_{h}\right)}\leq
+        C h^{p}
+    \end{math}.
+\end{definition}
+
+\begin{proposition}[Consistencia]
+    Sea $d=1$. Tenemos
+    \begin{enumerate}
+        \item
+
+              El operador de diferencia hacia adelante es consistente
+              sobre
+              \begin{math}
+                  C_{b}\left(\mathbb{R}\right)
+              \end{math}
+              hasta exactamente orden uno con.
+
+        \item
+
+              El operador de diferencia hacia atrás es consistente.
+
+        \item
+
+              El operador de diferencia centrada es consistente.
+    \end{enumerate}
+\end{proposition}
+
 \begin{definition}[Malla uniforme]
     Sean $N\in\mathbb{N}$.
     El tamaño de la malla es
     \begin{math}
-        h=\dfrac{1}{N+1}
-    \end{math} y la malla uniforme es
+        h=
+        \dfrac{1}{N+1}
+    \end{math}
+    y la malla uniforme es
     \begin{equation*}
         \mathbb{Z}^{d}_{h}\coloneqq
         \left\{
@@ -335,10 +766,12 @@ estabilidad de los esquemas venideros.
 
 \begin{definition}[Conjunto de funciones malla]
     \begin{math}
-        \emptyset\neq\mathcal{G}_{h}\subset\mathbb{Z}^{d}_{h}
+        \emptyset\neq\mathcal{G}_{h}\subset
+        \mathbb{Z}^{d}_{h}
     \end{math}
     es un dominio malla.
-    Los puntos $x\in\mathcal{G}_{h}$ son los nodos o puntos de la malla.
+    Los puntos $x\in\mathcal{G}_{h}$ son los nodos o puntos de la
+    malla.
     Se define el conjunto de funciones malla sobre $\mathcal{G}_{h}$
     como
     \begin{equation*}
@@ -352,7 +785,8 @@ estabilidad de los esquemas venideros.
     \begin{math}
         \forall v\in\mathcal{V}\left(\mathcal{G}_{h}\right):
         \forall hi\in\mathcal{G}_{h}:
-        v_{i}=v\left(hi\right)
+        v_{i}=
+        v\left(hi\right)
     \end{math}.
 \end{definition}
 
@@ -366,7 +800,8 @@ estabilidad de los esquemas venideros.
         N\in\mathbb{N}
     \end{math},
     \begin{math}
-        h=\dfrac{1}{\left(N+1\right)}
+        h=
+        \dfrac{1}{\left(N+1\right)}
     \end{math}
     y
     \begin{math}
@@ -374,6 +809,7 @@ estabilidad de los esquemas venideros.
         \overline{\Omega}\cap
         \mathbb{Z}^{d}_{h}
     \end{math}.
+
     \begin{equation*}
         \mathcal{V}_{0}\left(\overline{\Omega}_{h}\right)\coloneqq
         \left\{
@@ -400,59 +836,6 @@ estabilidad de los esquemas venideros.
     \end{equation*}
     donde $S\subset\mathbb{Z}^{d}_{h}$ es finito y $0\in S$.
 \end{definition}
-
-Sean
-\begin{math}
-    \left(
-    \mathbb{V},
-    {\left\|\cdot\right\|}_{\mathbb{V}}
-    \right)
-\end{math},
-\begin{math}
-    \left(
-    \mathbb{F},
-    {\left\|\cdot\right\|}_{\mathbb{F}}
-    \right)
-\end{math}
-y
-\begin{math}
-    \left(
-    \mathbb{G},
-    {\left\|\cdot\right\|}_{\mathbb{G}}
-    \right)
-\end{math}
-tres espacios normados, donde el primero es de funciones definidas
-sobre $\overline{\Omega}={\left[0,1\right]}^{d}$.
-Encuentre un $u\in\mathbb{V}$ tal que
-\begin{equation*}
-    \begin{cases}
-        Lu=f,     & \text{ in }\Omega,         \\
-        \ell u=g, & \text{ in }\partial\Omega,
-    \end{cases}
-\end{equation*}
-donde $L$ y $\ell$ son operadores diferenciables.
-El primero está asociado con la ecuación diferencial y el segundo con
-las condiciones de frontera.
-Las funciones $f\colon\Omega\to\mathbb{R}$ y $g\colon\partial\Omega\to\mathbb{R}$
-son elementos de $\mathbb{F}$ y $\mathbb{G}$, respectivamente.
-
-Encuentre un $w\in\mathcal{V}\left(\overline{\Omega}_{h}\right)$ tal
-que
-\begin{equation*}
-    \begin{cases}
-        L_{h}w=f_{h},    & \text{ in }\Omega^{I}_{h}, \\
-        \ell_{h}w=g_{h}, & \text{ in }\Omega^{B}_{h},
-    \end{cases}
-\end{equation*}
-donde $L_{h}$ y $\ell_{h}$ son operadores de diferencias finitas,
-\begin{math}
-    \Omega^{I}_{h}
-\end{math}
-y
-\begin{math}
-    \Omega^{B}_{h}
-\end{math}
-son los puntos malla interiores y frontera, respectivamente.
 
 Sea un dominio espacio-temporal contenido en $\mathbb{R}^{d+1}$.
 
@@ -514,28 +897,32 @@ Sea un dominio espacio-temporal contenido en $\mathbb{R}^{d+1}$.
         \overline{\mathcal{C}}^{\tau}_{h}
         \right) & =
         \left\{
-        v\mid\overline{\mathcal{C}}^{\tau}_{h}\to\mathbb{R}
+        v\mid
+        \overline{\mathcal{C}}^{\tau}_{h}\to\mathbb{R}
         \right\}.   \\
         \mathcal{V}
         \left(
         \mathcal{C}^{\tau}_{h}
         \right) & =
         \left\{
-        v\mid\mathcal{C}^{\tau}_{h}\to\mathbb{R}
+        v\mid
+        \mathcal{C}^{\tau}_{h}\to\mathbb{R}
         \right\}.   \\
         \mathcal{V}
         \left(
         \partial_{L}\mathcal{C}^{\tau}_{h}
         \right) & =
         \left\{
-        v\mid\partial_{L}\mathcal{C}^{\tau}_{h}\to\mathbb{R}
+        v\mid
+        \partial_{L}\mathcal{C}^{\tau}_{h}\to\mathbb{R}
         \right\}.   \\
         \mathcal{V}_{0}
         \left(
         \overline{\mathcal{C}}^{\tau}_{h}
         \right) & =
         \left\{
-        v\in\mathcal{V}\left(\overline{\mathcal{C}}^{\tau}_{h}\right)\mid
+        v\in
+        \mathcal{V}\left(\overline{\mathcal{C}}^{\tau}_{h}\right)\mid
         v\left(x,t\right)=0,
         \forall\left(x,t\right)\in\partial_{L}\mathcal{C}^{\tau}_{h}
         \right\}.   \\
@@ -569,9 +956,14 @@ espacial, o sea
     \mathcal{V}
     \left(
     \left[0,T\right]_{\tau};
-    \mathcal{V}\left(\overline{\Omega}_{h}\right)
+    \mathcal{V}
+    \left(\overline{\Omega}_{h}\right)
     \right)=
-    {\left(\mathcal{V}\left(\overline{\Omega}_{h}\right)\right)}^{K+1}. \\
+    {
+    \left(
+    \mathcal{V}\left(\overline{\Omega}_{h}\right)
+    \right)
+    }^{K+1}.    \\
     \mathcal{V}_{0}
     \left(
     \overline{\mathcal{C}}^{\tau}_{h}
@@ -586,10 +978,11 @@ espacial, o sea
 \begin{definition}
     Sean
     \begin{math}
-        d\in\left\{,12\right\}
+        d\in\left\{1,2\right\}
     \end{math},
     \begin{math}
-        p\in\left[1,\infty\right]
+        p\in
+        \left[1,\infty\right)
     \end{math}
     y
     \begin{math}
@@ -597,7 +990,9 @@ espacial, o sea
     \end{math}.
 
     \begin{align*}
-        {\left\|v\right\|}_{L^{q}_{\tau}\left(L^{p}_{h}\right)}
+        {\left\|v\right\|}_{
+            L^{q}_{\tau}\left(L^{p}_{h}\right)
+        }
          & =
         {\left(
         \tau\sum_{k=1}^{K}
@@ -611,7 +1006,8 @@ espacial, o sea
 \end{definition}
 
 \begin{definition}[Número de Courant]
-    Sea $\overline{\mathcal{C}}^{\tau}_{h}$ una malla espacio-temporal.
+    Sea $\overline{\mathcal{C}}^{\tau}_{h}$ una malla
+    espacio-temporal.
     El número de Courant parabólico es
     \begin{equation*}
         \mu=
@@ -620,6 +1016,19 @@ espacial, o sea
 \end{definition}
 
 \begin{definition}[Estabilidad condicional]
-    Decimos que un método de diferencia finita es \emph{condicionalmente estable} sii
-    este es estable.
+    Decimos que un método de diferencia finita es
+    \emph{condicionalmente estable} sii este es estable.
 \end{definition}
+
+\begin{equation*}
+    U^{n+1}_{j}=
+    U^{n}_{j}-
+    \dfrac{\lambda}{2}
+    \left(U^{n}_{j+1}-U^{n}_{j}\right)+
+    \dfrac{\lambda^{2}}{2}
+    \left(
+    U^{n}_{j+1}-
+    2U^{n}_{j}+
+    U^{n}_{j-1}
+    \right)
+\end{equation*}

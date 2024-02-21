@@ -178,9 +178,17 @@
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 
+\providecommand{\averageconcentration}{\overline{u}\left(x,t\right)}
+\providecommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\difdef{c}{L}{op-symbol=\mathop{}\!\mathbin\bigtriangleup}
+\difdef{c}{A}{op-symbol=\mathop{}\!\mathbin\Box}
+
+
 \theoremstyle{definition}
 \newtheorem{theorem}{Teorema}
 \newtheorem{definition}{Definición}
+\newtheorem{example}{Ejemplo}
+\newtheorem{proposition}{Proposición}
 
 % Escribir los INFORMACIÓN PERSONAL Y DEL TRABAJO
 
@@ -193,7 +201,7 @@
 %Título en para el PIE DE PÁGINA (Agregar salto de línea de ser necesario)
 % \title{La selección de un esquema Upwind y Lax-Wendroff para la solución numérica de la ecuación advección-difusión}
 % \title{Minimización del error en los métodos Upwind y Lax-Wendroff para la solución numérica de la ecuación advección-difusión}
-\title{Estimación del Error en los Esquemas Upwind y Lax-Wendroff a problemas de Advección-Difusión evolutivos}
+\title{Estimación del Error en los Esquemas Upwind y Lax-Wendroff a Problemas de Advección-Difusión Evolutivos}
 %Título para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
 \titlecaratula{ESTIMACIÓN DEL ERROR EN LOS ESQUEMAS UPWIND Y LAX-WENDROFF A PROBLEMAS DE ADVECCIÓN-DIFUSIÓN EVOLUTIVOS}
 %Nombre de la FACULTAD (Siempre en mayuscula)
