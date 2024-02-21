@@ -28,6 +28,7 @@
 \usepackage{tocloft} % Titulos de ÍNDICES
 \usepackage[colorlinks=true,linkcolor=negro,citecolor = negro]{hyperref}
 \usepackage[mathbf=sym]{unicode-math} % Mantener fuentes matemáticas
+\removenolimits{\int} % https://tex.stackexchange.com/a/103925
 \let\mathbb\mathbbalt
 \makeatletter  % Comando para REDUCIR ERRORES
 \usepackage{multirow} % Agregar TABLAS 
@@ -163,8 +164,6 @@
 \renewcommand{\cfttabnumwidth}{6.5 em}
 
 %Definición de COLORES
-
-\usepackage{xcolor}
 \definecolor{granate}{RGB}{113,22,16}
 \definecolor{gris}{RGB}{154,153,157}
 \definecolor{arena}{RGB}{230,217,170}

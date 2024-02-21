@@ -265,9 +265,166 @@ En lo sucesivo $\Omega$ siempre será un dominio.
     .
 \end{theorem}
 
-\subsection{Leyes de Conservación}
+\subsection{Ley de conservación escalar}
 
-La conservación de la masa conlleva a la ecuación de continuidad.
+Sean $U$ la cantidad de una magnitud escalar por unidad de volumen y
+$\Omega$, fijo en espacio, acotado por una superficie cerrada $S$
+atravesado por el flujo del fluido.
+La superficie $S$ es la \emph{superficie de control} y $\Omega$ es el
+\emph{volumen de control}.
+El \emph{flujo} asociado a una magnitud escalar es un vector y es
+definido como la cantidad $U$ que cruza el elemento de superficie
+$\dl{\vec{S}}$ por unidad de tiempo
+
+\begin{equation*}
+    F_{n}\dl S=
+    \vec{F}\cdot
+    \dl{\vec{S}}.
+\end{equation*}
+
+La contribución total de los flujos entrantes es la suma de todos los
+elementos de superficie en la superficie cerrada, y es dado por
+
+\begin{equation}
+    -\oint_{S}
+    \vec{F}\cdot
+    \dl{\vec{S}}.\label{eq:net_contributions}
+\end{equation}
+
+El signo negativo en~\eqref{eq:net_contributions} es debido a que el
+signo del vector normal hacia afuera es positivo.
+La \emph{conservación} de $U$ significa que la variación de una
+cantidad de flujo asociado a $U$ dentro de un volumen dado se debe al
+efecto neto de algunas fuentes internas y de la cantidad que cruza la
+frontera de la superficie $S$, en otras palabras,
+
+\begin{quotation}
+    \bfseries\itshape\color{DarkBlue}
+    La variación de la cantidad total de una magnitud $U$ dentro
+    de un dominio dado es igual al saldo entre la cantidad de esa
+    magnitud que entra y sale del dominio considerado, más las
+    contribuciones de eventuales fuentes que generan dicha magnitud.
+\end{quotation}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.5\paperwidth]{example-image}
+    \caption[short]{Ley de conservación para una magnitud escalar}
+\end{figure}
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{lll}
+        \textbf{Problema}                       &
+        \textbf{Magnitud conservada}            & \textbf{Ley} \\
+        \hline
+        Flujo de partículas en un material      &
+        masa                                    & Fick         \\
+        \hline
+        Conducción de calor en una varilla      &
+        energía                                 & Fourier      \\
+        \hline
+        Flujo de un fluido a través de un canal &
+        cantidad de movimiento                  & Stokes       \\
+        \hline
+        Flujo a través de un medio poroso       &
+        masa                                    & Darcy
+    \end{tabular}
+    \caption[short]{La última columna nos da el nombre de la ley
+        constitutiva en el contexto particular.}
+\end{table}
+
+\begin{equation*}
+    \int_{\Omega}
+    U\dl\Omega
+\end{equation*}
+
+La variación por unidad de tiempo de la cantidad total de $U$ en $\Omega$
+\begin{equation*}
+    \diffp{}{t}
+    \int_{\Omega}
+    U\dl\Omega
+\end{equation*}
+
+\begin{equation}
+    \diffp{}{t}
+    \int_{\Omega}
+    U\dl\Omega+
+    \oint_{S}
+    \vec{F}\cdot\dl{\vec{S}}=
+    \int_{\Omega}
+    Q_{V}\dl\Omega+
+    \oint_{S}
+    \vec{Q}_{S}\cdot\dl{\vec{S}}.
+\end{equation}
+
+\begin{equation*}
+    \oint_{S}
+    \vec{F}\cdot\dl{\vec{S}}=
+    \int_{\Omega}
+    \nabla\cdot\vec{F}\dl\Omega
+\end{equation*}
+
+\begin{equation*}
+    \diffp{U}{t}+
+    \nabla\cdot\left(\vec{F}-\vec{Q}_{S}\right)=
+    Q_{V}.
+\end{equation*}
+
+Los flujos surgen debido al transporte convectivo del fluido o por la
+agitación molecular del fluido, inclusive en reposo.
+
+El flujo \emph{convectivo} $\vec{F}_{C}$ ligado a la cantidad $U$ en
+un flujo de velocidad $\vec{v}$, este representa la cantidad de $U$
+que es transportado por el flujo y es definido como
+
+\begin{equation}
+    \vec{F}_{C}\coloneqq
+    U\vec{v}
+\end{equation}
+
+El flujo \emph{difusivo} $\vec{F}_{D}$ debido al efecto macroscópico de la
+agitación térmica molecular presente en los fluidos en reposo
+
+\begin{equation}
+    \vec{F}_{D}\coloneqq
+    -D\left(x,\phi\left(x,t\right)\right)
+    \nabla\phi\left(x,t\right)
+\end{equation}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/25.png}\qquad
+    \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/50.png}
+    \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/75.png}\qquad
+    \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/100.png}
+    \caption[corto]{Un tinte que se difunde en el agua en los tiempos
+        $25$s, $50$s, $75$s y $100$s.
+        En promedio, las partículas se mueven de regiones de mayor a menor densidad.}
+\end{figure}
+
+\begin{table}[ht!]
+    \centering
+    \begin{tabular}{ll}
+        \textbf{Convección}                              &
+        \textbf{Difusión}                                  \\
+        Transporte de la magnitud por el flujo           &
+        Efecto de las colisiones moleculares               \\
+        \hline
+        No existe en un fluido en reposo                 &
+        Existe en un fluido en reposo                      \\
+        \hline
+        Comportamiento direccional                       &
+        Comportamiento isotrópico                          \\
+        \hline
+        Derivadas espaciales de primer orden             &
+        Derivadas espaciales de segundo orden              \\
+        \hline
+        No lineal, la velocidad del flujo depende de $U$ &
+        Lineal, propiedades del fluido constantes
+    \end{tabular}
+    \caption[short]{Diferencias entre la convección y difusión.}
+\end{table}
 
 \begin{definition}[Concentración media]
     Sea $h>0$, $h\ll 1$.
@@ -438,6 +595,8 @@ la función concentración o densidad de alguna sustancia química.
             \end{equation*}
     \end{description}
 \end{theorem}
+
+La conservación de la masa conlleva a la ecuación de continuidad.
 
 \subsection{Aproximaciones de diferencias finitas de las derivadas}
 
