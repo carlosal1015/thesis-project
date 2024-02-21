@@ -10,7 +10,7 @@
 *.toc
 *.txt
 *.run.xml
-!src/TeX/deduction.pdf
+!src/TeX/notes/deduction.pdf
 pdf
 src/arara.yaml
 public

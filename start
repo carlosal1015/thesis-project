@@ -12,10 +12,10 @@ function run() {
   git pull >/dev/null 2>&1
   pushd src/TeX/notes >/dev/null 2>&1
   echo "Generating PDFs ..."
-  arara main.beamer main.report #>/dev/null 2>&1
+  arara -v main.beamer main.report #>/dev/null 2>&1
   popd >/dev/null 2>&1
   pushd src/TeX/thesis >/dev/null 2>&1
-  arara main #>/dev/null 2>&1
+  arara -v main #>/dev/null 2>&1
   popd >/dev/null 2>&1
 }
 
