@@ -28,12 +28,12 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ghcr.io
-          image: ghcr.io/cpp-review-dune/introductory-review/aur:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/pde:latest
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            yay -Syu python-matplotlib python-sphinxcontrib-bibtex python-sphinx-copybutton python-linkify-it-py python-jsonschema python-poetry --noconfirm >/dev/null 2>&1
-            sudo chown -R builder:builder /work
+            sudo pacman -Syu python-poetry texlive-latexextra texlive-fontsrecommended python-click python-jinja python-jsonschema python-linkify-it-py python-sphinx-copybutton python-sphinxcontrib-bibtex python-yaml --noconfirm >/dev/null 2>&1
+            sudo chown -R gitpod:gitpod /work
             cd /work/src/Python
             poetry config virtualenvs.in-project true
             poetry config virtualenvs.options.system-site-packages true
@@ -46,7 +46,7 @@ jobs:
           mv src/Python/thesis-book/_build .
           tar --zstd -cf Book.tar.zst _build
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: Book-artifact
           path: Book.tar.zst

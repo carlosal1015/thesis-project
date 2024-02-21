@@ -22,4 +22,3 @@ if __name__ == "__main__":
         quad = dx * np.sum(an * f(x))
         error = abs(quad - exact)
         print("{:2d}  {:10.9f}  {:.5e}".format(N, quad, error))
-

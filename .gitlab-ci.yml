@@ -3,6 +3,8 @@ default:
   image: "archlinux:latest"
 
 variables:
+  GIT_SUBMODULE_DEPTH: 1
+  GIT_SUBMODULE_PATHS: site/themes/hugo-book
   GIT_SUBMODULE_STRATEGY: recursive
 
 stages:
@@ -21,7 +23,7 @@ build:
   stage: build
   needs: []
   before_script:
-    - pacman -Syu --needed --noconfirm make hugo git >/dev/null 2>&1
+    - pacman -Syu --needed --noconfirm make hugo >/dev/null 2>&1 # git
   script:
     - cd site && make build
   artifacts:

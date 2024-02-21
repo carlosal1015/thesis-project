@@ -8,5 +8,3 @@ identical characteristics that we are using based on
 ```console
 gitpod /workspace/thesis-project $ ./start
 ```
-
-[mail](mailto:caznaranl@uni.pe)
