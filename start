@@ -14,14 +14,19 @@ function run() {
   echo "Generating PDFs ..."
   arara main.beamer main.report #>/dev/null 2>&1
   popd >/dev/null 2>&1
+  pushd src/TeX/thesis >/dev/null 2>&1
+  arara main #>/dev/null 2>&1
+  popd >/dev/null 2>&1
 }
 
 function export() {
-  [ -d pdf ] || mkdir -p pdf && mv src/TeX/main.*.pdf pdf
+  [ -d pdf ] || mkdir -p pdf
+  mv src/TeX/notes/main.*.pdf pdf
+  mv src/TeX/thesis/main*.pdf pdf
   echo "PDFs are in pdf directory"
   ls pdf
 }
 
-# show
+#show
 run
 export
