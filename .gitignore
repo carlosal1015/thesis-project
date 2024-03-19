@@ -3,6 +3,7 @@
 *.bcf
 *.blg
 *.log
+*.lof
 *.nav
 *.out
 *.pdf

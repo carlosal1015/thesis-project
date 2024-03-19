@@ -1191,3 +1191,220 @@ espacial, o sea
     U^{n}_{j-1}
     \right)
 \end{equation*}
+
+\begin{example}[Problema de Cauchy]
+    Sean $T>0$, $c\in\mathbb{R}\setminus\left\{0\right\}$,
+    $f\colon\mathbb{R}\times\left(0,T\right]\to\mathbb{R}$ y
+    $u_{0}\colon\mathbb{R}\to\mathbb{R}$, buscamos
+    $u\colon\mathbb{R}\times\left[0,T\right]\to\mathbb{R}$
+    tal que
+    \begin{equation}
+        \begin{cases}
+            \difcp{u}{t}+
+            c\difcp{u}{x}=f
+             & \text{ para }
+            \left(x,t\right)\in\mathbb{R}\times\left(0,T\right]. \\
+            u\left(x,0\right)=u_{0}\left(x\right)
+             & \text{ para }
+            x\in\mathbb{R}.
+        \end{cases}\label{eq:pde_transport}
+    \end{equation}
+\end{example}
+
+\begin{definition}[Solución clásica]
+    $u\in C\left(\mathbb{R}\times\left[0,T\right]\right)$ es la
+    \emph{solución clásica} de~\eqref{eq:pde_transport} sii la
+    ecuación y la condición inicial se cumplen puntualmente.
+\end{definition}
+
+\begin{theorem}[\eqref{eq:pde_transport} está bien planteado]
+    Si $f\equiv0$ y $u_{0}\in C\left(\mathbb{R}\right)$, entonces
+    $\exists u$ solución clásica $u$ de~\eqref{eq:pde_transport}.
+    Su solución es dada por
+    \begin{equation*}
+        u\left(x,t\right)=
+        u_{0}\left(x-ct\right).
+    \end{equation*}
+    Además, si $\exists p\in\left[1,\infty\right]$ tal que
+    $u_{0}\in L\left(\mathbb{R}\right)$, entonces
+    \begin{equation*}
+        \forall t>0:
+        {
+        \left\|
+        u\left(\cdot,t\right)
+        \right\|
+        }_{L^{p}\left(\mathbb{R}\right)}=
+            {
+                \left\|
+                u_{0}
+                \right\|
+            }_{L^{p}\left(\mathbb{R}\right)}
+    \end{equation*}
+\end{theorem}
+
+\begin{proof}
+    .
+\end{proof}
+
+La solución de la ecuación de transporte homogénea
+
+\begin{equation*}
+    X^{\prime}\left(s\right)=c,\quad
+    X\left(t\right)=x\quad\iff\quad
+    X\left(s\right)=x+c\left(s-t\right)
+\end{equation*}
+
+La solución es
+
+\begin{align*}
+    u\left(x,t\right) & =
+    u\left(X\left(t\right),t\right)      \\
+                      & =
+    u\left(X\left(0\right),0\right)+
+    \int_{0}^{t}
+    f\left(X\left(s\right),s\right)\dl s \\
+                      & =
+    u_{0}\left(x-ct\right)+
+    \int_{0}^{t}f\left(x+c\left(s-t\right),s\right)\dl s.
+\end{align*}
+
+\begin{definition}[Esquema de Variación total decreciente (VTD)] % p. 178 leveque conservation laws
+    \begin{equation*}
+        \operatorname{VT}\left(\right)\leq
+        \operatorname{VT}\left(\right).
+    \end{equation*}
+\end{definition}
+
+\begin{theorem}
+    Cualquier método TVD preserva la monotonicidad.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\section*{El método de diferencias finitas para mallas estructuradas}
+
+$\Delta x>0$ y $\Delta t>0$ tamaño de paso temporal, espacial
+
+$x_{j}=j\Delta x$, $t_{n}=n\Delta t$
+
+\begin{equation*}
+    U^{n}_{j}\coloneqq
+    u\left(j\Delta x, n\Delta t\right)
+\end{equation*}
+
+\begin{equation*}
+    \difcp{u}{t}\approx
+    \dfrac{U^{n+1}_{j}-U^{n}_{j}}{\Delta t}\quad
+    \difcp{u}{x}\approx
+    \dfrac{U^{n}_{j}-U^{n}_{j-1}}{\Delta x}
+\end{equation*}
+
+\begin{example}[Esquema de primer orden Upwind (FOU) cuando $v>0$]
+    \begin{equation*}
+        U^{n+1}_{j}=
+        U^{n}_{j}-
+        \dfrac{v\Delta t}{\Delta x}
+        \left(U^{n}_{j}-U^{n}_{j-1}\right)+
+        O\left(\Delta t,\Delta x\right)
+    \end{equation*}
+\end{example}
+
+\begin{example}[Esquema de primer orden Upwind (FOU) cuando $v<0$]
+    \begin{equation*}
+        U^{n+1}_{j}=
+        U^{n}_{j}-
+        \dfrac{v\Delta t}{\Delta x}
+        \left(U^{n}_{j+1}-U^{n}_{j}\right)+
+        O\left(\Delta t,\Delta x\right)
+    \end{equation*}
+\end{example}
+
+% \begin{figure}[ht!]
+%     \centering
+%     \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/25.png}\qquad
+%     \includegraphics[width=.3\paperwidth]{E_IMAGENES/1_Capitulo2/50.png}
+%     \caption[corto]{Stencil.}
+% \end{figure}
+
+$x\in\left[0,1\right]$, $U\left(x,0\right)=\exp\left(-200{\left(x-0.25\right)}^{2}\right)$
+
+$U\left(x,t\right)=\exp\left(-200{\left(x-ct-0.25\right)}^{2}\right)$
+
+\begin{example}[Esquema hacia adelante en tiempo, centrado en espacio (FTCS)]
+    \begin{equation*}
+        U^{n+1}_{j}=
+        U^{n}_{j}-
+        \dfrac{v\Delta t}{2\Delta x}
+        \left(U^{n}_{j+1}-U^{n}_{j-1}\right)+
+        O\left(\Delta t,{\left(\Delta x\right)}^{2}\right)
+    \end{equation*}
+\end{example}
+
+El esquema FOU es
+\begin{math}
+    U^{n+1}_{j}=
+    U^{n}_{j}-
+    \dfrac{v\Delta t}{\Delta x}
+    \left(U^{n}_{j}-U^{n}_{j-1}\right)+
+    O\left(\Delta t,\Delta x\right),
+\end{math}
+así que reemplazamos $U^{n}_{j}$ con $U$ y $U^{n+1}_{j}$, $U^{n}_{j-1}$ con $U\left(x, t+\Delta t\right)$ y $U\left(x-\Delta x, t\right)$:
+\begin{align*}
+    U^{n}_{j}   & =
+    U                                         \\
+    U^{n}_{j-1} & =
+    U-
+    \Delta x\difcp{u}{x}+
+    \dfrac{{\left(\Delta x\right)}^{2}}{2}
+    \difcp[2]{u}{x}+
+    O\left({\left(\Delta x\right)}^{3}\right) \\
+    U^{n+1}_{j} & =
+    U+
+    \Delta t\difcp{u}{t}+
+    \dfrac{{\left(\Delta t\right)}^{2}}{2}
+    \difcp[2]{u}{t}+
+    O\left({\left(\Delta t\right)}^{3}\right)
+\end{align*}
+Por lo tanto,
+\begin{equation*}
+    U+
+    \Delta t\difcp{u}{t}+
+    \dfrac{{\left(\Delta t\right)}^{2}}{2}
+    \difcp[2]{u}{t}+
+    O\left({\left(\Delta t\right)}^{3}\right)=
+    U-
+    \dfrac{v\Delta t}{\Delta x}
+    \left[
+        U-
+        U+
+        \Delta x \difcp{u}{x}-
+        \dfrac{{\left(\Delta x\right)}^{2}}{2}\difcp[2]{u}{x}+
+        O\left({\left(\Delta t\right)}^{3}\right)
+        \right].
+\end{equation*}
+
+El esquema FTCS es
+\begin{math}
+    U^{n+1}_{j}=
+    U^{n}_{j}-
+    \dfrac{C}{2}
+    \left(U^{n}_{j+1}-U^{n}_{j-1}\right),
+\end{math}
+
+donde $C=\dfrac{v\Delta t}{\Delta x}$ es el número de Courant.
+
+El error en la aproximación numérica es $\varepsilon^{n}_{j}=U^{n}_{j}-u^{n}_{j}$ de la aproximación
+
+\begin{equation*}
+    \varepsilon^{n+1}_{j}=
+    \varepsilon^{n}_{j}-
+    \dfrac{C}{2}
+    \left(\varepsilon^{n}_{j+1}-\varepsilon^{n}_{j-1}\right)
+\end{equation*}
+
+Esquema de Warming-Beam
+
+\section*{Análisis de estabilidad de von Neumann}
+
