@@ -20,3 +20,4 @@ public
 .ipynb_checkpoints
 __pycache__
 _output
+.jupyter_ystore.db
