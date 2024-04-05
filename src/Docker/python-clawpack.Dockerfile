@@ -33,6 +33,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  jupyter-collaboration \
   python-scipy \
   "
 
@@ -48,3 +49,9 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
+
+ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
+ENV PYDEVD_DISABLE_FILE_VALIDATION=1
+
+EXPOSE 8888
