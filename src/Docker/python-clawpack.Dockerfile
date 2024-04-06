@@ -49,7 +49,8 @@ RUN sudo pacman-key --init && \
   find /tmp/ ! -name 'python-clawpack-*.pkg.tar.zst' -type f -exec rm -f {} + && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  sudo rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/* && \
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
