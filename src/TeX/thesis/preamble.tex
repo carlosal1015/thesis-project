@@ -1,7 +1,7 @@
-\usepackage[natbibapa]{apacite} %Agregar formato de citación APA
+\usepackage[natbibapa]{apacite} % Agregar formato de citación APA
 \bibliographystyle{apacite}
-\setlength{\bibsep}{5pt plus 0.3ex} %Espaciamiento en la bibliografía
-\setcounter{secnumdepth}{3} %Numera los subsubsecciones
+\setlength{\bibsep}{5pt plus 0.3ex} % Espaciamiento en la bibliografía
+\setcounter{secnumdepth}{3} % Numera los subsubsecciones
 % \usepackage[T1]{fontenc}
 \usepackage[spanish,es-tabla]{babel} %reemplaza "cuadro" por "tabla"
 \decimalpoint % Cambia coma por punto
@@ -19,9 +19,9 @@
 \usepackage{changepage} % Agregar identación
 \setmainfont{Arial}
 \usepackage{setspace}
-\usepackage[left=4 cm,right=3 cm,top=3 cm,bottom=3.5 cm]{geometry}
-\usepackage{fancyhdr} % Encabezado y Pie de página (1)
-\pagestyle{fancy} % Encabezado y Pie de página (2)
+% \usepackage[left=4 cm,right=3 cm,top=3 cm,bottom=3.5 cm]{geometry}
+% \usepackage{fancyhdr} % Encabezado y Pie de página (1)
+% \pagestyle{fancy} % Encabezado y Pie de página (2)
 \usepackage{lipsum} % Crear texto RAMDOM
 \renewcommand{\labelitemi}{$\bullet$} % Circulos para viñetas
 \usepackage{titlesec} % Titulos de SECCIONES
@@ -85,6 +85,8 @@
 \newenvironment{MyFont}{\fontfamily{ugm}\selectfont}{\par}
 
 \usepackage{changepage} % Agregar espacio a Listing
+
+\usepackage{academicons}
 
 % Centrado del título del ÍNDICE / LISTA DE FIGURAS / LISTA DE CUADROS
 
@@ -189,29 +191,47 @@
 \newtheorem{example}{Ejemplo}
 \newtheorem{proposition}{Proposición}
 
+\definecolor{orcidcolor}{HTML}{a5ca3f}
+
 % Escribir los INFORMACIÓN PERSONAL Y DEL TRABAJO
 
 %Autor para PIE DE PÁGINA (Respetar mayusculas y minisculas)
 \author{Carlos Alonso Aznarán Laos}
 
 %Autor para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
-\authorcaratula{CARLOS ALONSO AZNARÁN LAOS}
+\authorcaratula{
+  Carlos Alonso Aznarán Laos\\[.5\baselineskip]
+  \textcolor{orcidcolor}{\aiOrcid}
+  \href{https://orcid.org/0000-0001-8314-2271}{0000-0001-8314-2271}
+}
 
 %Título en para el PIE DE PÁGINA (Agregar salto de línea de ser necesario)
 % La selección de un esquema Upwind y Lax-Wendroff para la solución numérica de la ecuación advección-difusión
 % Minimización del error en los métodos Upwind y Lax-Wendroff para la solución numérica de la ecuación advección-difusión % Evolutivos
 % Estimación del Error en los Esquemas Upwind y Lax-Wendroff de la ecuación de Advección-Difusión lineal
-\title{Estimación del Error en los Esquemas de Alta Resolulución de la ecuación de Advección-Difusión lineal}
+% Estimaciones de error del método de limitador pendiente para ecuaciones de advección-difusión lineal % de soluciones suaves
+\title{Estimación del Error en los Esquemas de Alta Resolución de la ecuación de Advección-Difusión lineal}
 %Título para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
-\titlecaratula{ESTIMACIÓN DEL ERROR EN LOS ESQUEMAS DE ALTA RESOLUCIÓN DE LA ECUACIÓN DE ADVECCIÓN-DIFUSIÓN LINEAL} % EVOLUTIVOS
+% \titlecaratula{ESTIMACIÓN DEL ERROR EN LOS ESQUEMAS DE ALTA RESOLUCIÓN DE LA ECUACIÓN DE ADVECCIÓN-DIFUSIÓN LINEAL} % EVOLUTIVOS
+\titlecaratula{Estimación de error del método limitador de flujo para ecuaciones de advección-difusión lineal} % EVOLUTIVOS
 %Nombre de la FACULTAD (Siempre en mayuscula)
-\facultad{FACULTAD DE CIENCIAS}
+\facultad{Facultad de Ciencias}
 
 %Para obtener el título profesional de ... (Siempre en mayúscula)
-\grado{LICENCIADO EN MATEMÁTICA}
+\grado{licenciado en Matemática}
 
 %Asesor para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
-\asesor{DR. JONATHAN ALFREDO MUNGUÍA LA COTERA}
+\asesor{
+  Dr. Jonathan Alfredo Munguía La Cotera\\[.5\baselineskip]
+  \textcolor{orcidcolor}{\aiOrcid}
+  \href{https://orcid.org/0000-0002-1237-286X}{0000-0002-1237-286X}
+}
+
+\asesorexterno{
+  MSc. John Doe\\[.5\baselineskip]
+  \textcolor{orcidcolor}{\aiOrcid}
+  \href{https://orcid.org}{0000-0000-0000-0000}
+}
 
 % Año para la CARÁTULA
 \yyearr{2024}

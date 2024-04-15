@@ -1,8 +1,104 @@
+Sea
+\begin{math}
+    \left(x,t\right)\in
+    \Omega_{x}\times\Omega_{t}\coloneqq
+    \left[x_{1},x_{2}\right]\times
+    \left[0,T\right]
+\end{math}.
+La masa total es
+\begin{equation*}
+    M\left(t\right)=
+    \int_{\Omega_{x}}
+    \rho\left(x,t\right)
+    \dl x,
+\end{equation*}
+donde $\rho\left(x,t\right)$ es la densidad del fluido.
+Si $v\left(x,t\right)$ es la velocidad del fluido,
+% https://www.ece.uvic.ca/~bctill/papers/numacoust/Harten_1983.pdf
+\begin{equation*}
+    \difcp{}{t}\int_{x_{1}}^{x_{2}}
+    q\left(x,t\right)\dl x=
+    f\left(q\left(x_{1},t\right)\right)-
+    f\left(q\left(x_{2},t\right)\right)
+\end{equation*}
+
+
+Esta masa total puede cambiar con el tiempo debido al fluido que entra o sale.
+A la tasa de flujo la llamamos flujo y la representamos con la función $f\left(q\right)$.
+\begin{math}
+    f\left(q\left(x_{1},t\right)\right)-
+    f\left(q\left(x_{2},t\right)\right)
+\end{math}
+
+Acabamos de decir que esta tasa de flujo debe ser igual a la tasa de
+cambio temporal de la masa total; es decir.
+
+
+
+Por el teorema fundamental del cálculo
+\begin{math}
+    \int_{x_{1}}^{x_{2}}
+    \difcp{}{x}
+    f\left(q\right)
+    \dl x=
+    f\left(q\left(x_{2},t\right)\right)-
+    f\left(q\left(x_{1},t\right)\right)
+\end{math}
+
+\begin{math}
+    \difcp{}{t}
+    \int_{x_{1}}^{x_{2}}
+    q\left(x,t\right)
+    \dl x=
+    -\int_{x_{1}}^{x_{2}}
+    \difcp{}{x}
+    f\left(q\right)
+    \dl x
+\end{math}
+
+\begin{math}
+    \int_{x_{1}}^{x_{2}}
+    \left(
+    \difcp{}{t}
+    q\left(x,t\right)+
+    \difcp{}{x}f\left(q\right)
+    \right)\dl x=
+    0
+\end{math}
+
+\begin{math}
+    \difcp{t}{q}+\difcp{x}{f}=0
+\end{math}
+
+$f=uq$
+
+\begin{math}
+    \difcp{t}{q}+
+    \difcp{x}{\left(uq\right)}=0
+\end{math}
+
+$u\left(x,t\right)=a$
+
+\begin{math}
+    \difcp{t}{q}+
+    a\difcp{x}{q}=0
+\end{math}
+
+% https://www.mathnet.ru/links/808e6aa1920d013db3eb4f7e2f6bbd36/sm4873.pdf
+\begin{theorem}[De la barrera del orden de Godunov]
+    Un esquema lineal monótono tiene como máximo una precisión de
+    primer orden.
+\end{theorem}
+
+\begin{proof}
+    .
+\end{proof}
+
 En esta sección, revisamos
-brevemente~\citep{choksi_partial_2022,salgado_classical_2022} los
+brevemente~\citep{Choksi2022,Salgado2022} los
 conceptos asociados a un problema de valor de frontera y su solución.
 Luego, derivaremos la ecuación de advección-difusión unidimensional
-según~\citep{leveque_numerical_1992}.
+según~\citep{LeVeque1992}.
 Finalmente, mostramos el método de las líneas para convertir nuestra
 ecuación de interés en un sistema de ecuaciones diferenciales
 ordinarias.
@@ -57,11 +153,11 @@ En lo sucesivo $\Omega$ siempre será un dominio.
 \end{definition}
 
 \begin{example}[PVI de la ecuación de difusión]
-    \begin{equation*}
+    \begin{equation}
         \begin{cases}
-            \difcp{u}{t}=
+            \difcp{u}{t}-
             \alpha^{2}
-            \difc.L.{u}{}  &
+            \difc.L.{u}{}=0 &
             \text{ para }
             \left(x,t\right)\in
             \Omega\times\left[0,T\right]. \\
@@ -72,12 +168,127 @@ En lo sucesivo $\Omega$ siempre será un dominio.
             \difcp{u}{t}
             \left(x,0\right)=
             \psi
-            \left(x\right) &
+            \left(x\right)  &
             \text{ para }
             x\in\Omega.
-        \end{cases}
-    \end{equation*}
+        \end{cases}\label{eq:diffusion}
+    \end{equation}
 \end{example}
+
+\begin{definition}[Solución clásica]
+    \begin{math}
+        u\colon
+        \Omega
+        \times\left[0,T\right]\to
+        \mathbb{R}
+    \end{math}
+    es la
+    \emph{solución clásica} de~\eqref{eq:diffusion} sii
+    \begin{math}
+        \forall t>0:
+        u\left(\cdot,t\right)\in C^{2}\left(\Omega\right),
+        \forall x\in\Omega:
+        u\left(x,\cdot\right)\in C\left(\left[0,T\right]\right),
+    \end{math}
+    la ecuación y la condición inicial se cumplen puntualmente, y
+    cuando $t\downarrow0$ tenemos que
+    \begin{math}
+        \forall x\in\Omega:
+        u\left(x,t\right)\to u_{0}\left(x\right)
+    \end{math}.
+\end{definition}
+
+\begin{theorem}[Existencia]
+    Sea $u_{0}\in C_{b}\left(\Omega\right)\cap L^{2}\left(\Omega\right)$.
+    Entonces, $u$ es una solución clásica de~\eqref{eq:diffusion}.
+    \begin{equation*}
+        u\left(x,t\right)\to u_{0}\left(x_{0}\right),\qquad
+        \left(x,t\right)\to\left(x_{0},0\right)
+    \end{equation*}
+\end{theorem}
+
+\begin{equation*}
+    \widehat{v}\left(\xi\right)=
+    \mathcal{F}\left[v\right]\left(\xi\right)=
+    \int_{\mathbb{R}^{d}}
+    \exp\left(-ix\xi\right)
+    v\left(x\right)\dl x
+\end{equation*}
+
+\begin{equation*}
+    \left(
+    \widehat{
+        \difcp{u}{t}-
+        \alpha^{2}\difc.L.{u}{}
+    }
+    \right)
+    \left(k,t\right)=
+    \widehat{\left(\difcp{u}{t}\right)}
+    \left(k,t\right)-
+    \widehat{\alpha^{2}\difc.L.{u}{}}
+    \left(k,t\right)
+    =\widehat{0}=
+    0
+\end{equation*}
+
+\begin{equation*}
+    \widehat{\left(\difcp{u}{t}\right)}
+    \left(k,t\right)=
+    \int_{-\infty}^{\infty}
+    \difcp{u}{t}
+    \left(x,t\right)
+    \exp\left(-ikx\right)
+    \dl x=
+    \difcp{}{t} % TODO:
+    \left(
+    \int_{-\infty}^{\infty}
+    u
+    \left(x,t\right)
+    \right)
+    \exp\left(-ikx\right)
+    \dl x=
+    \difcp{\widehat{u}\left(k,t\right)}{t}=
+    \difcp{\widehat{u}}{t}=
+\end{equation*}
+
+\begin{equation*}
+    \widehat{\difcp[2]{u}{x}}
+    \left(k,t\right)=
+    \left(ik\right)^{2}
+    \widehat{u}
+    \left(k,t\right)=
+    -k^{2}
+    \widehat{u}
+    \left(k,t\right)=
+\end{equation*}
+
+Para cada $k$, $f\left(t\right)\coloneqq\widehat{u}\left(k,t\right)$
+
+\begin{equation*}
+    F\left(x\right)=
+    \dfrac{1}{\sqrt{4\pi t}}
+    \exp\left(-\dfrac{x^{2}}{4t}\right)
+\end{equation*}
+
+\begin{equation*}
+    u\left(x,t\right)=
+    \dfrac{1}{\sqrt{4\pi\alpha t}}
+    \int_{-\infty}^{\infty}
+    \exp\left(-\dfrac{{\left(x-y\right)}^{2}}{4\alpha t}\right)
+    g\left(y\right)\dl y
+\end{equation*}
+
+\begin{proof}
+    \begin{equation*}
+        u\left(x,t\right)-
+        u_{0}\left(x_{0}\right)=
+        \dfrac{1}{{\left(4\pi t\right)}^{d/2}}
+        \int_{\mathbb{R}^{d}}
+        \exp\left(-\dfrac{{\left\|x-y\right\|}^{2}_{2}}{4t}\right)
+        u_{0}\left(y\right)\dl y-
+        u_{0}\left(x_{0}\right)
+    \end{equation*}
+\end{proof}
 
 \begin{definition}[Problema de Valor de Frontera (PVF)]
     Sea
@@ -110,17 +321,17 @@ En lo sucesivo $\Omega$ siempre será un dominio.
     \begin{description}
         \item[Existencia.]
 
-            Para una elección de la condición auxiliar, existe
-            una solución para la EDP que lo satisface.
+              Para una elección de la condición auxiliar, existe
+              una solución para la EDP que lo satisface.
 
         \item[Unicidad.]
 
-            Solo existe una solución.
+              Solo existe una solución.
 
         \item[Estabilidad.]
 
-            Si perturbamos poco una condición auxiliar, la nueva
-            solución no cambia mucho respecto a la solución original.
+              Si perturbamos poco una condición auxiliar, la nueva
+              solución no cambia mucho respecto a la solución original.
     \end{description}
 \end{definition}
 
@@ -174,36 +385,36 @@ En lo sucesivo $\Omega$ siempre será un dominio.
     \begin{description}
         \item[Elíptico:]
 
-            Si los $d$ autovalores de $A$ tienen el mismo signo, es
-            decir, o bien
-            \begin{math}
-                \sigma\left(A\right)\subset\mathbb{R}_{+}
-            \end{math}
-            o
-            \begin{math}
-                \sigma\left(A\right)\subset\mathbb{R}_{-}
-            \end{math}.
+              Si los $d$ autovalores de $A$ tienen el mismo signo, es
+              decir, o bien
+              \begin{math}
+                  \sigma\left(A\right)\subset\mathbb{R}_{+}
+              \end{math}
+              o
+              \begin{math}
+                  \sigma\left(A\right)\subset\mathbb{R}_{-}
+              \end{math}.
 
         \item[Parabólico:]
 
-            Si $A$ contiene exactamente $d-1$ valores propios o bien
-            positivos o negativos y cero es un valor propio de
-            multiplicidad uno.
+              Si $A$ contiene exactamente $d-1$ valores propios o bien
+              positivos o negativos y cero es un valor propio de
+              multiplicidad uno.
 
         \item[Hiperbólico:]
 
-            Si $A$ tiene $d-1$ valores propios positivos o negativos,
-            y el restante es distinto de cero y de signo opuesto.
+              Si $A$ tiene $d-1$ valores propios positivos o negativos,
+              y el restante es distinto de cero y de signo opuesto.
 
         \item[Ultra parabólico:]
 
-            Si cero es un valor propio múltiple y todos los restantes
-            tienen el mismo signo.
+              Si cero es un valor propio múltiple y todos los restantes
+              tienen el mismo signo.
 
         \item[Ultra hiperbólico:]
 
-            Si cero no es un valor propio y hay más de un valor
-            propio positivo y más de un valor propio negativo.
+              Si cero no es un valor propio y hay más de un valor
+              propio positivo y más de un valor propio negativo.
     \end{description}
 \end{definition}
 
@@ -212,52 +423,52 @@ En lo sucesivo $\Omega$ siempre será un dominio.
     \begin{description}
         \item[Elíptica:]
 
-            \begin{equation*}
-                -\difc.L.{u}{}\left(x\right)=
-                {
-                \inner{
-                -I_{d}
-                }{
-                \mathrm{D}^{2}u\left(x\right)
-                }
-                }_{F}=
-                -\sum_{i=1}^{d}
-                \difcp[2]{u}{i}\left(x\right)
-            \end{equation*}
+              \begin{equation*}
+                  -\difc.L.{u}{}\left(x\right)=
+                  {
+                  \inner{
+                  -I_{d}
+                  }{
+                  \mathrm{D}^{2}u\left(x\right)
+                  }
+                  }_{F}=
+                  -\sum_{i=1}^{d}
+                  \difcp[2]{u}{i}\left(x\right)
+              \end{equation*}
 
         \item[Parabólica:]
 
-            \begin{equation*}
-                H
-                \left(x,t\right)=
-                \difcp{u}{t}\left(x,t\right)+
-                {\inner{
-                    \begin{bmatrix}
-                        -I_{d}         & \mathbf{0} \\
-                        \mathbf{0}^{T} & 0
-                    \end{bmatrix}
-                }{
-                    \mathrm{D}^{2}u\left(x,t\right)
-                }}_{F}=
-                \difcp{u}{t}\left(x,t\right)-
-                \difc.L.{u}{}\left(x,t\right).
-            \end{equation*}
+              \begin{equation*}
+                  H
+                  \left(x,t\right)=
+                  \difcp{u}{t}\left(x,t\right)+
+                  {\inner{
+                      \begin{bmatrix}
+                          -I_{d}         & \mathbf{0} \\
+                          \mathbf{0}^{T} & 0
+                      \end{bmatrix}
+                  }{
+                      \mathrm{D}^{2}u\left(x,t\right)
+                  }}_{F}=
+                  \difcp{u}{t}\left(x,t\right)-
+                  \difc.L.{u}{}\left(x,t\right).
+              \end{equation*}
 
         \item[Hiperbólica:] % TODO: Chequear que la igualdad sea correcta
 
-            \begin{equation*}
-                \difc.A.{u}{}\left(x,t\right)=
-                    {\inner{
-                            \begin{bmatrix}
-                                -I_{d}         & \mathbf{0} \\
-                                \mathbf{0}^{T} & 1
-                            \end{bmatrix}
-                        }{
-                            \mathrm{D}^{2}u\left(x,t\right)
-                        }}_{F}=
-                \difcp[2]{u}{t}\left(x,t\right)-
-                \difc.L.{u}{}\left(x,t\right).
-            \end{equation*}
+              \begin{equation*}
+                  \difc.A.{u}{}\left(x,t\right)=
+                      {\inner{
+                              \begin{bmatrix}
+                                  -I_{d}         & \mathbf{0} \\
+                                  \mathbf{0}^{T} & 1
+                              \end{bmatrix}
+                          }{
+                              \mathrm{D}^{2}u\left(x,t\right)
+                          }}_{F}=
+                  \difcp[2]{u}{t}\left(x,t\right)-
+                  \difc.L.{u}{}\left(x,t\right).
+              \end{equation*}
     \end{description}
 \end{example}
 
@@ -476,26 +687,26 @@ la función concentración o densidad de alguna sustancia química.
 
 \begin{description}
     \item[Advección-Difusión]
-        Si $u\equiv0$, entonces
-        \begin{equation*}
-            \diffp{\phi}{t}\left(x,t\right)=
-            \nabla\cdot\left(a\left(x\right)\nabla\phi\left(x,t\right)\right)-
-            c\left(x\right)\phi\left(x,t\right)
-            +f\left(x,t\right)
-        \end{equation*}
+          Si $u\equiv0$, entonces
+          \begin{equation*}
+              \diffp{\phi}{t}\left(x,t\right)=
+              \nabla\cdot\left(a\left(x\right)\nabla\phi\left(x,t\right)\right)-
+              c\left(x\right)\phi\left(x,t\right)
+              +f\left(x,t\right)
+          \end{equation*}
 
     \item[De difusión]
-        Si $u\equiv0$, $c\equiv0$ y $f\equiv0$, entonces
+          Si $u\equiv0$, $c\equiv0$ y $f\equiv0$, entonces
 
-        \begin{equation*}
-            .
-        \end{equation*}
+          \begin{equation*}
+              .
+          \end{equation*}
 
     \item[De transporte lineal]
 
-        \begin{equation*}
-            .
-        \end{equation*}
+          \begin{equation*}
+              .
+          \end{equation*}
 \end{description}
 
 \begin{theorem}[Identidades integrales]
@@ -516,83 +727,83 @@ la función concentración o densidad de alguna sustancia química.
     \begin{description}
         \item[Integración por partes.]
 
-            Si $u,v\in C^{1}\left(\overline{\Omega}\right)$, entonces
-            \begin{equation*}
-                \int_{\Omega}\diffp{u\left(x\right)}{x_{i}}
-                v\left(x\right)\dl x=
-                \int_{\partial\Omega}
-                u\left(x\right)
-                v\left(x\right)
-                n\left(x\right)\cdot
-                e_{i}
-                \dl{S\left(x\right)}-
-                \int_{\Omega}u\left(x\right)
-                \diffp{v\left(x\right)}{x_{i}}
-                \dl x.
-            \end{equation*}
+              Si $u,v\in C^{1}\left(\overline{\Omega}\right)$, entonces
+              \begin{equation*}
+                  \int_{\Omega}\diffp{u\left(x\right)}{x_{i}}
+                  v\left(x\right)\dl x=
+                  \int_{\partial\Omega}
+                  u\left(x\right)
+                  v\left(x\right)
+                  n\left(x\right)\cdot
+                  e_{i}
+                  \dl{S\left(x\right)}-
+                  \int_{\Omega}u\left(x\right)
+                  \diffp{v\left(x\right)}{x_{i}}
+                  \dl x.
+              \end{equation*}
 
         \item[Primera identidad de Green.]
-            Si $v\in C^{1}\left(\overline{\Omega}\right)$ y
-            $w\in C^{2}\left(\overline{\Omega}\right)$, entonces
-            \begin{equation*}
-                \int_{\Omega}\nabla v\left(x\right)\cdot
-                w\left(x\right)\dl x=
-                -\int_{\Omega}
-                v\left(x\right)
-                \Delta w\left(x\right)
-                \dl x+
-                \int_{\partial\Omega}
-                v\left(x\right)
-                \diffp{w\left(x\right)}{n}
-                \dl{S\left(x\right)},
-            \end{equation*}
-            donde
-            \begin{math}
-                \diffp{w\left(x\right)}{n}=
-                n\left(x\right)\cdot
-                \nabla w\left(x\right)
-            \end{math}.
+              Si $v\in C^{1}\left(\overline{\Omega}\right)$ y
+              $w\in C^{2}\left(\overline{\Omega}\right)$, entonces
+              \begin{equation*}
+                  \int_{\Omega}\nabla v\left(x\right)\cdot
+                  w\left(x\right)\dl x=
+                  -\int_{\Omega}
+                  v\left(x\right)
+                  \Delta w\left(x\right)
+                  \dl x+
+                  \int_{\partial\Omega}
+                  v\left(x\right)
+                  \diffp{w\left(x\right)}{n}
+                  \dl{S\left(x\right)},
+              \end{equation*}
+              donde
+              \begin{math}
+                  \diffp{w\left(x\right)}{n}=
+                  n\left(x\right)\cdot
+                  \nabla w\left(x\right)
+              \end{math}.
 
         \item[Segunda identidad de Green.]
 
-            Si $v,w\in C^{2}\left(\overline{\Omega}\right)$, entonces
-            \begin{equation*}
-                \int_{\Omega}
-                \left(
-                v\left(x\right)
-                \Delta w\left(x\right)-
-                \Delta v\left(x\right)
-                w\left(x\right)
-                \right)
-                \dl x=
-                \int_{\partial\Omega}
-                \left(
-                v\left(x\right)
-                \diffp{w}{n}\left(x\right)-
-                \diffp{v}{n}\left(x\right)
-                w\left(x\right)
-                \right)
-                \dl{S\left(x\right)}.
-            \end{equation*}
+              Si $v,w\in C^{2}\left(\overline{\Omega}\right)$, entonces
+              \begin{equation*}
+                  \int_{\Omega}
+                  \left(
+                  v\left(x\right)
+                  \Delta w\left(x\right)-
+                  \Delta v\left(x\right)
+                  w\left(x\right)
+                  \right)
+                  \dl x=
+                  \int_{\partial\Omega}
+                  \left(
+                  v\left(x\right)
+                  \diffp{w}{n}\left(x\right)-
+                  \diffp{v}{n}\left(x\right)
+                  w\left(x\right)
+                  \right)
+                  \dl{S\left(x\right)}.
+              \end{equation*}
 
         \item[]
 
-            Si $v\in C^{1}\left(\overline{\Omega};\mathbb{R}^{d}\right)$ y
-            $w\in C^{1}\left(\overline{\Omega}\right)$, entonces
-            \begin{equation*}
-                \int_{\Omega}\nabla\cdot v\left(x\right)
-                w\left(x\right)
-                \dl x=
-                \int_{\partial\Omega}
-                v\left(x\right)\cdot
-                n\left(x\right)
-                w\left(x\right)
-                \dl{S\left(x\right)}-
-                \int_{\Omega}
-                v\left(x\right)\cdot
-                \nabla w\left(x\right)
-                \dl x.
-            \end{equation*}
+              Si $v\in C^{1}\left(\overline{\Omega};\mathbb{R}^{d}\right)$ y
+              $w\in C^{1}\left(\overline{\Omega}\right)$, entonces
+              \begin{equation*}
+                  \int_{\Omega}\nabla\cdot v\left(x\right)
+                  w\left(x\right)
+                  \dl x=
+                  \int_{\partial\Omega}
+                  v\left(x\right)\cdot
+                  n\left(x\right)
+                  w\left(x\right)
+                  \dl{S\left(x\right)}-
+                  \int_{\Omega}
+                  v\left(x\right)\cdot
+                  \nabla w\left(x\right)
+                  \dl x.
+              \end{equation*}
     \end{description}
 \end{theorem}
 
@@ -624,16 +835,16 @@ La elección de esta ``diferencia finita'' debería ser
 \begin{description}
     \item[Consistente:]
 
-        La aproximación sea tan precisa como sea posible y encontrar
-        una aproximación de diferencia finita de las derivadas que
-        sea consistente con el orden más alto posible.
+          La aproximación sea tan precisa como sea posible y encontrar
+          una aproximación de diferencia finita de las derivadas que
+          sea consistente con el orden más alto posible.
 
     \item[Estable:]
 
-        No solo con respecto a perturbaciones de los datos, sino
-        en las versiones discretas de las mismas normas en las que la
-        solución al problema continuo posee sus propias propiedades
-        estabilidad.
+          No solo con respecto a perturbaciones de los datos, sino
+          en las versiones discretas de las mismas normas en las que la
+          solución al problema continuo posee sus propias propiedades
+          estabilidad.
 \end{description}
 
 % TODO: p. 103. [Hundsdorfer]
@@ -655,7 +866,7 @@ conocido como
     \includegraphics[width=.5\paperwidth]{E_IMAGENES/1_Capitulo2/finite_difference.pdf}
     \caption{
         Ilustración de los operadores de diferencias finitas usuales.
-        Adaptado de~\citep{leveque_numerical_1992}.
+        Adaptado de~\citep{LeVeque2007}.
     }
 \end{figure}
 
@@ -1265,7 +1476,8 @@ La solución es
     f\left(X\left(s\right),s\right)\dl s \\
                       & =
     u_{0}\left(x-ct\right)+
-    \int_{0}^{t}f\left(x+c\left(s-t\right),s\right)\dl s.
+    \int_{0}^{t}
+    f\left(x+c\left(s-t\right),s\right)\dl s.
 \end{align*}
 
 \begin{definition}[Esquema de Variación total decreciente (VTD)] % p. 178 leveque conservation laws
@@ -1408,3 +1620,120 @@ Esquema de Warming-Beam
 
 \section*{Análisis de estabilidad de von Neumann}
 
+
+Ecuación de transporte con velocidad variable
+
+\begin{equation*}
+    \difcp{u}{t}-
+    x\difcp{u}{x}=0,\quad
+    u\left(x,0\right)=
+    \dfrac{1}{1+x^{2}}
+    u\left(x,t\right)=
+    \dfrac{\exp\left(-2t\right)}{x^{2}+\exp\left(-2t\right)}.
+\end{equation*}
+
+\begin{equation*}
+    \difcp{u}{t}+
+    a
+    cdot
+    \nabla u=0,\qquad
+    u\left(x,0\right)=g\left(x\right)\in\mathbb{R}^{d}
+\end{equation*}
+
+\begin{equation*}
+    u\left(x,t\right)=
+    g\left(x-at\right)
+\end{equation*}
+
+\begin{equation*}
+    \difcp{u}{t}+
+    a\left(x\right)\cdot
+    \nabla u=0,\qquad
+    u\left(x,0\right)=
+    g\left(x\right)
+\end{equation*}
+
+\begin{equation*}
+    E\left(t\right)\colon C_{b}\left(\Omega\right)\to C_{b}\left(\Omega\right)\qquad
+    \dfrac{1}{{\left(4\pi t\right)}^{d/2}}
+    \int_{\Omega}
+    \exp\left(-\dfrac{}{4t}\right)
+    v\left(y\right)
+    \dl y
+\end{equation*}
+
+\begin{theorem}[No expansividad]
+    \begin{math}
+        \forall t>0:
+        E\left(t\right)
+    \end{math}
+    es no expansivo en $C_{b}\left(\Omega\right)$.
+    Además, si $u^{1}_{0}$, $u^{2}_{0}\in C_{b}\left(\Omega\right)$, entonces
+    \begin{equation*}
+        \forall t>0:
+        {\left\|
+        u^{1}_{0}\left(\cdot, t\right)-u^{2}_{0}\left(\cdot, t\right)
+        \right\|}_{L^{\infty}\left(\Omega\right)}\leq
+        {\left\|
+        u^{1}_{0}-u^{2}_{0}
+        \right\|}_{L^{\infty}\left(\Omega\right)}
+    \end{equation*}
+\end{theorem}
+
+\begin{definition}[Solución débil]
+    Es una función $u\colon\Omega\times\left(0,T\right)\to\mathbb{R}$ tal que $\forall t>0$
+    que satisface~\eqref{eq:pde} para cualquier $x\in\Omega$.
+    \begin{equation*}
+        \forall\varphi\in C^{\infty}\left(\Omega\times\left[0,T\right]\right)
+        \int_{\Omega}
+        \int_{0}^{T}
+        u\left(x,t\right)
+        \left[
+            \difcp{\varphi}{t}+
+            c\difcp{\varphi}{x}
+            \right]
+        \dl t
+        \dl x+
+        \int_{\Omega}
+        u_{0}\left(x\right)
+        \varphi\left(x,0\right)
+        \dl x=
+        0
+        \implies
+        \varphi\left(x,t\right)=0.
+    \end{equation*}
+\end{definition}
+
+% \begin{theorem}[Principio del máximo]
+%     0.
+% \end{theorem}
+
+Dado $u_{0}\in C\left(\overline{\Omega}\right)$ y $b>0$, encuentre una solución clásica a
+
+\begin{equation*}
+    \difcp{u}{t}+
+    b\difcp{u}{x}-
+    \difcp[2]{u}{x}=0
+    \left(x,t\right)\in\Omega\times\left(0,T\right]
+    u\left(0,t\right)=u\left(1,t\right)=0
+    u\left(x,0\right)=u_{0}\left(x\right)
+\end{equation*}
+
+condiciones de compatibilidad $u_{0}\left(0\right)=u_{1}\left(1\right)=0$
+
+\begin{equation*}
+    u,
+    \difcp{u}{x},\dotsc,
+    \difcp[4]{u}{x},
+    \difcp{u}{t},
+    \difcp[2]{u}{t}\in
+    C\left(\overline{\Omega}\times\left[0,T\right]\right)
+\end{equation*}
+
+\begin{equation*}
+    Lu\left(x\right)=
+    -a\left(x\right)
+    \difcp[2]{u\left(x\right)}{x}+
+    b\left(x\right)\difcp{u}{x}-
+    c\left(x\right)u\left(x\right),
+\end{equation*}

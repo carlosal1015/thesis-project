@@ -1,21 +1,112 @@
 \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\bf RESUMEN}
 \chapter*{\centerline {RESUMEN}}
 \markboth{RESUMEN}{}
+% TODO: M'aximo 250 palabras.
+Este proyecto de tesis I se ocupa de los esquemas numéricos de
+alta resolución\footnote{
+  Acuñado por~\citefullauthor{Harten1983} en el año~\citeyear{Harten1983}.
+}
+que emplea limitadores de pendiente para resolver el problema de
+Cauchy de la ecuación diferencial parcial \emph{advección-difusión}:
 
-En este proyecto de tesis I, presentamos la formulación matemática de
-la ecuación diferencial parcial \emph{advección-difusión}.
+\begin{equation}
+  \difcp{u}{t}+
+  \operatorname{div}
+  \left(vu-D\difc.L.{u}{}\right)=
+  0\text{ para }
+  \left(x,t\right)\in
+  \Omega\times\left[0,T\right].
+  \label{eq:advection-diffusion}
+\end{equation}
+
+Si todos los términos están presentes, la ecuación~\eqref{eq:advection-diffusion}
+es parábolica
+
+\begin{table}[ht!]
+  \centering
+  \begin{tabular}{lcc}
+    Parabólica  &
+    \begin{math}
+      \difcp{u}{t}+
+      \operatorname{div}
+      \left(
+      D\difc.L.{u}{}
+      \right)=
+      0
+    \end{math}
+                &
+    \begin{math}
+      \difcp{u}{t}-
+      \operatorname{div}
+      \left(
+      D\difc.L.{u}{}
+      \right)=
+      0
+    \end{math}
+    \\
+    \hline
+    Elíptica    &
+    \begin{math}
+      \operatorname{div}
+      \left(
+      vu-
+      D\difc.L.{u}{}
+      \right)=
+      0
+    \end{math}
+                &
+    \begin{math}
+      -\operatorname{div}
+      \left(
+      D\difc.L.{u}{}
+      \right)=
+      0
+    \end{math}
+    \\
+    \hline
+    Hiperbólica &
+    \begin{math}
+      \difcp{u}{t}+
+      \operatorname{div}
+      \left(vu\right)=
+      0
+    \end{math}
+                &
+    \begin{math}
+      \operatorname{div}
+      \left(
+      D\difc.L.{u}{}
+      \right)=
+      0
+    \end{math}
+  \end{tabular}
+  \caption{Taxonomía de la ecuación.}
+\end{table}
+
 Este modelo base permite estudiar la cinética de sistemas de
 reacciones químicas y el transporte de contaminantes en fenómenos
 meteorológicos.
-Nuestro estudio inicia con la presentación de las formas
-diferenciales e integrales de la ley de conservación y la deducción
-de la ecuación de advección-difusión lineal unidimensional.
-% y bidimensional
+
+Nuestro estudio inicia con la presentación de la ley de conservación
+escalar y la deducción de la ecuación de advección-difusión lineal.
 Introducimos los esquemas de discretización de primer y segundo orden
-para espacio y tiempo.
+para espacio y tiempo, así como los esquemas de alta resolución.
+Para el caso bidimensional, utilizamos la técnica de separación
+de la dimensión, en el cual resolvemos un sistema EDP unidimensional.
+% ¿TODO: sistema hiperbólico?
 Se estudia la consistencia, estabilidad y convergencia de los métodos
 de primer orden Upwind (FOU), adelante en tiempo - centrado en
 espacio (FTCS), Lax-Friedrichs, Leap-Frog, Lax-Wendroff.
 .
 Finalmente, se analiza los resultados de convergencia en las pruebas
 numéricas sometidos a los esquemas presentados.
+
+% TODO: El 1.5 de la tesis: outline se utiliza cuando se piensa escribir un libro.
+% TODO: Si es necesario, mencionar los rangos de estabilidad de cierto esquema numerico
+% TODO: Escribir el abstract el ingles porque son menos oraciones. porque por lo general
+% en espanol se usan oraciones largas.
+% marco conceptual sale del mapa conceptual (panorama)
+% marco teorico: los teoremas y algoritmos
+% Fase 3, Desarrollo del trabajo:  presentacion de los resultados tambien
+% interrogante del problema: descripcion del problema.
+% Conclusiones: Se ha llegado que la hipotesis supuesta se cumple. (enlace)
