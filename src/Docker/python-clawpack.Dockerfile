@@ -1,4 +1,4 @@
-# Copyleft (c) October, 2023, Oromion.
+# Copyleft (c) April, 2024, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -35,6 +35,8 @@ USER gitpod
 ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
+  python-ipympl \
+  python-jupyter-server-terminals \
   python-scipy \
   "
 
