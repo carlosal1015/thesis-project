@@ -57,6 +57,6 @@ jobs:
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@master
         with:
-          image: ghcr.io/carlosal1015/aur/su2:latest
+          image: ghcr.io/carlosal1015/thesis-project/su2:latest
           annotations: true
           dockerfile: ./src/Docker/su2.Dockerfile
