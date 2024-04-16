@@ -11,8 +11,8 @@ ARG AUR_PACKAGES="\
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  mkdir -p /home/builder/.cache/yay/hdnum-git && \
-  mv hdnum-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/hdnum-git
+  mkdir -p /home/builder/.cache/yay/python-centpy-git && \
+  mv python-centpy-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/python-centpy-git
 
 FROM archlinux:base-devel
 
