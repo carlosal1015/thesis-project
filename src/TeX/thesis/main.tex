@@ -46,50 +46,71 @@
 
 % Cambiar nombre y crear el índice
 \singlespacing
-\renewcommand\contentsname{\centering ÍNDICE }
+\renewcommand\contentsname{\centering ÍNDICE}
 \tableofcontents
 \onehalfspacing
 
 
 \include{1_4_RESUMEN/Resumen}
 \include{1_5_ABSTRACT/Abstract}
+\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\bf {Introducción}}
+\chapter*{\centerline {Introducción}}
+\markboth{Introducción}{}
 % \include{1_6_PROLOGO/Prologo}
-
-%Cambiar nombre, crear ÍNDICE DE FIGURAS Y TABLAS
-\renewcommand\listfigurename{\centering LISTA DE FIGURAS}
-% \renewcommand\listtablename{\centering LISTA DE TABLAS}
-
-% \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listtablename}
-% {\normalsize\listoftables}
-
-\cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listfigurename}
-{\normalsize\listoffigures}
-
-\include{1_7_SIMBOLOS/Simbolos}
-
 %Parte CENTRAL DE LA TESIS
 
 \mainmatter
 
-% INTRODUCCIÓN
-\include{2_CAPITULO1/Capitulo1}
-% FUNDAMENTO TEÓRICO Y CONCEPTUAL
-\include{2_CAPITULO2/Capitulo2}
-% CAPÍTULO 3
-\include{2_CAPITULO3/Capitulo3}
-% CAPÍTULO 4
-\include{2_CAPITULO4/Capitulo4}
+\chapter{Parte introductoria del trabajo}
+\section{Generalidades}
+\section{Descripción del problema de investigación}
+\section{Objetivos de estudio}
+\subsection{Objetivo general}
+\subsection{Objetivos específicos}
+\section{Antecedentes investigativos}
 
-%Parte FINAL DE LA TESIS
-\backmatter
+\chapter{Marco teórico y conceptual}
+\section{Marco teórico}
+\section{Marco conceptual}
 
-% CONCLUSIONES
-\include{3_1_CONCLUSIONES/Conclusiones}
-% RECOMENDACIONES	
-\include{3_2_RECOMENDACIONES/Recomendaciones}
+\chapter{Desarrollo del trabajo de investigación}
+
+\chapter{Análisis y discusión de los resultados}
+
+\chapter{Conclusiones}
+
+\chapter{Recomendaciones}
+% % INTRODUCCIÓN
+% \include{2_CAPITULO1/Capitulo1}
+% % FUNDAMENTO TEÓRICO Y CONCEPTUAL
+% \include{2_CAPITULO2/Capitulo2}
+% % CAPÍTULO 3
+% \include{2_CAPITULO3/Capitulo3}
+% % CAPÍTULO 4
+% \include{2_CAPITULO4/Capitulo4}
+
+% %Parte FINAL DE LA TESIS
+% \backmatter
+
+% % CONCLUSIONES
+% \include{3_1_CONCLUSIONES/Conclusiones}
+% % RECOMENDACIONES	
+% \include{3_2_RECOMENDACIONES/Recomendaciones}
 % REFERENCIAS BIBLIOGRÁFICAS
 \include{3_3_BIBLIOGRAFIA/Bibliografia}
-% ANEXOS	
+% ANEXOS
 % \include{3_4_ANEXOS/Anexos}
+\chapter*{Anexos}
+
+% Cambiar nombre, crear ÍNDICE DE FIGURAS Y TABLAS
+\renewcommand\listfigurename{\centering Lista de Figuras}
+\renewcommand\listtablename{\centering Lista de Tabla}
+
+% \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listtablename}
+% {\normalsize\listoftables}
+% \cleardoublepage\phantomsection\addcontentsline{toc}{chapter}{\listfigurename}
+% {\normalsize\listoffigures}
+
+\include{1_7_SIMBOLOS/Simbolos}
 
 \end{document}

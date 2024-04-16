@@ -100,7 +100,7 @@
 \renewcommand{\cftafterloftitle}{\hfill}
 
 % Formato de los CAPÍTULOS, SECCIONES Y SUBSECCIONES
-\titleformat{\chapter}[block]{\normalfont\normalsize\bfseries}{CAPÍTULO \thechapter:}{0.5em}{\normalsize}
+\titleformat{\chapter}[block]{\normalfont\normalsize\bfseries}{\thechapter:}{0.5em}{\normalsize}
 \titlespacing*{\chapter}{0pt}{-10 pt}{5pt}
 
 \titleformat{\section}[block]{\normalfont\normalsize}{\thesection}{0.5em}{\normalsize}
@@ -153,9 +153,17 @@
 
 %Agregar la palabra CAPITULO al TOC, FIGURA a LOF y TABLA al LOT
 
-\renewcommand{\cftchappresnum}{CAPÍTULO}
-\renewcommand{\cftchapaftersnum}{:}
-\renewcommand{\cftchapnumwidth}{7em}
+\renewcommand{\cftchappresnum}{}
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftchapnumwidth}{2em}
+
+\renewcommand{\cftsecpresnum}{}
+\renewcommand{\cftsecaftersnum}{.}
+\renewcommand{\cftsecnumwidth}{2em}
+
+\renewcommand{\cftsubsecpresnum}{}
+\renewcommand{\cftsubsecaftersnum}{)}
+\renewcommand{\cftsubsecnumwidth}{2em}
 
 \renewcommand{\cftfigpresnum}{Figura N°}
 %\renewcommand{\cftfigaftersnum}{:}
@@ -174,8 +182,9 @@
 
 %Cambiando a Números Romanos los Capítulos
 \renewcommand{\thechapter}{\Roman{chapter}}
+\renewcommand{\thesection}{\Alph{section}}
+\renewcommand{\thesubsection}{\arabic{subsection}}
 \renewcommand{\theequation}{\arabic{chapter}.\arabic{equation}}
-\renewcommand{\thesection}{\arabic{chapter}.\arabic{section}}
 \renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
 \renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
 
@@ -213,7 +222,8 @@
 \title{Estimación del Error en los Esquemas de Alta Resolución de la ecuación de Advección-Difusión lineal}
 %Título para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
 % \titlecaratula{ESTIMACIÓN DEL ERROR EN LOS ESQUEMAS DE ALTA RESOLUCIÓN DE LA ECUACIÓN DE ADVECCIÓN-DIFUSIÓN LINEAL} % EVOLUTIVOS
-\titlecaratula{Estimación de error del método limitador de flujo para ecuaciones de advección-difusión lineal} % EVOLUTIVOS
+% \titlecaratula{Estimación de error del método limitadora de flujo para problemas de advección-difusión lineal no estacionario} % EVOLUTIVOS
+\titlecaratula{Un esquema de diferencias finitas para resolver problemas de advección-difusión lineal no estacionario con la técnica del limitador de flujo}
 %Nombre de la FACULTAD (Siempre en mayuscula)
 \facultad{Facultad de Ciencias}
 
