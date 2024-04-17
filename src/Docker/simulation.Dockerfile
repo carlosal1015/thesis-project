@@ -17,9 +17,7 @@ ARG AUR_PACKAGES="\
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --noconfirm -S ${AUR_PACKAGES}
-
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM archlinux:base-devel
 
@@ -39,8 +37,13 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
-ARG PACKAGES="\
+ARG OPT_PACKAGES="\
   blas-openblas \
+  python-numpy-mkl \
+  python-scipy-mkl \
+  "
+
+ARG PACKAGES="\
   catch2-v2 \
   cmake \
   doxygen \
@@ -52,9 +55,7 @@ ARG PACKAGES="\
   python-ipympl \
   python-isort \
   python-jupyter-server-terminals \
-  python-numpy-mkl \
   python-seaborn \
-  python-scipy-mkl \
   python-tabulate \
   "
 
@@ -66,6 +67,7 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
