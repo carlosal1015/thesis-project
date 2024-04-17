@@ -10,13 +10,14 @@ ARG AUR_PACKAGES="\
   nbqa \
   python-uvw \
   python-cmocean \
+  python-trame-matplotlib \
   pyupgrade \
+  tabulate \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --noconfirm -S ${AUR_PACKAGES}
-
-#  2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
+  yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM archlinux:base-devel
 
@@ -45,33 +46,30 @@ ARG PACKAGES="\
   git \
   jupyter-collaboration \
   jupyterlab-widgets \
-  jupyterlab \
   python-black \
   python-ipympl \
   python-isort \
   python-jupyter-server-terminals \
+  python-numpy-mkl \
   python-seaborn \
+  python-scipy-mkl \
   python-tabulate \
-  python-trame-matplotlib \
-  tabulate \
   "
 
 COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman-key --init && \
+RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
+  sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  find /tmp/ ! -name 'python-clawpack-*.pkg.tar.zst' -type f -exec rm -f {} + && \
+  rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
-
-# python-numpy-mkl \
-# python-scipy-mkl \
 
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
