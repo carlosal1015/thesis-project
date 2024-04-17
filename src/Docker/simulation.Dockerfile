@@ -35,6 +35,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  blas-openblas \
   catch2-v2 \
   cmake \
   doxygen \
@@ -53,11 +54,6 @@ ARG PACKAGES="\
   tabulate \
   "
 
-
-# blas-openblas \
-# python-numpy-mkl \
-# python-scipy-mkl \
-
 COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
@@ -71,6 +67,9 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
+
+# python-numpy-mkl \
+# python-scipy-mkl \
 
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
