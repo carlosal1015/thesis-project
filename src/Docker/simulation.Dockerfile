@@ -2,22 +2,29 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/linalg/PKGBUILD"
 
 ARG AUR_PACKAGES="\
   fast_matrix_market \
   identinum \
   libnpy \
+  mdspan \
   nbqa \
-  python-uvw \
   python-cmocean \
+  python-meshio \
   python-trame-matplotlib \
+  python-uvw \
   pyupgrade \
   tabulate \
   "
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  curl -LO ${PKGBUILD} && \
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  mkdir -p /home/builder/.cache/yay/linalg && \
+  mv linalg-*-any.pkg.tar.zst /home/builder/.cache/yay/linalg
 
 FROM archlinux:base-devel
 
@@ -47,6 +54,7 @@ ARG PACKAGES="\
   catch2-v2 \
   cmake \
   doxygen \
+  fmt \
   ffmpeg \
   git \
   jupyter-collaboration \
