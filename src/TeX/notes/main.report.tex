@@ -1,3 +1,8 @@
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'out',
+% arara: --> 'pdf', 'run.xml']
+% arara: --> }
 % arara: lualatex: {
 % arara: --> shell: no,
 % arara: --> draft: yes,
@@ -11,7 +16,8 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux','log','out']      
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'out',
+% arara: --> 'run.xml']
 % arara: --> }
 % https://alexanderfabisch.github.io/latex-for-dissertations.html
 %\documentclass{beamer}
@@ -30,10 +36,13 @@
 % \include{v1}
 % \include{v2}
 \mode<article>{
-    \maketitle
-    \chapter{Introduction}
-    \input{section/quadrature}
-    \input{section/derivation}
+	\maketitle
+	\chapter{Introduction}
+	\input{section/pde}
+	\input{section/quadrature}
+	\input{section/conservation}
+	\input{section/advection}
+	\input{section/diffusion}
 }
 
 \nocite{*}

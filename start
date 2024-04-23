@@ -2,13 +2,13 @@
 
 # shellcheck disable=SC2164
 
-function show() {
+function show_version() {
   echo "Checking version ... done!"
   lualatex -v
   arara -V
 }
 
-function run() {
+function compile() {
   git pull >/dev/null 2>&1
   pushd src/TeX/notes >/dev/null 2>&1
   echo "Generating PDFs ..."
@@ -19,7 +19,7 @@ function run() {
   popd >/dev/null 2>&1
 }
 
-function export() {
+function save() {
   [ -d pdf ] || mkdir -p pdf
   mv src/TeX/notes/main.*.pdf pdf
   mv src/TeX/thesis/main*.pdf pdf
@@ -27,6 +27,6 @@ function export() {
   ls pdf
 }
 
-#show
-run
-export
+# show_version
+compile
+save

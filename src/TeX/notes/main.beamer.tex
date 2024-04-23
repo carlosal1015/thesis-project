@@ -1,3 +1,8 @@
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav', 'out',
+% arara: --> 'pdf', 'run.xml', 'snm', 'toc']
+% arara: --> }
 % arara: lualatex: {
 % arara: --> shell: no,
 % arara: --> draft: yes,
@@ -16,18 +21,22 @@
 % arara: --> }
 % arara: clean: {
 % arara: --> extensions:
-% arara: --> ['aux','log','nav','out','snm','toc']      
+% arara: --> ['aux', 'bbl', 'bcf', 'blg', 'log', 'nav', 'out',
+% arara: --> 'run.xml', 'snm', 'toc']
 % arara: --> }
 \input{preamble.beamer}
 
 \begin{document}
 
 \mode<all>{
-    \input{title}
-    % \input{content}
-    \input{section/quadrature}
-    \input{section/derivation}
-    \input{section/bibliography}
+	\input{title}
+	% \input{content}
+	\input{section/pde}
+	\input{section/quadrature}
+	\input{section/conservation}
+	\input{section/advection}
+	\input{section/diffusion}
+	\input{section/bibliography}
 }
 
 \end{document}

@@ -1,15 +1,15 @@
 \documentclass[
-  8pt,
-  professionalfonts,
-  leqno,
-  intlimits,
-  c
+	8pt,
+	professionalfonts,
+	leqno,
+	intlimits,
+	c
 ]{beamer}
 
 \usetheme[
-  themecolor=blue!50!black,
-  titlegraphic=step-63-cell-order,
-  sectiongraphic=periodic_banner, % blueshade,goldshade
+	themecolor=blue!50!black,
+	titlegraphic=step-63-cell-order,
+	sectiongraphic=periodic_banner, % blueshade,goldshade
 ]{NumericalThesis}
 
 \useinnertheme[rounded,shadow]{tcolorbox}
@@ -18,29 +18,29 @@
 \input{preamble.common}
 
 \setbeamertemplate{bibliography item}{%
-  \ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
-    or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
-    or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
-  {\setbeamertemplate{bibliography item}[book]}
-  {\ifentrytype{online}
-    {\setbeamertemplate{bibliography item}[online]}
-    {\setbeamertemplate{bibliography item}[article]}}%
-  \usebeamertemplate{bibliography item}}
+	\ifboolexpr{ test {\ifentrytype{book}} or test {\ifentrytype{mvbook}}
+		or test {\ifentrytype{collection}} or test {\ifentrytype{mvcollection}}
+		or test {\ifentrytype{reference}} or test {\ifentrytype{mvreference}} }
+	{\setbeamertemplate{bibliography item}[book]}
+	{\ifentrytype{online}
+		{\setbeamertemplate{bibliography item}[online]}
+		{\setbeamertemplate{bibliography item}[article]}}%
+	\usebeamertemplate{bibliography item}}
 
 \defbibenvironment{bibliography}
 {\list{}
-  {\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
-    \setlength{\leftmargin}{\labelwidth}%
-    \setlength{\labelsep}{\biblabelsep}%
-    \addtolength{\leftmargin}{\labelsep}%
-    \setlength{\itemsep}{\bibitemsep}%
-    \setlength{\parsep}{\bibparsep}}}
+	{\settowidth{\labelwidth}{\usebeamertemplate{bibliography item}}%
+		\setlength{\leftmargin}{\labelwidth}%
+		\setlength{\labelsep}{\biblabelsep}%
+		\addtolength{\leftmargin}{\labelsep}%
+		\setlength{\itemsep}{\bibitemsep}%
+		\setlength{\parsep}{\bibparsep}}}
 {\endlist}
 {\item}
 
 \usepackage[
-  audience=english,
-  % audience=spanish,
+	audience=english,
+	% audience=spanish,
 ]{beameraudience}
 \usepackage{multiaudience}
 
@@ -110,8 +110,8 @@
 % }
 
 \AtBeginSection[]{
-  \begin{frame}
-    \usebeamertemplate{section page}
-  \end{frame}
+	\begin{frame}
+		\usebeamertemplate{section page}
+	\end{frame}
 }
 
