@@ -2,17 +2,12 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-centpy-git/PKGBUILD"
-
 ARG AUR_PACKAGES="\
-  python-centpy-git \
+  python-latexify-py \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  curl -LO ${PKGBUILD} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  mkdir -p /home/builder/.cache/yay/python-centpy-git && \
-  mv python-centpy-git-*-any.pkg.tar.zst /home/builder/.cache/yay/python-centpy-git
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM archlinux:base-devel
 
@@ -35,9 +30,7 @@ USER gitpod
 ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
-  python-ipympl \
   python-jupyter-server-terminals \
-  python-scipy \
   "
 
 COPY --from=build /tmp/*.log /tmp/
@@ -46,16 +39,14 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  find /tmp/ ! -name 'python-centpy-git-*.pkg.tar.zst' -type f -exec rm -f {} + && \
+  find /tmp/ ! -name 'python-latexify-py-*.pkg.tar.zst' -type f -exec rm -f {} + && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
-ENV PETSC_DIR=/opt/petsc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
 EXPOSE 8888
