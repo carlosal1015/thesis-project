@@ -1,0 +1,93 @@
+\section{Transformada de Fourier}
+
+\begin{frame}
+	\frametitle{
+		\secname~(\citeauthor[p.~637]{salgado_classical_2022})
+	} % \citetitle
+
+	\begin{equation*}
+		\widehat{v}\left(\xi\right)=
+		\mathcal{F}\left[v\right]\left(\xi\right)=
+		\int_{\mathbb{R}^{d}}
+		\exp\left(-ix\xi\right)
+		v\left(x\right)\dl x
+	\end{equation*}
+
+	\begin{equation*}
+		\left(
+		\widehat{
+			\difcp{u}{t}-
+			\alpha^{2}\difc.L.{u}{}
+		}
+		\right)
+		\left(k,t\right)=
+		\widehat{\left(\difcp{u}{t}\right)}
+		\left(k,t\right)-
+		\widehat{\alpha^{2}\difc.L.{u}{}}
+		\left(k,t\right)
+		=\widehat{0}=
+		0
+	\end{equation*}
+
+	\begin{equation*}
+		\widehat{\left(\difcp{u}{t}\right)}
+		\left(k,t\right)=
+		\int_{-\infty}^{\infty}
+		\difcp{u}{t}
+		\left(x,t\right)
+		\exp\left(-ikx\right)
+		\dl x=
+		\difcp{}{t} % TODO:
+		\left(
+		\int_{-\infty}^{\infty}
+		u
+		\left(x,t\right)
+		\right)
+		\exp\left(-ikx\right)
+		\dl x=
+		\difcp{\widehat{u}\left(k,t\right)}{t}=
+		\difcp{\widehat{u}}{t}=
+	\end{equation*}
+\end{frame}
+
+
+\begin{frame}
+	\begin{equation*}
+		\widehat{\difcp[2]{u}{x}}
+		\left(k,t\right)=
+		\left(ik\right)^{2}
+		\widehat{u}
+		\left(k,t\right)=
+		-k^{2}
+		\widehat{u}
+		\left(k,t\right)=
+	\end{equation*}
+
+	Para cada $k$, $f\left(t\right)\coloneqq\widehat{u}\left(k,t\right)$
+
+	\begin{equation*}
+		F\left(x\right)=
+		\dfrac{1}{\sqrt{4\pi t}}
+		\exp\left(-\dfrac{x^{2}}{4t}\right)
+	\end{equation*}
+
+	\begin{equation*}
+		u\left(x,t\right)=
+		\dfrac{1}{\sqrt{4\pi\alpha t}}
+		\int_{-\infty}^{\infty}
+		\exp\left(-\dfrac{{\left(x-y\right)}^{2}}{4\alpha t}\right)
+		g\left(y\right)\dl y
+	\end{equation*}
+
+	\begin{proof}
+		\begin{equation*}
+			u\left(x,t\right)-
+			u_{0}\left(x_{0}\right)=
+			\dfrac{1}{{\left(4\pi t\right)}^{d/2}}
+			\int_{\mathbb{R}^{d}}
+			\exp\left(-\dfrac{{\left\|x-y\right\|}^{2}_{2}}{4t}\right)
+			u_{0}\left(y\right)\dl y-
+			u_{0}\left(x_{0}\right)
+		\end{equation*}
+	\end{proof}
+\end{frame}

@@ -1,0 +1,111 @@
+\section{Partial Differential Equations}
+
+\begin{frame}
+	\frametitle{
+		\secname~(\citeauthor[p.~2]{choksi_partial_2022})
+	} % \citetitle
+
+	\begin{definition}[Ecuación Diferencial Parcial (EDP)]
+		Es una ecuación que involucra una \emph{función desconocida} $u$
+		y sus derivadas parciales junto con las variables independientes.
+		Se escribe como
+		\begin{equation}
+			\mathcal{L}
+			\left(
+			\text{variables independientes},
+			u,
+			\text{derivadas de $u$}
+			\right)
+			=0.
+			\label{eq:pde}
+		\end{equation}
+	\end{definition}
+
+	\begin{definition}[Dominio]
+		Un dominio $\Omega$ es un subconjunto de $\mathbb{R}^{d}$ abierto
+		y conexo que tiene frontera lineal a trozos de clase $C^{1}$.
+	\end{definition}
+
+	En lo sucesivo $\Omega$ siempre será un dominio.
+
+	\begin{definition}[Solución clásica de la EDP]
+		Es una función $u\colon\Omega\to\mathbb{R}$ suficientemente suave
+		que satisface~\eqref{eq:pde} para cualquier $x\in\Omega$.
+	\end{definition}
+
+	\begin{definition}[Condiciones auxiliares]
+		Una \emph{condición auxiliar} en una solución general es una
+		igualdad que especifica el valor de la función desconocida en un
+		subconjunto de $\Omega$.
+	\end{definition}
+\end{frame}
+
+\begin{frame}
+	\begin{definition}[Problema de Valor Inicial (PVI)]
+		Sea
+		\begin{math}
+			u\colon
+			\Omega\times\left[0,T\right]
+			\to\mathbb{R}
+		\end{math}
+		una solución de~\eqref{eq:pde}.
+		Un \emph{problema de valor inicial} es una ecuación diferencial
+		junto con un conjunto de condiciones auxiliares que especifican
+		la solución y/o sus derivadas en $t=0$.
+	\end{definition}
+
+	\begin{example}[PVI de la ecuación de difusión]
+		\begin{equation}
+			\begin{cases}
+				\difcp{u}{t}-
+				\alpha^{2}
+				\difc.L.{u}{}=0 &
+				\text{ para }
+				\left(x,t\right)\in
+				\Omega\times\left[0,T\right]. \\
+				u
+				\left(x,0\right)=
+				\phi
+				\left(x\right),\quad
+				\difcp{u}{t}
+				\left(x,0\right)=
+				\psi
+				\left(x\right)  &
+				\text{ para }
+				x\in\Omega.
+			\end{cases}\label{eq:diffusion}
+		\end{equation}
+	\end{example}
+
+	\begin{definition}[Solución clásica]
+		\begin{math}
+			u\colon
+			\Omega
+			\times\left[0,T\right]\to
+			\mathbb{R}
+		\end{math}
+		es la
+		\emph{solución clásica} de~\eqref{eq:diffusion} sii
+		\begin{math}
+			\forall t>0:
+			u\left(\cdot,t\right)\in C^{2}\left(\Omega\right),
+			\forall x\in\Omega:
+			u\left(x,\cdot\right)\in C\left(\left[0,T\right]\right),
+		\end{math}
+		la ecuación y la condición inicial se cumplen puntualmente, y
+		cuando $t\downarrow0$ tenemos que
+		\begin{math}
+			\forall x\in\Omega:
+			u\left(x,t\right)\to u_{0}\left(x\right)
+		\end{math}.
+	\end{definition}
+
+	\begin{theorem}[Existencia]
+		Sea $u_{0}\in C_{b}\left(\Omega\right)\cap L^{2}\left(\Omega\right)$.
+		Entonces, $u$ es una solución clásica de~\eqref{eq:diffusion}.
+		\begin{equation*}
+			u\left(x,t\right)\to u_{0}\left(x_{0}\right),\qquad
+			\left(x,t\right)\to\left(x_{0},0\right)
+		\end{equation*}
+	\end{theorem}
+\end{frame}

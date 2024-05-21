@@ -3,8 +3,8 @@
 \setlength{\bibsep}{5pt plus 0.3ex} % Espaciamiento en la bibliografía
 \setcounter{secnumdepth}{3} % Numera los subsubsecciones
 % \usepackage[T1]{fontenc}
-\usepackage[spanish,es-tabla]{babel} %reemplaza "cuadro" por "tabla"
-\decimalpoint % Cambia coma por punto
+\usepackage[spanish,es-tabla]{babel} % Reemplaza "cuadro" por "tabla"
+\decimalpoint
 \usepackage{mathptmx}
 % \usepackage[cmintegrals]{newtxmath}
 \usepackage{layouts} % Saber ancho de hoja.
@@ -22,16 +22,20 @@
 % \usepackage[left=4 cm,right=3 cm,top=3 cm,bottom=3.5 cm]{geometry}
 % \usepackage{fancyhdr} % Encabezado y Pie de página (1)
 % \pagestyle{fancy} % Encabezado y Pie de página (2)
-\usepackage{lipsum} % Crear texto RAMDOM
 \renewcommand{\labelitemi}{$\bullet$} % Circulos para viñetas
 \usepackage{titlesec} % Titulos de SECCIONES
 \usepackage{tocloft} % Titulos de ÍNDICES
-\usepackage[colorlinks=true,linkcolor=negro,citecolor = negro]{hyperref}
+\usepackage[
+	colorlinks=true,
+	linkcolor=negro,
+	citecolor=negro,
+	urlcolor=orcidlinkcolor
+]{hyperref}
 \usepackage[mathbf=sym]{unicode-math} % Mantener fuentes matemáticas
 \removenolimits{\int} % https://tex.stackexchange.com/a/103925
 \let\mathbb\mathbbalt
 \makeatletter  % Comando para REDUCIR ERRORES
-\usepackage{multirow} % Agregar TABLAS 
+\usepackage{multirow} % Agregar TABLAS
 \usepackage{array} % Dar formato a las TABLAS
 \usepackage{subcaption} % Insertar SubImagenes
 \usepackage{tikz} % Diagrama de Flujo
@@ -61,22 +65,22 @@
 
 %Code listing style named "mystyle"
 \lstdefinestyle{mystyle}{
-  backgroundcolor=\color{backcolour},
-  commentstyle=\color{codegreen},
-  keywordstyle=\color{codeRojo},
-  numberstyle=\tiny\color{codegray},
-  stringstyle=\color{codepurple},
-  basicstyle=\footnotesize,
-  breakatwhitespace=false,
-  breaklines=true,
-  captionpos=b,
-  keepspaces=true,
-  numbers=left,
-  numbersep=5pt,
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  tabsize=2
+	backgroundcolor=\color{backcolour},
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{codeRojo},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
 }
 
 %"mystyle" code listing set
@@ -201,7 +205,7 @@
 \newtheorem{proposition}{Proposición}
 
 \definecolor{orcidcolor}{HTML}{a5ca3f}
-
+\definecolor{orcidlinkcolor}{HTML}{0961ba}
 % Escribir los INFORMACIÓN PERSONAL Y DEL TRABAJO
 
 %Autor para PIE DE PÁGINA (Respetar mayusculas y minisculas)
@@ -209,9 +213,9 @@
 
 %Autor para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
 \authorcaratula{
-  Carlos Alonso Aznarán Laos\\[.5\baselineskip]
-  \textcolor{orcidcolor}{\aiOrcid}
-  \href{https://orcid.org/0000-0001-8314-2271}{0000-0001-8314-2271}
+	Carlos Alonso Aznarán Laos\\[.5\baselineskip]
+	\textcolor{orcidcolor}{\aiOrcid}
+	\href{https://orcid.org/0000-0001-8314-2271}{0000-0001-8314-2271}
 }
 
 %Título en para el PIE DE PÁGINA (Agregar salto de línea de ser necesario)
@@ -223,7 +227,8 @@
 %Título para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
 % \titlecaratula{ESTIMACIÓN DEL ERROR EN LOS ESQUEMAS DE ALTA RESOLUCIÓN DE LA ECUACIÓN DE ADVECCIÓN-DIFUSIÓN LINEAL} % EVOLUTIVOS
 % \titlecaratula{Estimación de error del método limitadora de flujo para problemas de advección-difusión lineal no estacionario} % EVOLUTIVOS
-\titlecaratula{Un esquema de diferencias finitas para resolver problemas de advección-difusión lineal no estacionario con la técnica del limitador de flujo}
+% \titlecaratula{Un esquema de diferencias finitas para resolver problemas de advección-difusión lineal no estacionario con la técnica del limitador de flujo}
+\titlecaratula{Un esquema conservativo de diferencias de alta resolución para problemas de advección-difusión lineal} % no estacionario
 %Nombre de la FACULTAD (Siempre en mayuscula)
 \facultad{Facultad de Ciencias}
 
@@ -232,15 +237,15 @@
 
 %Asesor para CARÁTULA (Siempre en mayuscula y sin saltos de linea)
 \asesor{
-  Dr. Jonathan Alfredo Munguía La Cotera\\[.5\baselineskip]
-  \textcolor{orcidcolor}{\aiOrcid}
-  \href{https://orcid.org/0000-0002-1237-286X}{0000-0002-1237-286X}
+	Dr. Jonathan Alfredo Munguía La Cotera\\[.5\baselineskip]
+	\textcolor{orcidcolor}{\aiOrcid}
+	\href{https://orcid.org/0000-0002-1237-286X}{0000-0002-1237-286X}
 }
 
 \asesorexterno{
-  MSc. John Doe\\[.5\baselineskip]
-  \textcolor{orcidcolor}{\aiOrcid}
-  \href{https://orcid.org}{0000-0000-0000-0000}
+	MSc. John Doe\\[.5\baselineskip]
+	\textcolor{orcidcolor}{\aiOrcid}
+	\href{https://orcid.org}{0000-0000-0000-0000}
 }
 
 % Año para la CARÁTULA

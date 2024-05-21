@@ -3,8 +3,8 @@
 \addcontentsline{toc}{subsection}{Funciones}
 
 \begin{MyFont}
-\begin{adjustwidth}{4.8mm}{}
-\begin{lstlisting}[language=Python, caption={\footnotesize Funciones-KS}, mathescape=true,label={Algoritmo2}]
+	\begin{adjustwidth}{4.8mm}{}
+		\begin{lstlisting}[language=Python, caption={\footnotesize Funciones-KS}, mathescape=true,label={Algoritmo2}]
 import numpy as np
 from scipy  import linalg as LA
 import copy
@@ -18,7 +18,7 @@ def eigen(Tsf=1,n=5):
         else:
             k[i]=ke
     K=tridiag(k,n); M=np.identity(n)
-    vp,$\varphi$p=LA.eigh(K,M); $\varphi$p=$\varphi$p.T; FP=[]; MP=[] 
+    vp,$\varphi$p=LA.eigh(K,M); $\varphi$p=$\varphi$p.T; FP=[]; MP=[]
     for i in range(n):
         FP.append(sum($\varphi$p[i].T@M))
     for i in range(n):
@@ -27,5 +27,5 @@ def eigen(Tsf=1,n=5):
     return T,$\varphi$p,FP,MMP
 
 \end{lstlisting}
-\end{adjustwidth}
+	\end{adjustwidth}
 \end{MyFont}

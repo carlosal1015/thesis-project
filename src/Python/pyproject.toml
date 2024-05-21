@@ -7,7 +7,7 @@ license = "GPL2"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 jupyter-book = "^1.0.0"
 
 [build-system]
